@@ -23,6 +23,7 @@ public class Output {
         System.out.println("2. Find the shortest route");
         System.out.println("3. Add a road to the map");
         System.out.println("4. Add an address to the map");
+        System.out.println("5. Exit program");
         System.out.println("\nPlease pick an option: ");
     }
 
@@ -36,10 +37,10 @@ public class Output {
 
     public static void printTransportationModeScreen() {
         System.out.println("Will you be driving or using public transportation?\n");
-        System.out.println("1. Driving");
+        System.out.println("1. Car");
         System.out.println("2. Public Transportation");
         System.out.println("3. Go back");
-        System.out.println("\nPlease pick an option:");
+        System.out.print("\nPlease pick an option:");
     }
 
     public static void enterLongitudeScreen() {
@@ -50,11 +51,19 @@ public class Output {
         System.out.println("Please enter the latitude value for the address: ");
     }
 
+    public static void enterRoadName() {
+        System.out.println("Please enter the name of the road: ");
+    }
+
     public static void enterAddressScreen() {
         System.out.println("Please enter the full address of the location: ");
     }
 
     public static void printRoute() {
         //Placeholder to print results of algorithm
+    }
+
+    public static void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage() + "\n");
     }
 }
