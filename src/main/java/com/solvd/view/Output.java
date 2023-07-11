@@ -14,7 +14,7 @@ public class Output {
                 "                        |  \\__| $$                                        |  \\__| $$                                       \n" +
                 "                         \\$$    $$                                         \\$$    $$                                       \n" +
                 "                          \\$$$$$$                                           \\$$$$$$                                        \n\n" +
-                "Press enter to continue: ");
+                "Would you like to start the program? (Y/N): ");
     }
 
     public static void printMainMenu() {
@@ -64,6 +64,6 @@ public class Output {
     }
 
     public static void printErrorMessage(Exception e) {
-        System.out.println(e.getMessage() + "\n");
+        System.out.println(e.getMessage());
     }
 }

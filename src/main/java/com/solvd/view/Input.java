@@ -13,7 +13,6 @@ public class Input {
     }
 
     public static String getString() {
-        String option = inputScanner.nextLine();
-        return option;
+        return inputScanner.nextLine();
     }
 }

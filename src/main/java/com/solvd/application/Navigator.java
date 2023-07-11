@@ -9,17 +9,29 @@ public class Navigator {
     private boolean isProgramRunning = true;
     public void run() {
         welcomeScreen();
-
         while (isProgramRunning) {
-
             mainMenu();
-            isProgramRunning = false;
         }
     }
 
     public void welcomeScreen() {
         Output.printWelcomeScreen();
-        input = Input.getString();
+        while (true) {
+            try {
+                input = Input.getString();
+                if (input.equalsIgnoreCase("Y")) {
+                    break;
+                } else if (input.equalsIgnoreCase("N")) {
+                    isProgramRunning = false;
+                    break;
+                } else {
+                    throw new InvalidChoiceException();
+                }
+            } catch (Exception e) {
+                Output.printErrorMessage(e);
+            }
+        }
+
     }
 
     public void mainMenu() {
@@ -43,13 +55,20 @@ public class Navigator {
                     startingAddress = enterStartingAddress();
                     destinationAddress = enterDestinationAddress();
                     transportationMode = transportationMode();
+                    if (transportationMode == null) {
+                        break;
+                    }
                     System.out.println("Fastest route:");
                     break;
+
                 case SHORTEST_ROUTE:
                     startingAddress = enterStartingAddress();
                     destinationAddress = enterDestinationAddress();
                     transportationMode = transportationMode();
-                    System.out.println("Shortest route: ");
+                    if (transportationMode == null) {
+                        break;
+                    }
+                    System.out.println("Shortest route:");
                     break;
                 case ADD_ROAD:
                     String roadName = addRoad();
@@ -101,17 +120,12 @@ public class Navigator {
         final String BACK = "3";
 
         try {
-            switch (input) {
-                case CAR:
-                    return "Car";
-                case PUBLIC_TRANSPORTATION:
-                    return "Public Transportation";
-                case BACK:
-                    mainMenu();
-                    break;
-                default:
-                    throw new InvalidChoiceException();
-            }
+            return switch (input) {
+                case CAR -> "Car";
+                case PUBLIC_TRANSPORTATION -> "Public Transportation";
+                case BACK -> null;
+                default -> throw new InvalidChoiceException();
+            };
         } catch (Exception e) {
             Output.printErrorMessage(e);
             transportationMode();
