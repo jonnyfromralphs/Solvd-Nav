@@ -4,6 +4,7 @@ import com.solvd.controller.FloydWarshallAlgorithm;
 import com.solvd.graph.RoadNetworkGraph;
 import com.solvd.model.Edge;
 import com.solvd.model.Vertex;
+import com.solvd.view.RoutePrinter;
 
 
 public class App {
@@ -40,6 +41,9 @@ public class App {
         FloydWarshallAlgorithm floydWarshallAlgorithm = new FloydWarshallAlgorithm(roadNetworkGraph) ;
         floydWarshallAlgorithm.calculateShortestAndFastestRoutes();
 
+        RoutePrinter routePrinter = new RoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
+        routePrinter.printShortestRoute(starBucks, school);
+        routePrinter.printFastestRoute(starBucks, school);
 
 
     }
