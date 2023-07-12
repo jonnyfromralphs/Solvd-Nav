@@ -1,5 +1,7 @@
 package com.solvd;
 
+import com.solvd.controller.FloydWarshallAlgorithm;
+import com.solvd.graph.RoadNetworkGraph;
 import com.solvd.model.Edge;
 import com.solvd.model.Vertex;
 
@@ -19,6 +21,24 @@ public class App {
         Edge edge5 = new Edge(chaseBank,dallasFireStation,30," fire way");
         Edge edge6 = new Edge(dallasFireStation,walmart,45,"bobby way");
         Edge edge7 = new Edge(dallasFireStation,school,35,"jeffery way");
+
+        RoadNetworkGraph roadNetworkGraph = new RoadNetworkGraph(5);
+        roadNetworkGraph.addVertex(chaseBank);
+        roadNetworkGraph.addVertex(starBucks);
+        roadNetworkGraph.addVertex(school);
+        roadNetworkGraph.addVertex(dallasFireStation);
+        roadNetworkGraph.addVertex(walmart);
+
+        roadNetworkGraph.addEdge(edge1);
+        roadNetworkGraph.addEdge(edge2);
+        roadNetworkGraph.addEdge(edge3);
+        roadNetworkGraph.addEdge(edge4);
+        roadNetworkGraph.addEdge(edge5);
+        roadNetworkGraph.addEdge(edge6);
+        roadNetworkGraph.addEdge(edge7);
+
+        FloydWarshallAlgorithm floydWarshallAlgorithm = new FloydWarshallAlgorithm(roadNetworkGraph) ;
+        floydWarshallAlgorithm.calculateShortestAndFastestRoutes();
 
 
 
