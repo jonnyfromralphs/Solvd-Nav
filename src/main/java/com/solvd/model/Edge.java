@@ -1,8 +1,10 @@
 package com.solvd.model;
 
-import com.solvd.model.Vertex;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Edge {
+    private static final AtomicInteger ID_GENERATOR = new AtomicInteger(0);
+    private long id;
     private Vertex start;
     private Vertex end;
     private double speed;
@@ -10,10 +12,10 @@ public class Edge {
     private String roadName;
 
     public Edge(Vertex edgeStart, Vertex edgeEnd, double speed, String roadName) {
+        this.id = ID_GENERATOR.incrementAndGet();
         this.start = edgeStart;
         this.end = edgeEnd;
         this.speed = speed;
-
         this.roadName = roadName;
     }
 

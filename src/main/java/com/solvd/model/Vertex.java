@@ -1,23 +1,27 @@
 package com.solvd.model;
 
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Vertex {
-    private String id;
+    private static final AtomicInteger ID_GENERATOR = new AtomicInteger(0);
+    private int id;
+    private String name;
     private double latitude;
     private double longitude;
 
-    public Vertex(String id, double latitude, double longitude) {
-        this.id = id;
+    public Vertex(String name, double latitude, double longitude) {
+        this.id = ID_GENERATOR.incrementAndGet();
+        this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -39,7 +43,7 @@ public class Vertex {
 
     @Override
     public String toString() {
-        return id;
+        return name;
     }
 
     @Override
