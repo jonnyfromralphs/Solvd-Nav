@@ -1,12 +1,14 @@
 package com.solvd.application;
 
 import com.solvd.exception.InvalidChoiceException;
+import com.solvd.service.GeocoderService;
 import com.solvd.view.Input;
 import com.solvd.view.Output;
 
 public class Navigator {
     private String input;
     private boolean isProgramRunning = true;
+    private GeocoderService geocoderService = new GeocoderService();
     public void run() {
         welcomeScreen();
         while (isProgramRunning) {
@@ -94,8 +96,8 @@ public class Navigator {
                     break;
                 case ADD_ADDRESS:
                     String fullAddress = addAddress();
-                    String longitude = enterLongitude();
-                    String latitude = enterLatitude();
+                    double longitude = geocoderService.parseLongitude(geocoderService.GeocodeSync(fullAddress));
+                    double latitude = geocoderService.parseLatitude(geocoderService.GeocodeSync(fullAddress));
                     String name = enterName();
                     break;
                 case EXIT:
