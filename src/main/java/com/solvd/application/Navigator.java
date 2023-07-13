@@ -48,6 +48,7 @@ public class Navigator {
         String startingAddress;
         String destinationAddress;
         String transportationMode;
+        boolean isAddingStop = false;
 
         try {
             switch (input) {
@@ -55,9 +56,17 @@ public class Navigator {
                     startingAddress = enterStartingAddress();
                     destinationAddress = enterDestinationAddress();
                     transportationMode = transportationMode();
+                    isAddingStop = addAnotherStop();
+                    while (isAddingStop) {
+                        startingAddress = destinationAddress;
+                        destinationAddress = enterDestinationAddress();
+                        transportationMode = transportationMode();
+                        isAddingStop = addAnotherStop();
+                    }
                     if (transportationMode == null) {
                         break;
                     }
+
                     System.out.println("Fastest route:");
                     break;
 
@@ -65,6 +74,13 @@ public class Navigator {
                     startingAddress = enterStartingAddress();
                     destinationAddress = enterDestinationAddress();
                     transportationMode = transportationMode();
+                    isAddingStop = addAnotherStop();
+                    while (isAddingStop) {
+                        startingAddress = destinationAddress;
+                        destinationAddress = enterDestinationAddress();
+                        transportationMode = transportationMode();
+                        isAddingStop = addAnotherStop();
+                    }
                     if (transportationMode == null) {
                         break;
                     }
@@ -72,11 +88,15 @@ public class Navigator {
                     break;
                 case ADD_ROAD:
                     String roadName = addRoad();
+                    startingAddress = enterStartingAddress();
+                    destinationAddress = enterDestinationAddress();
+                    int speedLimit;
                     break;
                 case ADD_ADDRESS:
                     String fullAddress = addAddress();
                     String longitude = enterLongitude();
                     String latitude = enterLatitude();
+                    String name = enterName();
                     break;
                 case EXIT:
                     isProgramRunning = false;
@@ -89,26 +109,6 @@ public class Navigator {
             mainMenu();
         }
 
-    }
-
-    public String enterStartingAddress() {
-        Output.printStartingPointScreen();
-        return Input.getString();
-    }
-
-    public String enterDestinationAddress() {
-        Output.printDestinationScreen();
-        return Input.getString();
-    }
-
-    public String enterLongitude() {
-        Output.enterLongitudeScreen();
-        return Input.getString();
-    }
-
-    public String enterLatitude() {
-        Output.enterLatitudeScreen();
-        return Input.getString();
     }
 
     public String transportationMode() {
@@ -133,15 +133,61 @@ public class Navigator {
         return null;
     }
 
+    public String enterStartingAddress() {
+        Output.printStartingPointScreen();
+        return Input.getString();
+    }
+
+    public String enterDestinationAddress() {
+        Output.printDestinationScreen();
+        return Input.getString();
+    }
+
+    public String enterLongitude() {
+        Output.enterLongitudeScreen();
+        return Input.getString();
+    }
+
+    public String enterLatitude() {
+        Output.enterLatitudeScreen();
+        return Input.getString();
+    }
+
     public String addRoad() {
         Output.enterRoadName();
-        input = Input.getString();
-        return input;
+        return Input.getString();
     }
 
     public String addAddress() {
         Output.enterAddressScreen();
-        input = Input.getString();
-        return input;
+        return Input.getString();
+    }
+
+    public String enterName() {
+        Output.enterNameOfAddress();
+        return Input.getString();
+    }
+
+    public int addSpeedLimit() {
+        Output.enterSpeedLimit();
+        return Input.getInt();
+    }
+
+    public boolean addAnotherStop() {
+        Output.enterAnotherStop();
+        while (true) {
+            try {
+                input = Input.getString();
+                if (input.equalsIgnoreCase("Y")) {
+                    return true;
+                } else if (input.equalsIgnoreCase("N")) {
+                    return false;
+                } else {
+                    throw new InvalidChoiceException();
+                }
+            } catch (Exception e) {
+                Output.printErrorMessage(e);
+            }
+        }
     }
 }

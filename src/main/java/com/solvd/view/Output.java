@@ -28,11 +28,11 @@ public class Output {
     }
 
     public static void printStartingPointScreen() {
-        System.out.println("Please enter your starting point: ");
+        System.out.println("Please enter your starting point (address or name of location): ");
     }
 
     public static void printDestinationScreen() {
-        System.out.println("Please enter your destination: ");
+        System.out.println("Please enter your destination (address or name of location): ");
     }
 
     public static void printTransportationModeScreen() {
@@ -56,7 +56,19 @@ public class Output {
     }
 
     public static void enterAddressScreen() {
-        System.out.println("Please enter the full address of the location: ");
+        System.out.println("Please enter the full address or the name of the location: ");
+    }
+
+    public static void enterSpeedLimit() {
+        System.out.println("Please enter the speed limit for the road in miles: ");
+    }
+
+    public static void enterAnotherStop() {
+        System.out.println("Would you like to enter another stop? (Y/N): ");
+    }
+
+    public static void enterNameOfAddress() {
+        System.out.println("Please enter the name of the location: ");
     }
 
     public static void printRoute() {
