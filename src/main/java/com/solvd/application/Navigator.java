@@ -58,15 +58,17 @@ public class Navigator {
                     startingAddress = enterStartingAddress();
                     destinationAddress = enterDestinationAddress();
                     transportationMode = transportationMode();
+
+                    if (transportationMode == null) {
+                        break;
+                    }
+
                     isAddingStop = addAnotherStop();
                     while (isAddingStop) {
                         startingAddress = destinationAddress;
                         destinationAddress = enterDestinationAddress();
                         transportationMode = transportationMode();
                         isAddingStop = addAnotherStop();
-                    }
-                    if (transportationMode == null) {
-                        break;
                     }
 
                     System.out.println("Fastest route:");
@@ -76,6 +78,11 @@ public class Navigator {
                     startingAddress = enterStartingAddress();
                     destinationAddress = enterDestinationAddress();
                     transportationMode = transportationMode();
+
+                    if (transportationMode == null) {
+                        break;
+                    }
+
                     isAddingStop = addAnotherStop();
                     while (isAddingStop) {
                         startingAddress = destinationAddress;
@@ -83,9 +90,7 @@ public class Navigator {
                         transportationMode = transportationMode();
                         isAddingStop = addAnotherStop();
                     }
-                    if (transportationMode == null) {
-                        break;
-                    }
+
                     System.out.println("Shortest route:");
                     break;
                 case ADD_ROAD:
