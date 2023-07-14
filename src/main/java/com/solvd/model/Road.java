@@ -1,4 +1,4 @@
-package com.solvd.db.mysql.model;
+package com.solvd.model;
 
 public class Road {
     private long id;
@@ -6,6 +6,8 @@ public class Road {
     private Address startAddress;
     private Address endAddress;
     private int speedLimit;
+
+    public Road() {}
 
     public Road(long id, String name, Address startAddress, Address endAddress, int speedLimit) {
         this.id = id;

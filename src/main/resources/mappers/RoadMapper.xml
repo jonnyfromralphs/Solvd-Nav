@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.db.mysql.mapper.RoadMapper">
+
+    <resultMap id="roadResultMap" type="com.solvd.model.Road">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="speedLimit" column="speed_limit" />
+        <association property="startAddress" javaType="com.solvd.model.Address" resultMap="addressResultMap" />
+        <association property="endAddress" javaType="com.solvd.model.Address" resultMap="addressResultMap" />
+    </resultMap>
+
+    <select id="getRoadById" parameterType="long" resultMap="roadResultMap">
+        select r.id, r.name, r.speed_limit, a1.id as start_address_id, a2.id as end_address_id
+        from roads r
+        inner join address a1 on r.start_address_id = a1.id
+        inner join address a2 on r.end_address_id = a2.id
+        where r.id = #{id}
+    </select>
+
+    <select id="getAllRoads" resultMap="roadResultMap">
+        select r.id, r.name, r.speed_limit, a1.id as start_address_id, a2.id as end_address_id
+        from roads r
+        inner join address a1 on r.start_address_id = a1.id
+        inner join address a2 on r.end_address_id = a2.id
+    </select>
+
+    <insert id="createRoad" parameterType="com.solvd.model.Road">
+        insert into roads (name, start_address_id, end_address_id, speed_limit)
+        values (#{name}, #{startAddress.id}, #{endAddress.id}, #{speedLimit})
+    </insert>
+
+    <update id="updateRoad" parameterType="com.solvd.model.Road">
+        update roads
+        set name = #{name}, start_address_id = #{startAddress.id}, end_address_id = #{endAddress.id}, speed_limit = #{speedLimit}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteRoad" parameterType="long">
+        delete from roads where id = #{id}
+    </delete>
+
+</mapper>

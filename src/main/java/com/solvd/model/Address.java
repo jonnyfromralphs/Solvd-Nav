@@ -1,27 +1,40 @@
-package com.solvd.db.mysql.model;
+package com.solvd.model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Address {
     private long id;
     private String houseNumber;
     private Street street;
     private City city;
-    private String state;
+    private String stateName;
     private ZipCode zipCode;
     private double longitude;
     private double latitude;
     private String landmarkName;
+    private List<Road> roads;
 
-    public Address(long id, String houseNumber, Street street, City city, String state, ZipCode zipCode,
+    public Address(){
+        roads = new ArrayList<>();
+    }
+
+    public Address(long id, String houseNumber, Street street, City city, String stateName, ZipCode zipCode,
                    double longitude, double latitude, String landmarkName) {
         this.id = id;
         this.houseNumber = houseNumber;
         this.street = street;
         this.city = city;
-        this.state = state;
+        this.stateName = stateName;
         this.zipCode = zipCode;
         this.longitude = longitude;
         this.latitude = latitude;
         this.landmarkName = landmarkName;
+        roads = new ArrayList<>();
+    }
+
+    public Address(long id) {
+        this.id = id;
     }
 
     public long getId() {
@@ -57,11 +70,11 @@ public class Address {
     }
 
     public String getState() {
-        return state;
+        return stateName;
     }
 
     public void setState(String state) {
-        this.state = state;
+        this.stateName = stateName;
     }
 
     public ZipCode getZipCode() {
@@ -96,6 +109,14 @@ public class Address {
         this.landmarkName = landmarkName;
     }
 
+    public List<Road> getRoads() {
+        return roads;
+    }
+
+    public void setRoads(List<Road> roads) {
+        this.roads = roads;
+    }
+
     @Override
     public String toString() {
         return "Address{" +
@@ -103,11 +124,12 @@ public class Address {
                 ", houseNumber='" + houseNumber + '\'' +
                 ", street=" + street +
                 ", city=" + city +
-                ", state='" + state + '\'' +
+                ", stateName='" + stateName + '\'' +
                 ", zipCode=" + zipCode +
                 ", longitude=" + longitude +
                 ", latitude=" + latitude +
                 ", landmarkName='" + landmarkName + '\'' +
+                ", roads=" + roads +
                 '}';
     }
 }

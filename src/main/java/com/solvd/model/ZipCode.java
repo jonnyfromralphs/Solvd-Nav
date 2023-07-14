@@ -1,15 +1,17 @@
-package com.solvd.db.mysql.model;
+package com.solvd.model;
 
 public class ZipCode {
     private long id;
     private int code;
-    private City city;
+    private long cityId;
 
-    public ZipCode(long id, int code, City city) {
+    public ZipCode(long id, int code, long cityId) {
         this.id = id;
         this.code = code;
-        this.city = city;
+        this.cityId = cityId;
     }
+
+    public ZipCode(){}
 
     public long getId() {
         return id;
@@ -27,12 +29,12 @@ public class ZipCode {
         this.code = code;
     }
 
-    public City getCity() {
-        return city;
+    public long getCityId() {
+        return cityId;
     }
 
-    public void setCity(City city) {
-        this.city = city;
+    public void setCity(long cityId) {
+        this.cityId = cityId;
     }
 
     @Override
@@ -40,7 +42,7 @@ public class ZipCode {
         return "ZipCode{" +
                 "id=" + id +
                 ", code=" + code +
-                ", city=" + city +
+                ", city id=" + cityId +
                 '}';
     }
 }

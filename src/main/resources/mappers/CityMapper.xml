@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.db.mysql.mapper.CityMapper">
+
+    <resultMap id="cityResultMap" type="com.solvd.model.City">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <select id="getCityById" resultMap="cityResultMap">
+        select * from cities where id = #{id}
+    </select>
+
+    <select id="getAllCities" resultMap="cityResultMap">
+        select * from cities
+    </select>
+
+    <insert id="createCity" parameterType="com.solvd.model.City">
+        <selectKey keyProperty="id" resultType="long" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into cities (name)
+        values (#{name})
+    </insert>
+
+    <update id="updateCity" parameterType="com.solvd.model.City">
+        update cities set
+        name = #{name}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCity" parameterType="long">
+        delete from cities where id = #{id}
+    </delete>
+
+    <select id="getZipCodesForCity" resultType="com.solvd.model.ZipCode">
+        select * from zip_codes where city_id = #{cityId}
+    </select>
+
+</mapper>

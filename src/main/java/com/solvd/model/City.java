@@ -1,12 +1,21 @@
-package com.solvd.db.mysql.model;
+package com.solvd.model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class City {
     private long id;
     private String name;
+    private List<ZipCode> zipCodes;
+
+    public City() {
+        zipCodes = new ArrayList<>();
+    }
 
     public City(long id, String name){
         this.id = id;
         this.name = name;
+        zipCodes = new ArrayList<>();
     }
 
     public long getId() {
@@ -25,11 +34,20 @@ public class City {
         this.name = name;
     }
 
+    public List<ZipCode> getZipCodes() {
+        return zipCodes;
+    }
+
+    public void setZipCodes(List<ZipCode> zipCodes) {
+        this.zipCodes = zipCodes;
+    }
+
     @Override
     public String toString() {
         return "City{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", zipCodes=" + zipCodes +
                 '}';
     }
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.db.mysql.mapper.ZipCodeMapper">
+
+    <resultMap id="zipCodeResultMap" type="com.solvd.model.ZipCode">
+        <id property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="cityId" column="city_id"/>
+    </resultMap>
+
+    <select id="getZipCodeById" resultMap="zipCodeResultMap">
+        select * from zip_codes where id = #{id}
+    </select>
+
+    <select id="getAllZipCodes" resultMap="zipCodeResultMap">
+        select * from zip_codes
+    </select>
+
+    <insert id="createZipCode" parameterType="com.solvd.model.ZipCode">
+        <selectKey keyProperty="id" resultType="long" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into zip_codes (code, city_id)
+        values (#{code}, #{cityId})
+    </insert>
+
+    <update id="updateZipCode" parameterType="com.solvd.model.ZipCode">
+        update zip_codes set
+        code = #{code},
+        city_id = #{cityId}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteZipCode" parameterType="long">
+        delete from zip_codes where id = #{id}
+    </delete>
+
+</mapper>
