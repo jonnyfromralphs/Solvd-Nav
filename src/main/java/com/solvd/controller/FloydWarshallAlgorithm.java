@@ -1,6 +1,9 @@
 package com.solvd.controller;
 
 import com.solvd.graph.RoadNetworkGraph;
+import com.solvd.model.Vertex;
+
+import java.util.List;
 
 public class FloydWarshallAlgorithm {
     private RoadNetworkGraph graph;
@@ -12,9 +15,11 @@ public class FloydWarshallAlgorithm {
         this.shortestRouteMatrix = graph.getShortestRouteMatrix();
         this.fastestRouteMatrix = graph.getFastestRouteMatrix();
     }
-
     public void calculateShortestAndFastestRoutes() {
         int vertexCount = graph.getVertexCount();
+        double[][] shortestRouteMatrix = graph.getShortestRouteMatrix();
+        double[][] fastestRouteMatrix = graph.getFastestRouteMatrix();
+
         for (int i = 0; i < vertexCount; i++) {
             for (int j = 0; j < vertexCount; j++) {
                 for (int k = 0; k < vertexCount; k++) {
@@ -23,7 +28,25 @@ public class FloydWarshallAlgorithm {
                 }
             }
         }
+
+        List<Vertex> busStopList = graph.getBusStopList();
+        for (Vertex busStop : busStopList) {
+            int busStopIndex = graph.getVertexList().indexOf(busStop);
+            for (int i = 0; i < vertexCount; i++) {
+                for (int j = 0; j < vertexCount; j++) {
+                    double shortestViaBusStop = shortestRouteMatrix[i][busStopIndex] + shortestRouteMatrix[busStopIndex][j];
+                    double fastestViaBusStop = fastestRouteMatrix[i][busStopIndex] + fastestRouteMatrix[busStopIndex][j];
+                    if (shortestViaBusStop < shortestRouteMatrix[i][j]) {
+                        shortestRouteMatrix[i][j] = shortestViaBusStop;
+                    }
+                    if (fastestViaBusStop < fastestRouteMatrix[i][j]) {
+                        fastestRouteMatrix[i][j] = fastestViaBusStop;
+                    }
+                }
+            }
+        }
     }
+
 
     public double getShortestRouteDistance(int sourceIndex, int destinationIndex) {
         return shortestRouteMatrix[sourceIndex][destinationIndex];
@@ -49,3 +72,5 @@ public class FloydWarshallAlgorithm {
         this.fastestRouteMatrix = fastestRouteMatrix;
     }
 }
+
+
