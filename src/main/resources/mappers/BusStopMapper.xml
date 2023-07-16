@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.db.mysql.mapper.BusStopMapper">
+
+    <resultMap id="busStopResultMap" type="com.solvd.model.BusStop">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="latitude" column="latitude"/>
+        <result property="longitude" column="longitude"/>
+        <result property="frequency" column="frequency"/>
+    </resultMap>
+
+    <select id="getBusStopById" resultMap="busStopResultMap">
+        select * from bus_stops where id = #{id}
+    </select>
+
+    <select id="getAllBusStops" resultMap="busStopResultMap">
+        select * from bus_stops
+    </select>
+
+    <insert id="createBusStop" parameterType="com.solvd.model.BusStop">
+        <selectKey keyProperty="id" resultType="long" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into bus_stops (name, latitude, longitude, frequency)
+        values (#{name}, #{latitude}, #{longitude}, #{frequency})
+    </insert>
+
+    <update id="updateBusStop" parameterType="com.solvd.model.BusStop">
+        update bus_stops set
+        name = #{name},
+        latitude = #{latitude},
+        longitude = #{longitude},
+        frequency = #{frequency}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBusStop" parameterType="long">
+        delete from bus_stops where id = #{id}
+    </delete>
+
+</mapper>

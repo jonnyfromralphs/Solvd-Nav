@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.db.mysql.mapper.StreetMapper">
+
+    <resultMap id="streetResultMap" type="com.solvd.model.Street">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <select id="getStreetById" resultMap="streetResultMap">
+        select * from streets where id = #{id}
+    </select>
+
+    <select id="getAllStreets" resultMap="streetResultMap">
+        select * from streets
+    </select>
+
+    <insert id="createStreet" parameterType="com.solvd.model.Street">
+        <selectKey keyProperty="id" resultType="long" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into streets (name)
+        values (#{name})
+    </insert>
+
+    <update id="updateStreet" parameterType="com.solvd.model.Street">
+        update streets set
+        name = #{name}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStreet" parameterType="long">
+        delete from streets where id = #{id}
+    </delete>
+
+</mapper>
