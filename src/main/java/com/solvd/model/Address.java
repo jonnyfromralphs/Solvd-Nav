@@ -4,16 +4,16 @@ public class Address {
     private long id;
     private String houseNumber;
     private Street street;
-    private long city;
+    private City city;
     private String stateName;
-    private long zipCode;
+    private ZipCode zipCode;
     private double longitude;
     private double latitude;
     private String landmarkName;
 
     public Address(){}
 
-    public Address(long id, String houseNumber, Street street, long city, String stateName, long zipCode,
+    public Address(long id, String houseNumber, Street street, City city, String stateName, ZipCode zipCode,
                    double longitude, double latitude, String landmarkName) {
         this.id = id;
         this.houseNumber = houseNumber;
@@ -54,11 +54,11 @@ public class Address {
         this.street = street;
     }
 
-    public long getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(long city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
@@ -70,11 +70,11 @@ public class Address {
         this.stateName = stateName;
     }
 
-    public long getZipCode() {
+    public ZipCode getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(long zipCode) {
+    public void setZipCode(ZipCode zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -104,16 +104,6 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" +
-                "id=" + id +
-                ", houseNumber='" + houseNumber + '\'' +
-                ", streetId=" + (street != null ? street.getId() : null) +
-                ", cityId=" + city + '\'' +
-                ", stateName='" + stateName + '\'' +
-                ", zipCodeId=" + zipCode +
-                ", longitude=" + longitude +
-                ", latitude=" + latitude +
-                ", landmarkName='" + landmarkName + '\'' +
-                '}';
+        return String.format("%s: %s %s %s, %s %s", landmarkName, houseNumber, street.getName(), city.getName(), stateName, zipCode.getCode());
     }
 }

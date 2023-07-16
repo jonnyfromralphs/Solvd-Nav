@@ -1,10 +1,10 @@
 package com.solvd;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
-import com.solvd.graph.RoadNetworkGraph;
-import com.solvd.model.Edge;
+import com.solvd.model.graph.RoadNetworkGraph;
+import com.solvd.model.graph.Edge;
 import com.solvd.model.TransportationMethod;
-import com.solvd.model.Vertex;
+import com.solvd.model.graph.Vertex;
 import com.solvd.view.RoutePrinterService;
 import com.solvd.view.routeprinter.CarRoutePrinter;
 import com.solvd.view.routeprinter.PublicTransportationRoutePrinter;

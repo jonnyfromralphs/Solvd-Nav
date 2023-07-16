@@ -13,23 +13,23 @@
     </resultMap>
 
     <select id="getBusStopById" resultMap="busStopResultMap">
-        select * from bus_stops where id = #{id}
+        select * from addresses where id = #{id}
     </select>
 
     <select id="getAllBusStops" resultMap="busStopResultMap">
-        select * from bus_stops
+        select * from addresses where frequency is not null
     </select>
 
     <insert id="createBusStop" parameterType="com.solvd.model.BusStop">
         <selectKey keyProperty="id" resultType="long" order="AFTER">
             select last_insert_id()
         </selectKey>
-        insert into bus_stops (name, latitude, longitude, frequency)
+        insert into addresses (landmark_name, latitude, longitude, frequency)
         values (#{name}, #{latitude}, #{longitude}, #{frequency})
     </insert>
 
     <update id="updateBusStop" parameterType="com.solvd.model.BusStop">
-        update bus_stops set
+        update addresses set
         name = #{name},
         latitude = #{latitude},
         longitude = #{longitude},
@@ -38,7 +38,7 @@
     </update>
 
     <delete id="deleteBusStop" parameterType="long">
-        delete from bus_stops where id = #{id}
+        delete from addresses where id = #{id}
     </delete>
 
 </mapper>

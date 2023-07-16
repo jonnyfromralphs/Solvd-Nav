@@ -1,7 +1,9 @@
 package com.solvd.application;
 
 import com.solvd.exception.InvalidChoiceException;
+import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.service.GeocoderService;
+import com.solvd.service.graphservice.GraphServiceImpl;
 import com.solvd.view.Input;
 import com.solvd.view.Output;
 
@@ -9,7 +11,9 @@ public class Navigator {
     private String input;
     private boolean isProgramRunning = true;
     private GeocoderService geocoderService = new GeocoderService();
+    private RoadNetworkGraph roadNetworkGraph;
     public void run() {
+        roadNetworkGraph = new GraphServiceImpl().loadGraphFromDatabase();
         welcomeScreen();
         while (isProgramRunning) {
             mainMenu();

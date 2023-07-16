@@ -1,7 +1,9 @@
 package com.solvd.service.graphservice;
 
+import com.solvd.model.graph.RoadNetworkGraph;
+
 public interface GraphService {
-    void loadGraphFromDatabase();
+    RoadNetworkGraph loadGraphFromDatabase();
     void loadVerticesFromDatabase();
     void loadEdgesFromDatabase();
     void loadBusStopsFromDatabase();

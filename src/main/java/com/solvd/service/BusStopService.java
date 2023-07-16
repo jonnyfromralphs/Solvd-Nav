@@ -1,4 +1,4 @@
-package com.solvd.db.mysql.service;
+package com.solvd.service;
 
 import com.solvd.db.mysql.mapper.BusStopMapper;
 import com.solvd.model.BusStop;

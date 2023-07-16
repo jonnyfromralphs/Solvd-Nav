@@ -2,12 +2,11 @@ package com.solvd.view;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
 import com.solvd.controller.RouteCalculator;
-import com.solvd.model.Edge;
-import com.solvd.graph.RoadNetworkGraph;
-import com.solvd.model.Vertex;
+import com.solvd.model.graph.Edge;
+import com.solvd.model.graph.RoadNetworkGraph;
+import com.solvd.model.graph.Vertex;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractPrinter {
