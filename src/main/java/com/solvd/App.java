@@ -97,7 +97,7 @@ public class App {
         CarRoutePrinter carRoutePrinter = new CarRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
         PublicTransportationRoutePrinter publicTransportationRoutePrinter = new PublicTransportationRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
         RoutePrinterService routePrinter = new RoutePrinterService(carRoutePrinter, publicTransportationRoutePrinter);
-        routePrinter.printRoute(chaseBank,walmart, TransportationMethod.CAR);
-        routePrinter.printRoute(chaseBank,walmart, TransportationMethod.PUBLIC_TRANSPORTATION);
+        routePrinter.printRoute(chaseBank,walmart, TransportationMethod.CAR, true);
+        routePrinter.printRoute(chaseBank,walmart, TransportationMethod.PUBLIC_TRANSPORTATION, false);
     }
 }

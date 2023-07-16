@@ -103,7 +103,7 @@ public class PublicTransportationRoutePrinter extends AbstractPrinter implements
             } else {
                 path.addAll(busStopToDestinationPath);
             }
-            System.out.println(path + "***************");
+
             System.out.println("Fastest Route using Bus: " + formatPath(path));
             System.out.println(formatPathWithDirectionsBus(path, source, destination, waitTimeMinutes));
             System.out.println();

@@ -21,10 +21,18 @@ public class RoadMapperImpl implements RoadMapper {
         }
     }
     @Override
-    public List<Road> getAllRoads() {
+    public List<Road> getAllRoadsForAddresses() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             RoadMapper mapper = session.getMapper(RoadMapper.class);
-            return mapper.getAllRoads();
+            return mapper.getAllRoadsForAddresses();
+        }
+    }
+
+    @Override
+    public List<Road> getAllRoadsForBusStops() {
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            RoadMapper mapper = session.getMapper(RoadMapper.class);
+            return mapper.getAllRoadsForBusStops();
         }
     }
     @Override

@@ -14,14 +14,16 @@ public class RoutePrinterService {
         this.publicTransportationRoutePrinter = publicTransportationRoutePrinter;
     }
 
-    public void printRoute(Vertex source, Vertex destination, TransportationMethod transportationMethod) {
-        if (transportationMethod == TransportationMethod.CAR) {
-            carRoutePrinter.printShortestRoute(source, destination);
+    public void printRoute(Vertex source, Vertex destination, TransportationMethod transportationMethod, boolean fastest) {
+        if (transportationMethod == TransportationMethod.CAR && fastest) {
             carRoutePrinter.printFastestRoute(source, destination);
+        } else if (transportationMethod == TransportationMethod.CAR) {
+            carRoutePrinter.printShortestRoute(source, destination);
+        } else if (transportationMethod == TransportationMethod.PUBLIC_TRANSPORTATION && fastest) {
+            publicTransportationRoutePrinter.printFastestRoute(source, destination);
         } else if (transportationMethod == TransportationMethod.PUBLIC_TRANSPORTATION) {
             publicTransportationRoutePrinter.printShortestRoute(source, destination);
-            publicTransportationRoutePrinter.printFastestRoute(source, destination);
-        } else {
+        }else {
             System.out.println("Invalid transportation method.");
         }
     }

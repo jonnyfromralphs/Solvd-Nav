@@ -12,6 +12,14 @@
         <association property="endAddress" column="end_address_id" select="com.solvd.db.mysql.mapper.AddressMapper.getAddressById"/>
     </resultMap>
 
+    <resultMap id="busRoadResultMap" type="com.solvd.model.Road">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="speedLimit" column="speed_limit" />
+        <association property="busStopStartAddress" column="start_address_id" select="com.solvd.db.mysql.mapper.BusStopMapper.getBusStopById"/>
+        <association property="endAddress" column="end_address_id" select="com.solvd.db.mysql.mapper.AddressMapper.getAddressById"/>
+    </resultMap>
+
     <select id="getRoadById" parameterType="long" resultMap="roadResultMap">
         select r.id, r.name, r.speed_limit, a1.id as start_address_id, a2.id as end_address_id
         from roads r
@@ -20,11 +28,20 @@
         where r.id = #{id}
     </select>
 
-    <select id="getAllRoads" resultMap="roadResultMap">
+    <select id="getAllRoadsForAddresses" resultMap="roadResultMap">
         select r.id, r.name, r.speed_limit, a1.id as start_address_id, a2.id as end_address_id
         from roads r
         inner join addresses a1 on r.start_address_id = a1.id
         inner join addresses a2 on r.end_address_id = a2.id
+        where a1.frequency is null
+    </select>
+
+    <select id="getAllRoadsForBusStops" resultMap="busRoadResultMap">
+        select r.id, r.name, r.speed_limit, a1.id as start_address_id, a2.id as end_address_id
+        from roads r
+        inner join addresses a1 on r.start_address_id = a1.id
+        inner join addresses a2 on r.end_address_id = a2.id
+        where a1.frequency is not null
     </select>
 
     <insert id="createRoad" parameterType="com.solvd.model.Road">

@@ -6,7 +6,7 @@
 
     <resultMap id="busStopResultMap" type="com.solvd.model.BusStop">
         <id property="id" column="id"/>
-        <result property="name" column="name"/>
+        <result property="name" column="landmark_name"/>
         <result property="latitude" column="latitude"/>
         <result property="longitude" column="longitude"/>
         <result property="frequency" column="frequency"/>

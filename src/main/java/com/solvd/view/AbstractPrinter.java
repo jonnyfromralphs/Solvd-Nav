@@ -30,7 +30,7 @@ public abstract class AbstractPrinter {
     protected String formatPath(List<Vertex> path) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < path.size(); i++) {
-            sb.append(path.get(i));
+            sb.append(formatAddress(path.get(i).getName()));
             if (i != path.size() - 1) {
                 sb.append(" -> ");
             }
@@ -54,7 +54,7 @@ public abstract class AbstractPrinter {
                 time = getTimeBetweenVertices(currentVertex, nextVertex);
             }
 
-            sb.append("From ").append(currentVertex.getName()).append(" take ");
+            sb.append("From ").append(formatAddress(currentVertex.getName())).append(" take ");
             if (edge != null) {
                 sb.append(edge.getRoadName()).append(" and drive for ").append(df.format(distance)).append(" miles ").append("("+df.format(time)).append(" hours),");
             } else {
@@ -62,9 +62,9 @@ public abstract class AbstractPrinter {
             }
 
             if (i == path.size() - 2) {
-                sb.append(" to pass by ").append(nextVertex.getName()).append(".");
+                sb.append(" to pass by ").append(formatAddress(nextVertex.getName())).append(".");
             } else {
-                sb.append(" to pass by ").append(nextVertex.getName()).append(",\n");
+                sb.append(" to pass by ").append(formatAddress(nextVertex.getName())).append(",\n");
             }
 
             totalDistance += distance;
@@ -100,7 +100,7 @@ public abstract class AbstractPrinter {
         double walkingDistanceFromDestination = graph.getDistanceUsingHaversine(destinationBusStop, destination);
         double walkingTimeFromDestination = walkingDistanceFromDestination / WALKING_SPEED;
 
-        sb.append("From ").append(source.getName()).append(", walk to the nearest bus stop (")
+        sb.append("From ").append(formatAddress(source.getName())).append(", walk to the nearest bus stop (")
                 .append(df.format(walkingDistanceToSource)).append(" miles, ")
                 .append(df.format(walkingTimeToSource)).append(" hours).\n");
 
@@ -125,7 +125,7 @@ public abstract class AbstractPrinter {
                     distance = graph.getDistanceUsingHaversine(edge.getStart(), edge.getEnd());
                     time = getTimeBetweenVertices(currentVertex, nextVertex);
 
-                    sb.append("From ").append(currentVertex.getName()).append(", take ")
+                    sb.append("From ").append(formatAddress(currentVertex.getName())).append(", take ")
                             .append(edge.getRoadName()).append(" and drive for ")
                             .append(df.format(distance)).append(" miles (").append(df.format(time)).append(" hours).\n");
 
@@ -136,7 +136,7 @@ public abstract class AbstractPrinter {
             }
 
             if (nextVertex.equals(destinationBusStop) && i != path.size() - 2) {
-                sb.append("Finally, walk from the bus stop ").append(destinationBusStop).append(" to ").append(destination.getName()).append(" (")
+                sb.append("Finally, walk from the bus stop ").append(destinationBusStop).append(" to ").append(formatAddress(destination.getName())).append(" (")
                         .append(df.format(walkingDistanceFromDestination)).append(" miles, ")
                         .append(df.format(walkingTimeFromDestination)).append(" hours).\n");
 
@@ -232,6 +232,11 @@ public abstract class AbstractPrinter {
         }
 
         return totalTime;
+    }
+
+    private String formatAddress(String fullAddress) {
+        int index = fullAddress.indexOf(":");
+        return index > -1 ? fullAddress.substring(0, index) : fullAddress;
     }
 
 }
