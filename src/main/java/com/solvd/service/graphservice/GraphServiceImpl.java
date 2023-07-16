@@ -41,7 +41,7 @@ public class GraphServiceImpl implements GraphService {
         //  Retrieve edge data using myBatis. please use an appropriate data structure
         // i just used arrayList just for a demo.
         for (Address address : addresses) {
-            Vertex vertex = new Vertex(address.getLandmarkName(), address.getLatitude(), address.getLongitude()); // create vertex object here using the vertexData
+            Vertex vertex = new Vertex(address.toString(), address.getLatitude(), address.getLongitude()); // create vertex object here using the vertexData
             graph.addVertex(vertex);
         }
     }
