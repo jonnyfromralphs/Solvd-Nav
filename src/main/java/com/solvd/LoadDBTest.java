@@ -12,6 +12,7 @@ import com.solvd.model.BusStop;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.Address;
 import com.solvd.model.Road;
+import com.solvd.service.AddressService;
 import com.solvd.service.graphservice.GraphServiceImpl;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -21,6 +22,7 @@ public class LoadDBTest {
     public static void main( String[] args) {
         ConnectionPool.loadPropertyConfigFile();
         SqlSessionFactory sqlSessionFactory = MyBatisUtil.getSqlSessionFactory();
+        AddressService addressService = new AddressService(new AddressMapperImpl(sqlSessionFactory));
 //        AddressMapper addressMapper = new AddressMapperImpl(sqlSessionFactory);
 //        List<Address> addresses = addressMapper.getAllAddresses();
 ////        addresses.forEach(a -> System.out.println(a));

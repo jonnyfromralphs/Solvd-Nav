@@ -190,11 +190,13 @@ public class Navigator {
     }
 
     public String enterStartingAddress() {
+        Output.printAddresses(roadNetworkGraph);
         Output.printStartingPointScreen();
         return Input.getString();
     }
 
     public String enterDestinationAddress() {
+        Output.printAddresses(roadNetworkGraph);
         Output.printDestinationScreen();
         return Input.getString();
     }

@@ -11,6 +11,9 @@ import com.solvd.model.graph.Edge;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.*;
 import com.solvd.model.graph.Vertex;
+import com.solvd.service.AddressService;
+import com.solvd.service.BusStopService;
+import com.solvd.service.RoadService;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
@@ -18,16 +21,16 @@ import java.util.List;
 public class GraphServiceImpl implements GraphService {
     private RoadNetworkGraph graph;
     SqlSessionFactory sqlSessionFactory = MyBatisUtil.getSqlSessionFactory();
-    AddressMapper addressMapper = new AddressMapperImpl(sqlSessionFactory);
-    RoadMapper roadMapper = new RoadMapperImpl(sqlSessionFactory);
-    BusStopMapper busStopMapper = new BusStopMapperImpl(sqlSessionFactory);
+    AddressService addressService = new AddressService(new AddressMapperImpl(sqlSessionFactory));
+    RoadService roadService = new RoadService(new RoadMapperImpl(sqlSessionFactory));
+    BusStopService busStopService = new BusStopService(new BusStopMapperImpl(sqlSessionFactory));
 
     public GraphServiceImpl() { }
 
     @Override
     public RoadNetworkGraph loadGraphFromDatabase() {
-        List<Address> addresses = addressMapper.getAllAddresses();
-        List<BusStop> busStops = busStopMapper.getAllBusStops();
+        List<Address> addresses = addressService.getAll();
+        List<BusStop> busStops = busStopService.getAll();
         graph = new RoadNetworkGraph(addresses.size() + busStops.size());
         loadVerticesFromDatabase(addresses);
         loadBusStopsFromDatabase(busStops);
@@ -52,8 +55,8 @@ public class GraphServiceImpl implements GraphService {
     @Override
     public void loadEdgesFromDatabase() {
         // List<Road> edgedataList = new ArrayList<>();
-        List<Road> addressRoads = roadMapper.getAllRoadsForAddresses();
-        List<Road> busRoads = roadMapper.getAllRoadsForBusStops(); // Retrieve edge data using myBatis .
+        List<Road> addressRoads = roadService.getAllRoadsForAddresses();
+        List<Road> busRoads = roadService.getAllRoadsForBusStops(); // Retrieve edge data using myBatis .
 
         // Create and add edges to the graph
         for (Road road : addressRoads) {

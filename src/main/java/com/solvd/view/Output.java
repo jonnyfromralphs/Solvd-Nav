@@ -1,5 +1,11 @@
 package com.solvd.view;
 
+import com.solvd.model.Address;
+import com.solvd.model.graph.RoadNetworkGraph;
+import com.solvd.model.graph.Vertex;
+
+import java.util.List;
+
 public class Output {
     public static void printWelcomeScreen() {
         System.out.println("  ______   __    __                      __    __                      __                       __                         \n" +
@@ -71,8 +77,10 @@ public class Output {
         System.out.println("Please enter the name of the location: ");
     }
 
-    public static void printRoute() {
-        //Placeholder to print results of algorithm
+    public static void printAddresses(RoadNetworkGraph roadNetworkGraph) {
+        List<Vertex> addresses = roadNetworkGraph.getVertexList().stream().filter(vertex -> vertex.getFrequency() == 0).toList();
+        addresses.forEach(address -> System.out.println(address.getName()));
+        System.out.println();
     }
 
     public static void printErrorMessage(Exception e) {
