@@ -8,23 +8,40 @@
         <id property="id" column="id" />
         <result property="name" column="name" />
         <result property="speedLimit" column="speed_limit" />
-        <association property="startAddress" javaType="com.solvd.model.Address" resultMap="addressResultMap" />
-        <association property="endAddress" javaType="com.solvd.model.Address" resultMap="addressResultMap" />
+        <result property="startAddress" column="start_address_id" />
+        <result property="endAddress" column="end_address_id" />
+    </resultMap>
+
+    <resultMap id="addressResultMap" type="com.solvd.model.Address">
+        <id property="id" column="id"/>
+        <result property="houseNumber" column="house_number"/>
+        <result property="stateName" column="state"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="landmarkName" column="landmark_name"/>
+        <result property="city" column="city_id" />
+        <result property="zipCode" column="zip_code_id" />
+        <association property="street" javaType="com.solvd.model.Street" resultMap="streetResultMap"/>
+    </resultMap>
+
+    <resultMap id="streetResultMap" type="com.solvd.model.Street">
+        <id property="id" column="street_id"/>
+        <result property="name" column="street_name"/>
     </resultMap>
 
     <select id="getRoadById" parameterType="long" resultMap="roadResultMap">
         select r.id, r.name, r.speed_limit, a1.id as start_address_id, a2.id as end_address_id
         from roads r
-        inner join address a1 on r.start_address_id = a1.id
-        inner join address a2 on r.end_address_id = a2.id
+        inner join addresses a1 on r.start_address_id = a1.id
+        inner join addresses a2 on r.end_address_id = a2.id
         where r.id = #{id}
     </select>
 
     <select id="getAllRoads" resultMap="roadResultMap">
         select r.id, r.name, r.speed_limit, a1.id as start_address_id, a2.id as end_address_id
         from roads r
-        inner join address a1 on r.start_address_id = a1.id
-        inner join address a2 on r.end_address_id = a2.id
+        inner join addresses a1 on r.start_address_id = a1.id
+        inner join addresses a2 on r.end_address_id = a2.id
     </select>
 
     <insert id="createRoad" parameterType="com.solvd.model.Road">

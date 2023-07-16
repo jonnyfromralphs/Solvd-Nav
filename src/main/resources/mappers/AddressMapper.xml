@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.solvd.db.mysql.dao.AddressMapper">
+<mapper namespace="com.solvd.db.mysql.mapper.AddressMapper">
 
     <resultMap id="addressResultMap" type="com.solvd.model.Address">
         <id property="id" column="id"/>
@@ -10,33 +10,34 @@
         <result property="longitude" column="longitude"/>
         <result property="latitude" column="latitude"/>
         <result property="landmarkName" column="landmark_name"/>
+        <result property="city" column="city_id" />
+        <result property="zipCode" column="zip_code_id" />
         <association property="street" javaType="com.solvd.model.Street" resultMap="streetResultMap"/>
-        <association property="city" javaType="com.solvd.model.City" resultMap="cityResultMap" />
-        <association property="zipCode" javaType="com.solvd.model.ZipCode" resultMap="zipCodeResultMap"/>
+    </resultMap>
+
+    <resultMap id="streetResultMap" type="com.solvd.model.Street">
+        <id property="id" column="street_id"/>
+        <result property="name" column="street_name"/>
     </resultMap>
 
     <insert id="createAddress" parameterType="com.solvd.model.Address">
-        inser into addresses (id, house_number, street_id, city_id, state, zip_code_id, longitude, latitude, landmark_name)
-        values (#{id}, #{houseNumber}, #{streetId}, #{cityId}, #{stateName}, #{zipCodeId}, #{longitude}, #{latitude}, #{landmarkName})
+        insert into addresses (house_number, street_id, city_id, state, zip_code_id, longitude, latitude, landmark_name)
+        values (#{houseNumber}, #{streetId}, #{cityId}, #{stateName}, #{zipCodeId}, #{longitude}, #{latitude}, #{landmarkName})
     </insert>
 
     <select id="getAddressById" resultMap="addressResultMap" parameterType="long">
-        select a.id, a.house_number, a.street_id, s.name as street_name, a.city_id, c.name as city_name,
-        a.state_name, a.zip_code_id, z.code as zip_code, a.longitude, a.latitude, a.landmark_name
+        select a.id, a.house_number, a.street_id, s.name as street_name, a.city_id,
+        a.state, a.zip_code_id, a.longitude, a.latitude, a.landmark_name
         from addresses a
         join streets s on a.street_id = s.id
-        join cities c on a.city_id = c.id
-        join zip_codes z on a.zip_code_id = z.id
         where a.id = #{id}
     </select>
 
     <select id="getAllAddresses" resultMap="addressResultMap">
-        select a.id, a.house_number, a.street_id, s.name as street_name, a.city_id, c.name as city_name,
-        a.state_name, a.zip_code_id, z.code as zip_code, a.longitude, a.latitude, a.landmark_name
+        select a.id, a.house_number, a.street_id, s.name as street_name, a.city_id,
+        a.state, a.zip_code_id, a.longitude, a.latitude, a.landmark_name
         from addresses a
         join streets s on a.street_id = s.id
-        join cities c on a.city_id = c.id
-        join zip_codes z on a.zip_code_id = z.id
     </select>
 
     <update id="updateAddress" parameterType="com.solvd.model.Address">

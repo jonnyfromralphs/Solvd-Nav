@@ -1,64 +1,38 @@
 package com.solvd.db.utils;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 public class ConnectionPool {
     private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
-    private static List<Connection> connectionPool;
-    private static final int maxConnections = 10;
+    private static BasicDataSource dataSource;
 
-    public ConnectionPool() {
-        connectionPool = new ArrayList<>();
-        initializeConnectionPool();
-    }
-
-    private void initializeConnectionPool() {
-        try {
-            for (int i = 0; i < maxConnections; i++) {
-                Connection connection = createConnection();
-                connectionPool.add(connection);
+    public static void loadPropertyConfigFile() {
+        Properties property = new Properties();
+        try (InputStream dbPropertiesStream = ConnectionPool.class.getClassLoader().getResourceAsStream("db.properties")) {
+            if (dbPropertiesStream != null) {
+                property.load(dbPropertiesStream);
+            } else {
+                logger.error("Unable to load the property file");
             }
-        } catch (SQLException e) {
-            logger.error("Error occurred while initializing connection pool.", e);
-        }
-    }
-
-    private Connection createConnection() throws SQLException {
-        Properties properties = new Properties();
-        try (InputStream input = new FileInputStream("src/main/resources/db.properties")) {
-            properties.load(input);
+            dataSource = new BasicDataSource();
+            dataSource.setUrl(property.getProperty("db.url"));
+            dataSource.setUsername(property.getProperty("db.user"));
+            dataSource.setPassword(property.getProperty("db.password"));
+            dataSource.setInitialSize(5);
+            dataSource.setMaxTotal(15);
+            dataSource.setMaxIdle(10);
+            dataSource.setMaxWaitMillis(200);
         } catch (IOException e) {
-            logger.error("Error occurred while loading db.properties file", e);
+            logger.error("Error loading the property file");
         }
-        String url = properties.getProperty("db.url");
-        String username = properties.getProperty("db.user");
-        String password = properties.getProperty("db.password");
-        return DriverManager.getConnection(url, username, password);
     }
 
-    public synchronized Connection getConnection() {
-        while (connectionPool.isEmpty()) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                logger.error("Error occurred while waiting to a connection", e);
-            }
-        }
-        return connectionPool.remove(connectionPool.size() - 1);
-    }
-
-    public synchronized void releaseConnection(Connection connection) {
-        connectionPool.add(connection);
-        notify();
+    public static BasicDataSource getDataSource() {
+        return dataSource;
     }
 }

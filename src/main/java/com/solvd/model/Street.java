@@ -8,9 +8,7 @@ public class Street {
     private String name;
     private List<Address> addresses;
 
-    public Street() {
-        addresses = new ArrayList<>();
-    }
+    public Street() {}
 
     public Street(long id, String name) {
         this.id = id;
@@ -47,7 +45,6 @@ public class Street {
         return "Street{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", addresses=" + addresses +
                 '}';
     }
 }

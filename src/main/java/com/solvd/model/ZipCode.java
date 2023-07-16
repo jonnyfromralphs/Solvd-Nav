@@ -5,13 +5,13 @@ public class ZipCode {
     private int code;
     private long cityId;
 
+    public ZipCode(){}
+
     public ZipCode(long id, int code, long cityId) {
         this.id = id;
         this.code = code;
         this.cityId = cityId;
     }
-
-    public ZipCode(){}
 
     public long getId() {
         return id;

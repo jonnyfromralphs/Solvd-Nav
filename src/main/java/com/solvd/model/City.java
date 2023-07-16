@@ -8,9 +8,7 @@ public class City {
     private String name;
     private List<ZipCode> zipCodes;
 
-    public City() {
-        zipCodes = new ArrayList<>();
-    }
+    public City() {}
 
     public City(long id, String name){
         this.id = id;
@@ -47,7 +45,6 @@ public class City {
         return "City{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", zipCodes=" + zipCodes +
-                '}';
+                 '}';
     }
 }

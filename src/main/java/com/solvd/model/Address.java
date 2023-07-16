@@ -1,25 +1,19 @@
 package com.solvd.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Address {
     private long id;
     private String houseNumber;
     private Street street;
-    private City city;
+    private long city;
     private String stateName;
-    private ZipCode zipCode;
+    private long zipCode;
     private double longitude;
     private double latitude;
     private String landmarkName;
-    private List<Road> roads;
 
-    public Address(){
-        roads = new ArrayList<>();
-    }
+    public Address(){}
 
-    public Address(long id, String houseNumber, Street street, City city, String stateName, ZipCode zipCode,
+    public Address(long id, String houseNumber, Street street, long city, String stateName, long zipCode,
                    double longitude, double latitude, String landmarkName) {
         this.id = id;
         this.houseNumber = houseNumber;
@@ -30,7 +24,6 @@ public class Address {
         this.longitude = longitude;
         this.latitude = latitude;
         this.landmarkName = landmarkName;
-        roads = new ArrayList<>();
     }
 
     public Address(long id) {
@@ -61,11 +54,11 @@ public class Address {
         this.street = street;
     }
 
-    public City getCity() {
+    public long getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public void setCity(long city) {
         this.city = city;
     }
 
@@ -77,11 +70,11 @@ public class Address {
         this.stateName = stateName;
     }
 
-    public ZipCode getZipCode() {
+    public long getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(ZipCode zipCode) {
+    public void setZipCode(long zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -109,27 +102,18 @@ public class Address {
         this.landmarkName = landmarkName;
     }
 
-    public List<Road> getRoads() {
-        return roads;
-    }
-
-    public void setRoads(List<Road> roads) {
-        this.roads = roads;
-    }
-
     @Override
     public String toString() {
         return "Address{" +
                 "id=" + id +
                 ", houseNumber='" + houseNumber + '\'' +
-                ", street=" + street +
-                ", city=" + city +
+                ", streetId=" + (street != null ? street.getId() : null) +
+                ", cityId=" + city + '\'' +
                 ", stateName='" + stateName + '\'' +
-                ", zipCode=" + zipCode +
+                ", zipCodeId=" + zipCode +
                 ", longitude=" + longitude +
                 ", latitude=" + latitude +
                 ", landmarkName='" + landmarkName + '\'' +
-                ", roads=" + roads +
                 '}';
     }
 }

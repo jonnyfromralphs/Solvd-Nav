@@ -3,13 +3,13 @@ package com.solvd.model;
 public class Road {
     private long id;
     private String name;
-    private Address startAddress;
-    private Address endAddress;
+    private long startAddress;
+    private long endAddress;
     private int speedLimit;
 
     public Road() {}
 
-    public Road(long id, String name, Address startAddress, Address endAddress, int speedLimit) {
+    public Road(long id, String name, long startAddress, long endAddress, int speedLimit) {
         this.id = id;
         this.name = name;
         this.startAddress = startAddress;
@@ -33,19 +33,19 @@ public class Road {
         this.name = name;
     }
 
-    public Address getStartAddress() {
+    public long getStartAddress() {
         return startAddress;
     }
 
-    public void setStartAddress(Address startAddress) {
+    public void setStartAddress(long startAddress) {
         this.startAddress = startAddress;
     }
 
-    public Address getEndAddress() {
+    public long getEndAddress() {
         return endAddress;
     }
 
-    public void setEndAddress(Address endAddress) {
+    public void setEndAddress(long endAddress) {
         this.endAddress = endAddress;
     }
 
@@ -62,8 +62,8 @@ public class Road {
         return "Road{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", startAddress=" + startAddress +
-                ", endAddress=" + endAddress +
+                ", startAddressId=" + startAddress +
+                ", endAddressId=" + endAddress +
                 ", speedLimit=" + speedLimit +
                 '}';
     }
