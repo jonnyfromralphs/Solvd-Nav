@@ -40,7 +40,6 @@ public class RouteCalculator {
             return path;
         }
         path.add(graph.getVertexList().get(sourceIndex));
-
         int intermediateVertexIndex = findIntermediateVertex(sourceIndex, destinationIndex, routeMatrix);
         while (intermediateVertexIndex != destinationIndex) {
             path.add(graph.getVertexList().get(intermediateVertexIndex));
@@ -51,9 +50,16 @@ public class RouteCalculator {
     }
 
     private int findIntermediateVertex(int sourceIndex, int destinationIndex, double[][] routeMatrix) {
+
         double shortestDistance = routeMatrix[sourceIndex][destinationIndex];
 
-        for (int i = 0; i < graph.getVertexCount(); i++) {
+        if (shortestDistance == Double.POSITIVE_INFINITY) {
+            return destinationIndex;
+        }
+
+        int newSize = graph.getVertexList().size();
+
+        for (int i = 0; i < newSize; i++) {
             if (i != sourceIndex && i != destinationIndex) {
                 double distance = routeMatrix[sourceIndex][i] + routeMatrix[i][destinationIndex];
                 if (distance == shortestDistance) {
@@ -64,4 +70,6 @@ public class RouteCalculator {
 
         return destinationIndex;
     }
+
+
 }

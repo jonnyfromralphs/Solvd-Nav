@@ -8,6 +8,10 @@ import com.solvd.model.graph.Vertex;
 import com.solvd.view.RoutePrinterService;
 import com.solvd.view.routeprinter.CarRoutePrinter;
 import com.solvd.view.routeprinter.PublicTransportationRoutePrinter;
+import com.solvd.model.graph.Vertex;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class App {
     public static void main( String[] args ) {
@@ -15,7 +19,7 @@ public class App {
         Vertex autoExpress= new Vertex("Auto Express", 32.850173567458576, -96.6816067183312);
         Vertex school = new Vertex("Spring creek elementary",32.74768305337416, -96.85402981367932);
         Vertex samsClub = new Vertex("Sam's Club", 32.84886649939048, -96.92083805330677);
-        Vertex walmart = new Vertex("Walmart Neighborhood Market",32.89854398859451, -97.04032425907587);
+        Vertex walmart = new Vertex("Walmart",32.89854398859451, -97.04032425907587);
 
         Vertex busStop1 = new Vertex("UTD Bus Station",32.952066328524616, -96.76904180718951, 15);
         Vertex busStop2 = new Vertex("MEDICAL DISTRICT @ MAPLE - N - MB",32.849776991592854, -96.6828619778309, 30);
@@ -51,12 +55,7 @@ public class App {
         roadNetworkGraph.addVertex(school);
         roadNetworkGraph.addVertex(samsClub);
         roadNetworkGraph.addVertex(walmart);
-        /*
-        roadNetworkGraph.addVertex(busStop1);
-        roadNetworkGraph.addVertex(busStop2);
-        roadNetworkGraph.addVertex(busStop3);
-        roadNetworkGraph.addVertex(busStop4);
-        roadNetworkGraph.addVertex(busStop5); */
+
 
         roadNetworkGraph.addBusStop(busStop1);
         roadNetworkGraph.addBusStop(busStop2);
@@ -77,27 +76,45 @@ public class App {
         roadNetworkGraph.addEdge(edge10);
         roadNetworkGraph.addEdge(edge11);
         roadNetworkGraph.addEdge(edge12);
-       // roadNetworkGraph.addEdge(edge13);
-       // roadNetworkGraph.addEdge(edge14);
-      //  roadNetworkGraph.addEdge(edge15);
-      //  roadNetworkGraph.addEdge(edge16);
-      //  roadNetworkGraph.addEdge(edge17);
 
-
-
-
-
-        //System.out.println(roadNetworkGraph.getEdgeList());
 
 
         FloydWarshallAlgorithm floydWarshallAlgorithm = new FloydWarshallAlgorithm(roadNetworkGraph) ;
         floydWarshallAlgorithm.calculateShortestAndFastestRoutes();
-        //floydWarshallAlgorithm.calculateShortestAndFastestBusRoutes();
+
 
         CarRoutePrinter carRoutePrinter = new CarRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
         PublicTransportationRoutePrinter publicTransportationRoutePrinter = new PublicTransportationRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
         RoutePrinterService routePrinter = new RoutePrinterService(carRoutePrinter, publicTransportationRoutePrinter);
-        routePrinter.printRoute(chaseBank,walmart, TransportationMethod.CAR);
+        routePrinter.printRoute(autoExpress,samsClub, TransportationMethod.CAR);
         routePrinter.printRoute(chaseBank,walmart, TransportationMethod.PUBLIC_TRANSPORTATION);
+
+
+
+
+
+
+        Vertex park = new Vertex("Park", 32.850456, -96.751234);
+        Vertex kohls = new Vertex("Kohls",33.10142551818354, -96.73499542725521);
+        Edge edgeToPark1 = new Edge(autoExpress, park, 20, "Park Street 1");
+        Edge edgeToPark2 = new Edge(park, samsClub, 10, "Park Street 2");
+        List<Vertex> vertices = new ArrayList<>();
+        vertices.add(park);
+        vertices.add(kohls);
+        List<Edge> edges = new ArrayList<>();
+        edges.add(edgeToPark1);
+        edges.add(edgeToPark2);
+        roadNetworkGraph.addNewVertexAndUpdateRoutes(park, edges);
+        FloydWarshallAlgorithm floydWarshallAlgorithm1 = new FloydWarshallAlgorithm(roadNetworkGraph);
+        floydWarshallAlgorithm1.calculateShortestAndFastestRoutes();
+
+        CarRoutePrinter carRoutePrinter1 = new CarRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm1);
+        PublicTransportationRoutePrinter publicTransportationRoutePrinter1 = new PublicTransportationRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm1);
+        RoutePrinterService routePrinter1 = new RoutePrinterService(carRoutePrinter1, publicTransportationRoutePrinter1);
+        routePrinter1.printRoute(park,walmart, TransportationMethod.CAR);
+        routePrinter1.printRoute(park,chaseBank, TransportationMethod.PUBLIC_TRANSPORTATION);
+
+
+
     }
 }

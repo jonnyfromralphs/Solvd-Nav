@@ -5,11 +5,10 @@ import com.solvd.controller.RouteCalculator;
 import com.solvd.model.graph.Edge;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
-
 import java.text.DecimalFormat;
 import java.util.List;
 
-public abstract class AbstractPrinter {
+public class RoutePrinting {
 
     protected static final DecimalFormat df = new DecimalFormat("0.00");
     protected RoadNetworkGraph graph;
@@ -20,7 +19,7 @@ public abstract class AbstractPrinter {
     protected static final double WALKING_SPEED = 3.0;
 
 
-    public AbstractPrinter(RoadNetworkGraph graph, FloydWarshallAlgorithm floydWarshall) {
+    public RoutePrinting(RoadNetworkGraph graph, FloydWarshallAlgorithm floydWarshall) {
         this.graph = graph;
         this.floydWarshall = floydWarshall;
         this.edgeList = graph.getEdgeList();
@@ -38,49 +37,49 @@ public abstract class AbstractPrinter {
         return sb.toString();
     }
 
-    protected String formatPathWithDirections(List<Vertex> path) {
-        StringBuilder sb = new StringBuilder();
-        double totalDistance = 0.0;
-        double totalTime = 0.0;
 
-        for (int i = 0; i < path.size() - 1; i++) {
-            Vertex currentVertex = path.get(i);
-            Vertex nextVertex = path.get(i + 1);
-            Edge edge = findEdgeBetweenVertices(currentVertex, nextVertex);
-            double distance = 0.0;
-            double time = 0.0;
-            if (edge != null) {
-                distance = graph.getDistanceUsingHaversine(edge.getStart(), edge.getEnd());
-                time = getTimeBetweenVertices(currentVertex, nextVertex);
-            }
+  protected String formatPathWithDirections(List<Vertex> path) {
+      StringBuilder sb = new StringBuilder();
+      double totalDistance = 0.0;
+      double totalTime = 0.0;
 
-            sb.append("From ").append(currentVertex.getName()).append(" take ");
-            if (edge != null) {
-                sb.append(edge.getRoadName()).append(" and drive for ").append(df.format(distance)).append(" miles ").append("("+df.format(time)).append(" hours),");
-            } else {
-                sb.append("Unnamed Road,");
-            }
+      for (int i = 0; i < path.size() - 1; i++) {
+          Vertex currentVertex = path.get(i);
+          Vertex nextVertex = path.get(i + 1);
+          Edge edge = findEdgeBetweenVertices(currentVertex, nextVertex);
+          double distance = 0.0;
+          double time = 0.0;
+          if (edge != null) {
+              distance = graph.getDistanceUsingHaversine(edge.getStart(), edge.getEnd());
+              time = getTimeBetweenVertices(currentVertex, nextVertex);
+          }
 
-            if (i == path.size() - 2) {
-                sb.append(" to pass by ").append(nextVertex.getName()).append(".");
-            } else {
-                sb.append(" to pass by ").append(nextVertex.getName()).append(",\n");
-            }
+          sb.append("From ").append(currentVertex.getName()).append(" take ");
+          if (edge != null) {
+              sb.append(edge.getRoadName()).append(" and drive for ").append(df.format(distance)).append(" miles ").append("(").append(df.format(time)).append(" hours),");
+          } else {
+              sb.append("Unnamed Road,");
+          }
 
-            totalDistance += distance;
-            totalTime += time;
+          if (i == path.size() - 2) {
+              sb.append(" to reach ").append(nextVertex.getName()).append(".");
+          } else {
+              sb.append(" to pass by ").append(nextVertex.getName()).append(",\n");
+          }
 
-            if (i != path.size() - 2) {
-                sb.append("and then ");
-            }
-        }
+          totalDistance += distance;
+          totalTime += time;
 
-        sb.append("\nTotal Distance: ").append(df.format(totalDistance)).append(" miles");
-        sb.append("\nTotal Time: ").append(df.format(totalTime)).append(" hours");
+          if (i != path.size() - 2) {
+              sb.append("and then ");
+          }
+      }
 
-        return sb.toString();
-    }
+      sb.append("\nTotal Distance: ").append(df.format(totalDistance)).append(" miles");
+      sb.append("\nTotal Time: ").append(df.format(totalTime)).append(" hours");
 
+      return sb.toString();
+  }
 
 
 
@@ -160,11 +159,6 @@ public abstract class AbstractPrinter {
         return sb.toString();
     }
 
-
-
-
-
-
     private Edge findEdgeBetweenVertices(Vertex sourceVertex, Vertex destinationVertex) {
         for (Edge edge : edgeList) {
             if ((edge.getStart().equals(sourceVertex) && edge.getEnd().equals(destinationVertex))
@@ -175,8 +169,6 @@ public abstract class AbstractPrinter {
         return null;
     }
 
-
-
     public void printFastestRoute(Vertex source, Vertex destination) {
         double fastestTime = calculateTotalTime(routeCalculator.calculateFastestPath(source, destination));
         List<Vertex> fastestPath = routeCalculator.calculateFastestPath(source, destination);
@@ -184,8 +176,6 @@ public abstract class AbstractPrinter {
         System.out.println("Path: " + formatPath(fastestPath));
         System.out.println("Total Time: " + fastestTime);
     }
-
-
 
     protected double calculateTotalDistance(List<Vertex> path) {
         double totalDistance = 0;
@@ -208,6 +198,7 @@ public abstract class AbstractPrinter {
         }
         return totalTime;
     }
+
 
     private double getDistanceBetweenVertices(Vertex source, Vertex destination) {
         List<Edge> edgeList = graph.getEdgeList();

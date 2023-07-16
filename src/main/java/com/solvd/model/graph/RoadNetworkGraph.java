@@ -2,9 +2,9 @@ package com.solvd.model.graph;
 
 
 import com.solvd.model.TransportationMethod;
-
 import java.util.ArrayList;
 import java.util.List;
+import com.solvd.controller.FloydWarshallAlgorithm;
 
 public class RoadNetworkGraph {
     private TransportationMethod transportationMethod;
@@ -32,6 +32,10 @@ public class RoadNetworkGraph {
                 }
             }
         }
+    }
+
+    public void updateVertexCount() {
+        this.vertexCount = vertexList.size();
     }
 
     public void addVertex(Vertex vertex) {
@@ -94,6 +98,45 @@ public class RoadNetworkGraph {
         }
         return nearestBusStop;
     }
+
+    public void addNewVertexAndUpdateRoutes(Vertex newVertex, List<Edge> edges) {
+        addNewVertexToGraph(newVertex);
+        for (Edge edge : edges) {
+            addEdge(edge);
+        }
+        updateVertexCount();
+    }
+
+    private void addNewVertexToGraph(Vertex address) {
+        vertexList.add(address);
+        int newSize = vertexList.size();
+        double[][] newShortestRouteMatrix = new double[newSize][newSize];
+        for (int i = 0; i < newSize-1; i++) {
+            for (int j = 0; j < newSize-1; j++) {
+                newShortestRouteMatrix[i][j] = shortestRouteMatrix[i][j];
+            }
+        }
+        for (int i = 0; i < newSize; i++) {
+            newShortestRouteMatrix[i][newSize - 1] = Double.POSITIVE_INFINITY;
+            newShortestRouteMatrix[newSize - 1][i] = Double.POSITIVE_INFINITY;
+        }
+
+        shortestRouteMatrix = newShortestRouteMatrix;
+        double[][] newFastestRouteMatrix = new double[newSize][newSize];
+
+        for (int i = 0; i < newSize - 1; i++) {
+            for (int j = 0; j < newSize - 1; j++) {
+                newFastestRouteMatrix[i][j] = fastestRouteMatrix[i][j];
+            }
+        }
+        for (int i = 0; i < newSize; i++) {
+            newFastestRouteMatrix[i][newSize - 1] = Double.POSITIVE_INFINITY;
+            newFastestRouteMatrix[newSize - 1][i] = Double.POSITIVE_INFINITY;
+        }
+
+        fastestRouteMatrix = newFastestRouteMatrix;
+    }
+
 
     public Vertex findNearestVertexToBusStop(Vertex busStop, List<Vertex> vertices) {
         Vertex nearestVertex = null;

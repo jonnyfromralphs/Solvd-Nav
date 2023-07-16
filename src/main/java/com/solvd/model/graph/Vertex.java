@@ -12,7 +12,6 @@ public class Vertex {
     private double latitude;
     private double longitude;
     private int frequency;
-    List<Vertex> busStopList;
 
 
     public Vertex(String name, double latitude, double longitude) {
@@ -32,7 +31,6 @@ public class Vertex {
         this.longitude = longitude;
         this.frequency = frequency;
         vertexCount++;
-
     }
 
     public int getId() {
