@@ -32,6 +32,7 @@ public class BusStop {
 
     public void setName(String name) {
         this.name = name;
+    }
 
     public double getLatitude() {
         return latitude;
