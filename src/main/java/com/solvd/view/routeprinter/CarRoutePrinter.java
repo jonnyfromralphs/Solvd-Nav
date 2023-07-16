@@ -2,8 +2,8 @@ package com.solvd.view.routeprinter;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
 import com.solvd.controller.RouteCalculator;
-import com.solvd.graph.RoadNetworkGraph;
-import com.solvd.model.Vertex;
+import com.solvd.model.graph.RoadNetworkGraph;
+import com.solvd.model.graph.Vertex;
 import com.solvd.view.AbstractPrinter;
 
 import java.util.List;

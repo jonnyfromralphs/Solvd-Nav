@@ -1,15 +1,37 @@
 package com.solvd.application;
 
+import com.solvd.controller.FloydWarshallAlgorithm;
 import com.solvd.exception.InvalidChoiceException;
+import com.solvd.model.graph.RoadNetworkGraph;
+import com.solvd.model.graph.Vertex;
 import com.solvd.service.GeocoderService;
+import com.solvd.service.graphservice.GraphServiceImpl;
 import com.solvd.view.Input;
 import com.solvd.view.Output;
+import com.solvd.view.RoutePrinterService;
+import com.solvd.view.routeprinter.CarRoutePrinter;
+import com.solvd.view.routeprinter.PublicTransportationRoutePrinter;
+import java.util.LinkedList;
+import java.util.Queue;
+
 
 public class Navigator {
     private String input;
     private boolean isProgramRunning = true;
     private GeocoderService geocoderService = new GeocoderService();
+    private RoadNetworkGraph roadNetworkGraph;
+    private FloydWarshallAlgorithm floydWarshallAlgorithm;
+    private RoutePrinterService routePrinterService;
+    private CarRoutePrinter carRoutePrinter;
+    private PublicTransportationRoutePrinter publicTransportationRoutePrinter;
+    private Queue<AddressPair<String, String>> directionsQueue = new LinkedList<>();
     public void run() {
+        roadNetworkGraph = new GraphServiceImpl().loadGraphFromDatabase();
+        floydWarshallAlgorithm = new FloydWarshallAlgorithm(roadNetworkGraph);
+        floydWarshallAlgorithm.calculateShortestAndFastestRoutes();
+        carRoutePrinter = new CarRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
+        publicTransportationRoutePrinter = new PublicTransportationRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
+        routePrinterService = new RoutePrinterService(carRoutePrinter, publicTransportationRoutePrinter);
         welcomeScreen();
         while (isProgramRunning) {
             mainMenu();
@@ -50,6 +72,7 @@ public class Navigator {
         String startingAddress;
         String destinationAddress;
         String transportationMode;
+
         boolean isAddingStop = false;
 
         try {
@@ -63,15 +86,22 @@ public class Navigator {
                         break;
                     }
 
+                    directionsQueue.offer(new AddressPair<>(startingAddress, destinationAddress));
+
                     isAddingStop = addAnotherStop();
                     while (isAddingStop) {
                         startingAddress = destinationAddress;
                         destinationAddress = enterDestinationAddress();
                         transportationMode = transportationMode();
+                        directionsQueue.offer(new AddressPair<>(startingAddress, destinationAddress));
                         isAddingStop = addAnotherStop();
                     }
 
-                    System.out.println("Fastest route:");
+                    while (!directionsQueue.isEmpty()) {
+                        AddressPair addressPair = directionsQueue.poll();
+                        getFastestRoute((String) addressPair.getFirst(), (String) addressPair.getSecond());
+                    }
+
                     break;
 
                 case SHORTEST_ROUTE:
@@ -83,15 +113,22 @@ public class Navigator {
                         break;
                     }
 
+                    directionsQueue.offer(new AddressPair<>(startingAddress, destinationAddress));
+
                     isAddingStop = addAnotherStop();
                     while (isAddingStop) {
                         startingAddress = destinationAddress;
                         destinationAddress = enterDestinationAddress();
                         transportationMode = transportationMode();
+                        directionsQueue.offer(new AddressPair<>(startingAddress, destinationAddress));
                         isAddingStop = addAnotherStop();
                     }
 
-                    System.out.println("Shortest route:");
+                    while (!directionsQueue.isEmpty()) {
+                        AddressPair addressPair = directionsQueue.poll();
+                        getShortestRoute((String) addressPair.getFirst(), (String) addressPair.getSecond());
+                    }
+
                     break;
                 case ADD_ROAD:
                     String roadName = addRoad();
@@ -115,6 +152,29 @@ public class Navigator {
             Output.printErrorMessage(e);
             mainMenu();
         }
+
+    }
+
+    public void getFastestRoute(String startingAddress, String destinationAddress) throws InvalidChoiceException {
+        Vertex start = roadNetworkGraph.getVertexList().stream().filter(v -> v.getName().contains(startingAddress)).findFirst().orElse(null);
+        Vertex end = roadNetworkGraph.getVertexList().stream().filter(v -> v.getName().contains(destinationAddress)).findFirst().orElse(null);
+
+        if (start == null || end == null) {
+            throw new InvalidChoiceException();
+        }
+
+        carRoutePrinter.printFastestRoute(start, end);
+
+    }
+
+    public void getShortestRoute(String startingAddress, String destinationAddress) throws InvalidChoiceException {
+        Vertex start = roadNetworkGraph.getVertexList().stream().filter(v -> v.getName().contains(startingAddress)).findFirst().orElse(null);
+        Vertex end = roadNetworkGraph.getVertexList().stream().filter(v -> v.getName().contains(destinationAddress)).findFirst().orElse(null);
+
+        if (start == null || end == null) {
+            throw new InvalidChoiceException();
+        }
+        carRoutePrinter.printShortestRoute(start, end);
 
     }
 
@@ -197,4 +257,24 @@ public class Navigator {
             }
         }
     }
+
+    class AddressPair<T, U> {
+        private T first;
+        private U second;
+
+        public AddressPair(T first, U second) {
+            this.first = first;
+            this.second = second;
+        }
+
+        public T getFirst() {
+            return first;
+        }
+
+        public U getSecond() {
+            return second;
+        }
+    }
+
+
 }

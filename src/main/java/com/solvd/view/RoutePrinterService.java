@@ -1,7 +1,7 @@
 package com.solvd.view;
 
 import com.solvd.model.TransportationMethod;
-import com.solvd.model.Vertex;
+import com.solvd.model.graph.Vertex;
 import com.solvd.view.routeprinter.CarRoutePrinter;
 import com.solvd.view.routeprinter.PublicTransportationRoutePrinter;
 

@@ -1,7 +1,7 @@
 package com.solvd.controller;
 
-import com.solvd.graph.RoadNetworkGraph;
-import com.solvd.model.Vertex;
+import com.solvd.model.graph.RoadNetworkGraph;
+import com.solvd.model.graph.Vertex;
 
 import java.util.List;
 

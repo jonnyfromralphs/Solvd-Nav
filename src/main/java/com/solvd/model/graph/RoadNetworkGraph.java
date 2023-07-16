@@ -1,9 +1,8 @@
-package com.solvd.graph;
+package com.solvd.model.graph;
 
 
-import com.solvd.model.Edge;
 import com.solvd.model.TransportationMethod;
-import com.solvd.model.Vertex;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,10 +40,13 @@ public class RoadNetworkGraph {
 
     public void addEdge(Edge edge) {
         edgeList.add(edge);
-        int startIndex = vertexList.indexOf(edge.getStart());
-        int endIndex = vertexList.indexOf(edge.getEnd());
+
         Vertex start = edge.getStart();
         Vertex end = edge.getEnd();
+
+        int startIndex = vertexList.indexOf(start);
+        int endIndex = vertexList.indexOf(end);
+
         edgeWeightDistance = getDistanceUsingHaversine(start, end);
         shortestRouteMatrix[startIndex][endIndex] = edgeWeightDistance;
 

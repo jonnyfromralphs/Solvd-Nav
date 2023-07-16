@@ -1,6 +1,6 @@
 package com.solvd.service.graphservice;
 
-import com.solvd.model.Vertex;
+import com.solvd.model.graph.Vertex;
 
 public interface RouteService {
 

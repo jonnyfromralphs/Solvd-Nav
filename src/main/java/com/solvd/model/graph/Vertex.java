@@ -1,6 +1,5 @@
-package com.solvd.model;
+package com.solvd.model.graph;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -70,7 +69,7 @@ public class Vertex {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vertex vertex = (Vertex) o;
-        return Double.compare(vertex.latitude, latitude) == 0 && Double.compare(vertex.longitude, longitude) == 0 && Objects.equals(id, vertex.id);
+        return Double.compare(vertex.latitude, latitude) == 0 && Double.compare(vertex.longitude, longitude) == 0;
     }
 
     @Override

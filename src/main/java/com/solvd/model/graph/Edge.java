@@ -1,4 +1,4 @@
-package com.solvd.model;
+package com.solvd.model.graph;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

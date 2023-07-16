@@ -8,25 +8,8 @@
         <id property="id" column="id" />
         <result property="name" column="name" />
         <result property="speedLimit" column="speed_limit" />
-        <result property="startAddress" column="start_address_id" />
-        <result property="endAddress" column="end_address_id" />
-    </resultMap>
-
-    <resultMap id="addressResultMap" type="com.solvd.model.Address">
-        <id property="id" column="id"/>
-        <result property="houseNumber" column="house_number"/>
-        <result property="stateName" column="state"/>
-        <result property="longitude" column="longitude"/>
-        <result property="latitude" column="latitude"/>
-        <result property="landmarkName" column="landmark_name"/>
-        <result property="city" column="city_id" />
-        <result property="zipCode" column="zip_code_id" />
-        <association property="street" javaType="com.solvd.model.Street" resultMap="streetResultMap"/>
-    </resultMap>
-
-    <resultMap id="streetResultMap" type="com.solvd.model.Street">
-        <id property="id" column="street_id"/>
-        <result property="name" column="street_name"/>
+        <association property="startAddress" column="start_address_id" select="com.solvd.db.mysql.mapper.AddressMapper.getAddressById"/>
+        <association property="endAddress" column="end_address_id" select="com.solvd.db.mysql.mapper.AddressMapper.getAddressById"/>
     </resultMap>
 
     <select id="getRoadById" parameterType="long" resultMap="roadResultMap">
