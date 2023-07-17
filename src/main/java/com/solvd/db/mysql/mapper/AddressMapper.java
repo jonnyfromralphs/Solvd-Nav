@@ -8,6 +8,7 @@ import java.util.List;
 public interface AddressMapper {
 
    Address getAddressById(long id);
+   Address getAddressByName(String landmarkName);
 
    List<Address> getAllAddresses();
 

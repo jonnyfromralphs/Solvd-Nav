@@ -18,6 +18,7 @@ public class StreetService {
     public Street getById(long id) {
         return streetMapper.getStreetById(id);
     }
+    public Street getByName(String name) { return streetMapper.getStreetByName(name); }
 
     public List<Street> getAll() {
         return streetMapper.getAllStreets();

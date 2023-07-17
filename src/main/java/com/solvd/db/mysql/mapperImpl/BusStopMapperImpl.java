@@ -20,6 +20,15 @@ public class BusStopMapperImpl implements BusStopMapper {
             return mapper.getBusStopById(id);
         }
     }
+
+    @Override
+    public BusStop getBusStopByName(String name) {
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            BusStopMapper mapper = session.getMapper(BusStopMapper.class);
+            return mapper.getBusStopByName(name);
+        }
+    }
+
     @Override
     public List<BusStop> getAllBusStops() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
@@ -29,7 +38,7 @@ public class BusStopMapperImpl implements BusStopMapper {
     }
     @Override
     public boolean createBusStop(BusStop busStop) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
+        try (SqlSession session = sqlSessionFactory.openSession(true)) {
             BusStopMapper mapper = session.getMapper(BusStopMapper.class);
             return mapper.createBusStop(busStop);
         }

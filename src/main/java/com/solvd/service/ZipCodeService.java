@@ -18,6 +18,9 @@ public class ZipCodeService {
     public ZipCode getById(long id) {
         return zipCodeMapper.getZipCodeById(id);
     }
+    public ZipCode getByCode(int code) {
+        return zipCodeMapper.getZipCodeByCode(code);
+    }
 
     public List<ZipCode> getAll() {
         return zipCodeMapper.getAllZipCodes();

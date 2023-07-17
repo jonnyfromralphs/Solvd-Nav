@@ -28,9 +28,8 @@ public class Output {
         System.out.println("===============================");
         System.out.println("1. Find the fastest route");
         System.out.println("2. Find the shortest route");
-        System.out.println("3. Add a road to the map");
-        System.out.println("4. Add an address to the map");
-        System.out.println("5. Exit program");
+        System.out.println("3. Add an address to the map");
+        System.out.println("4. Exit program");
         System.out.println("\nPlease pick an option: ");
     }
 
@@ -62,8 +61,20 @@ public class Output {
         System.out.println("Please enter the name of the road: ");
     }
 
-    public static void enterAddressScreen() {
-        System.out.println("Please enter the full address or the name of the location: ");
+    public static void enterHouseNumberScreen() {
+        System.out.println("Please enter the house number for the new address: ");
+    }
+
+    public static void enterStreetNameScreen() {
+        System.out.println("Please enter the street name for the new address: ");
+    }
+
+    public static void enterZipCodeScreen() {
+        System.out.println("Please enter the zip code for the new address: ");
+    }
+
+    public static void enterCityScreen() {
+        System.out.println("Please enter the city for the new address: ");
     }
 
     public static void enterSpeedLimit() {
@@ -76,6 +87,10 @@ public class Output {
 
     public static void enterNameOfAddress() {
         System.out.println("Please enter the name of the location: ");
+    }
+
+    public static void enterConnectingAddress() {
+        System.out.println("Please enter the name of the connecting address: ");
     }
 
     public static void printAddresses(RoadNetworkGraph roadNetworkGraph) {

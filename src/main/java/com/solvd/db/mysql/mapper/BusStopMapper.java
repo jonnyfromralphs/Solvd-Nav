@@ -7,6 +7,7 @@ import java.util.List;
 public interface BusStopMapper {
 
     BusStop getBusStopById(long id);
+    BusStop getBusStopByName(String name);
 
     List<BusStop> getAllBusStops();
 

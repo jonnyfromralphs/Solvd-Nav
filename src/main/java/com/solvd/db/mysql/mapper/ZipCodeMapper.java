@@ -8,6 +8,8 @@ public interface ZipCodeMapper {
 
     ZipCode getZipCodeById(long id);
 
+    ZipCode getZipCodeByCode(int code);
+
     List<ZipCode> getAllZipCodes();
 
     boolean createZipCode(ZipCode zipCode);

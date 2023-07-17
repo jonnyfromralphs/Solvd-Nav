@@ -16,6 +16,10 @@
         select * from addresses where id = #{id}
     </select>
 
+    <select id="getBusStopByName" resultMap="busStopResultMap">
+        select * from addresses where landmark_name = #{name}
+    </select>
+
     <select id="getAllBusStops" resultMap="busStopResultMap">
         select * from addresses where frequency is not null
     </select>
@@ -24,8 +28,8 @@
         <selectKey keyProperty="id" resultType="long" order="AFTER">
             select last_insert_id()
         </selectKey>
-        insert into addresses (landmark_name, latitude, longitude, frequency)
-        values (#{name}, #{latitude}, #{longitude}, #{frequency})
+        insert into addresses (landmark_name, latitude, longitude, frequency, state, city_id)
+        values (#{name}, #{latitude}, #{longitude}, #{frequency}, "CA", 1)
     </insert>
 
     <update id="updateBusStop" parameterType="com.solvd.model.BusStop">

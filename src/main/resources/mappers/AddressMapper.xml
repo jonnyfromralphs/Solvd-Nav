@@ -17,7 +17,7 @@
 
     <insert id="createAddress" parameterType="com.solvd.model.Address">
         insert into addresses (house_number, street_id, city_id, state, zip_code_id, longitude, latitude, landmark_name)
-        values (#{houseNumber}, #{streetId}, #{cityId}, #{stateName}, #{zipCodeId}, #{longitude}, #{latitude}, #{landmarkName})
+        values (#{houseNumber}, #{street.id}, #{city.id}, #{stateName}, #{zipCode.id}, #{longitude}, #{latitude}, #{landmarkName})
     </insert>
 
     <select id="getAddressById" resultMap="addressResultMap" parameterType="long">
@@ -26,6 +26,14 @@
         from addresses a
         join streets s on a.street_id = s.id
         where a.id = #{id} and a.frequency is null
+    </select>
+
+    <select id="getAddressByName" resultMap="addressResultMap">
+        select a.id, a.house_number, a.street_id, s.name as street_name, a.city_id,
+        a.state, a.zip_code_id, a.longitude, a.latitude, a.landmark_name
+        from addresses a
+        join streets s on a.street_id = s.id
+        where a.landmark_name = #{landmarkName} and a.frequency is null
     </select>
 
     <select id="getAllAddresses" resultMap="addressResultMap">
@@ -37,8 +45,8 @@
     </select>
 
     <update id="updateAddress" parameterType="com.solvd.model.Address">
-        update addresses set house_number = #{houseNumber}, street_id = #{streetId}, city_id = #{cityId},
-        state = #{stateName}, zip_code_id = #{zipCodeId}, longitude = #{longitude},
+        update addresses set house_number = #{houseNumber}, street_id = #{street.id}, city_id = #{city.id},
+        state = #{stateName}, zip_code_id = #{zipCode.id}, longitude = #{longitude},
         latitude = #{latitude}, landmark_name = #{landmarkName}
         where id = #{id}
     </update>

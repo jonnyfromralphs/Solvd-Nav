@@ -37,7 +37,7 @@ public class RoadMapperImpl implements RoadMapper {
     }
     @Override
     public boolean createRoad(Road road) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
+        try (SqlSession session = sqlSessionFactory.openSession(true)) {
             RoadMapper mapper = session.getMapper(RoadMapper.class);
             return mapper.createRoad(road);
         }

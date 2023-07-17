@@ -14,6 +14,10 @@
         select * from zip_codes where id = #{id}
     </select>
 
+    <select id="getZipCodeByCode" resultMap="zipCodeResultMap">
+        select * from zip_codes where code = #{code}
+    </select>
+
     <select id="getAllZipCodes" resultMap="zipCodeResultMap">
         select * from zip_codes
     </select>

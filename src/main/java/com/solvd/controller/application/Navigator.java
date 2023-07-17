@@ -1,17 +1,22 @@
 package com.solvd.controller.application;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
+import com.solvd.db.mysql.mapperImpl.*;
+import com.solvd.db.utils.MyBatisUtil;
 import com.solvd.exception.InvalidChoiceException;
-import com.solvd.model.TransportationMethod;
+import com.solvd.model.*;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
-import com.solvd.service.GeocoderService;
+import com.solvd.service.*;
 import com.solvd.service.graphservice.GraphServiceImpl;
 import com.solvd.view.Input;
 import com.solvd.view.Output;
 import com.solvd.view.RoutePrinterService;
 import com.solvd.view.routeprinter.CarRoutePrinter;
 import com.solvd.view.routeprinter.PublicTransportationRoutePrinter;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -19,20 +24,23 @@ import java.util.Queue;
 public class Navigator {
     private String input;
     private boolean isProgramRunning = true;
-    private GeocoderService geocoderService = new GeocoderService();
     private RoadNetworkGraph roadNetworkGraph;
     private FloydWarshallAlgorithm floydWarshallAlgorithm;
     private RoutePrinterService routePrinterService;
     private CarRoutePrinter carRoutePrinter;
     private PublicTransportationRoutePrinter publicTransportationRoutePrinter;
     private Queue<AddressPair<String, String>> directionsQueue = new LinkedList<>();
+    SqlSessionFactory sqlSessionFactory = MyBatisUtil.getSqlSessionFactory();
+    AddressService addressService = new AddressService(new AddressMapperImpl(sqlSessionFactory));
+    RoadService roadService = new RoadService(new RoadMapperImpl(sqlSessionFactory));
+    BusStopService busStopService = new BusStopService(new BusStopMapperImpl(sqlSessionFactory));
+    ZipCodeService zipCodeService = new ZipCodeService(new ZipCodeMapperImpl(sqlSessionFactory));
+    StreetService streetService = new StreetService(new StreetMapperImpl(sqlSessionFactory));
+    CityService cityService = new CityService(new CityMapperImpl(sqlSessionFactory));
+    private GeocoderService geocoderService = new GeocoderService();
+
     public void run() {
-        roadNetworkGraph = new GraphServiceImpl().loadGraphFromDatabase();
-        floydWarshallAlgorithm = new FloydWarshallAlgorithm(roadNetworkGraph);
-        floydWarshallAlgorithm.calculateShortestAndFastestRoutes();
-        carRoutePrinter = new CarRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
-        publicTransportationRoutePrinter = new PublicTransportationRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
-        routePrinterService = new RoutePrinterService(carRoutePrinter, publicTransportationRoutePrinter);
+        setupGraph();
         welcomeScreen();
         while (isProgramRunning) {
             mainMenu();
@@ -64,9 +72,8 @@ public class Navigator {
 
         final String FASTEST_ROUTE = "1";
         final String SHORTEST_ROUTE = "2";
-        final String ADD_ROAD = "3";
-        final String ADD_ADDRESS = "4";
-        final String EXIT = "5";
+        final String ADD_ADDRESS = "3";
+        final String EXIT = "4";
 
         input = Input.getString();
 
@@ -131,17 +138,8 @@ public class Navigator {
                     }
 
                     break;
-                case ADD_ROAD:
-                    String roadName = addRoad();
-                    startingAddress = enterStartingAddress();
-                    destinationAddress = enterDestinationAddress();
-                    int speedLimit;
-                    break;
                 case ADD_ADDRESS:
-                    String fullAddress = addAddress();
-                    double longitude = geocoderService.parseLongitude(geocoderService.GeocodeSync(fullAddress));
-                    double latitude = geocoderService.parseLatitude(geocoderService.GeocodeSync(fullAddress));
-                    String name = enterName();
+                    addAddress();
                     break;
                 case EXIT:
                     isProgramRunning = false;
@@ -201,29 +199,73 @@ public class Navigator {
         return Input.getString();
     }
 
-    public String enterLongitude() {
-        Output.enterLongitudeScreen();
-        return Input.getString();
-    }
-
-    public String enterLatitude() {
-        Output.enterLatitudeScreen();
-        return Input.getString();
-    }
-
     public String addRoad() {
         Output.enterRoadName();
         return Input.getString();
     }
 
-    public String addAddress() {
-        Output.enterAddressScreen();
-        return Input.getString();
-    }
+    public void addAddress() throws IOException, InterruptedException {
+        Output.enterHouseNumberScreen();
+        String houseNumber = Input.getString();
 
-    public String enterName() {
+        Output.enterStreetNameScreen();
+        String streetName = Input.getString();
+
+        Output.enterCityScreen();
+        String cityName = Input.getString();
+
+        Output.enterZipCodeScreen();
+        int code = Input.getInt();
+
         Output.enterNameOfAddress();
-        return Input.getString();
+        String name = Input.getString();
+
+        String fullAddress = houseNumber + " " + streetName + cityName + ", CA " + code;
+        double longitude = geocoderService.parseLongitude(geocoderService.GeocodeSync(fullAddress));
+        double latitude = geocoderService.parseLatitude(geocoderService.GeocodeSync(fullAddress));
+
+        Street street = streetService.getByName(streetName);
+        if (street == null) {
+            streetService.create(new Street(0, streetName));
+            street = streetService.getByName(streetName);
+        }
+
+        City city = cityService.getByName(cityName);
+        if (city == null) {
+            cityService.create(new City(0, cityName));
+            city = cityService.getByName(cityName);
+        }
+
+        ZipCode zipCode = zipCodeService.getByCode(code);
+        if (zipCode == null) {
+            zipCodeService.create(new ZipCode(0, code, city.getId()));
+            zipCode = zipCodeService.getByCode(code);
+        }
+
+        Address newAddress = new Address(0, houseNumber, street, city, "CA", zipCode, longitude, latitude, name);
+        BusStop newBusStop = new BusStop(0,streetName + " Bus Stop", latitude + .003, longitude + .003, (int) (Math.random() * 40 + 10));
+        addressService.create(newAddress);
+        busStopService.create(newBusStop);
+
+        Output.printAddresses(roadNetworkGraph);
+        Output.enterConnectingAddress();
+
+        String connectingAddressName = Input.getString();
+        newAddress = addressService.getByName(name);
+        Address existingAddress = addressService.getByName(connectingAddressName);
+
+        String roadName = addRoad();
+        int speedLimit = addSpeedLimit();
+
+        Road newRoad = new Road(0, roadName, existingAddress, newAddress, speedLimit);
+        roadService.create(newRoad);
+
+        Address busAddress = new Address();
+        busAddress.setId(busStopService.getByName(streetName + " Bus Stop").getId());
+        Road newBusRoad = new Road(0, roadName, busAddress, newAddress, speedLimit);
+        roadService.create(newBusRoad);
+
+        setupGraph();
     }
 
     public int addSpeedLimit() {
@@ -247,6 +289,15 @@ public class Navigator {
                 Output.printErrorMessage(e);
             }
         }
+    }
+
+    public void setupGraph() {
+        roadNetworkGraph = new GraphServiceImpl().loadGraphFromDatabase();
+        floydWarshallAlgorithm = new FloydWarshallAlgorithm(roadNetworkGraph);
+        floydWarshallAlgorithm.calculateShortestAndFastestRoutes();
+        carRoutePrinter = new CarRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
+        publicTransportationRoutePrinter = new PublicTransportationRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
+        routePrinterService = new RoutePrinterService(carRoutePrinter, publicTransportationRoutePrinter);
     }
 
     class AddressPair<T, U> {

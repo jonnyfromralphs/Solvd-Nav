@@ -8,6 +8,8 @@ public interface StreetMapper {
 
     Street getStreetById(long id);
 
+    Street getStreetByName(String name);
+
     List<Street> getAllStreets();
 
     boolean createStreet(Street street);

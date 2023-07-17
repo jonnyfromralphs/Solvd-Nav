@@ -20,6 +20,15 @@ public class ZipCodeMapperImpl implements ZipCodeMapper {
             return mapper.getZipCodeById(id);
         }
     }
+
+    @Override
+    public ZipCode getZipCodeByCode(int code) {
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            ZipCodeMapper mapper = session.getMapper(ZipCodeMapper.class);
+            return mapper.getZipCodeByCode(code);
+        }
+    }
+
     @Override
     public List<ZipCode> getAllZipCodes() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
@@ -29,7 +38,7 @@ public class ZipCodeMapperImpl implements ZipCodeMapper {
     }
     @Override
     public boolean createZipCode(ZipCode zipCode) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
+        try (SqlSession session = sqlSessionFactory.openSession(true)) {
             ZipCodeMapper mapper = session.getMapper(ZipCodeMapper.class);
             return mapper.createZipCode(zipCode);
         }

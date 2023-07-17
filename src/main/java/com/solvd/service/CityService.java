@@ -20,6 +20,8 @@ public class CityService {
         return cityMapper.getCityById(id);
     }
 
+    public City getByName(String name) { return cityMapper.getCityByName(name); }
+
     public List<City> getAll() {
         return cityMapper.getAllCities();
     }
