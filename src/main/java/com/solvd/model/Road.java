@@ -4,6 +4,7 @@ public class Road {
     private long id;
     private String name;
     private Address startAddress;
+    private BusStop busStopStartAddress;
     private Address endAddress;
     private int speedLimit;
 
@@ -15,6 +16,22 @@ public class Road {
         this.startAddress = startAddress;
         this.endAddress = endAddress;
         this.speedLimit = speedLimit;
+    }
+
+    public Road(long id, String name, BusStop busStopStartAddress, Address endAddress, int speedLimit) {
+        this.id = id;
+        this.name = name;
+        this.busStopStartAddress = busStopStartAddress;
+        this.endAddress = endAddress;
+        this.speedLimit = speedLimit;
+    }
+
+    public BusStop getBusStopStartAddress() {
+        return busStopStartAddress;
+    }
+
+    public void setBusStopStartAddress(BusStop busStopStartAddress) {
+        this.busStopStartAddress = busStopStartAddress;
     }
 
     public long getId() {

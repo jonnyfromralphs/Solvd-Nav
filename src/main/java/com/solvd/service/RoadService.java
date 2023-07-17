@@ -19,8 +19,11 @@ public class RoadService {
         return roadMapper.getRoadById(id);
     }
 
-    public List<Road> getAll() {
-        return roadMapper.getAllRoads();
+    public List<Road> getAllRoadsForAddresses() {
+        return roadMapper.getAllRoadsForAddresses();
+    }
+    public List<Road> getAllRoadsForBusStops() {
+        return roadMapper.getAllRoadsForBusStops();
     }
 
     public boolean update(Road road) {

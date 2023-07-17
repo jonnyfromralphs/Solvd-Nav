@@ -2,6 +2,7 @@ package com.solvd.application;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
 import com.solvd.exception.InvalidChoiceException;
+import com.solvd.model.TransportationMethod;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
 import com.solvd.service.GeocoderService;
@@ -71,7 +72,7 @@ public class Navigator {
 
         String startingAddress;
         String destinationAddress;
-        String transportationMode;
+        TransportationMethod transportationMode;
 
         boolean isAddingStop = false;
 
@@ -86,20 +87,20 @@ public class Navigator {
                         break;
                     }
 
-                    directionsQueue.offer(new AddressPair<>(startingAddress, destinationAddress));
+                    directionsQueue.offer(new AddressPair<>(startingAddress, destinationAddress, transportationMode));
 
                     isAddingStop = addAnotherStop();
                     while (isAddingStop) {
                         startingAddress = destinationAddress;
                         destinationAddress = enterDestinationAddress();
                         transportationMode = transportationMode();
-                        directionsQueue.offer(new AddressPair<>(startingAddress, destinationAddress));
+                        directionsQueue.offer(new AddressPair<>(startingAddress, destinationAddress, transportationMode));
                         isAddingStop = addAnotherStop();
                     }
 
                     while (!directionsQueue.isEmpty()) {
-                        AddressPair addressPair = directionsQueue.poll();
-                        getFastestRoute((String) addressPair.getFirst(), (String) addressPair.getSecond());
+                        AddressPair<String, String> addressPair = directionsQueue.poll();
+                        getRoute((String) addressPair.getStartingAddress(), (String) addressPair.getDestinationAddress(), addressPair.transportationMode, true);
                     }
 
                     break;
@@ -113,20 +114,20 @@ public class Navigator {
                         break;
                     }
 
-                    directionsQueue.offer(new AddressPair<>(startingAddress, destinationAddress));
+                    directionsQueue.offer(new AddressPair<>(startingAddress, destinationAddress, transportationMode));
 
                     isAddingStop = addAnotherStop();
                     while (isAddingStop) {
                         startingAddress = destinationAddress;
                         destinationAddress = enterDestinationAddress();
                         transportationMode = transportationMode();
-                        directionsQueue.offer(new AddressPair<>(startingAddress, destinationAddress));
+                        directionsQueue.offer(new AddressPair<>(startingAddress, destinationAddress, transportationMode));
                         isAddingStop = addAnotherStop();
                     }
 
                     while (!directionsQueue.isEmpty()) {
-                        AddressPair addressPair = directionsQueue.poll();
-                        getShortestRoute((String) addressPair.getFirst(), (String) addressPair.getSecond());
+                        AddressPair<String, String> addressPair = directionsQueue.poll();
+                        getRoute((String) addressPair.getStartingAddress(), (String) addressPair.getDestinationAddress(), addressPair.transportationMode, false);
                     }
 
                     break;
@@ -155,7 +156,7 @@ public class Navigator {
 
     }
 
-    public void getFastestRoute(String startingAddress, String destinationAddress) throws InvalidChoiceException {
+    public void getRoute(String startingAddress, String destinationAddress, TransportationMethod transportationMode, boolean fastest) throws InvalidChoiceException {
         Vertex start = roadNetworkGraph.getVertexList().stream().filter(v -> v.getName().contains(startingAddress)).findFirst().orElse(null);
         Vertex end = roadNetworkGraph.getVertexList().stream().filter(v -> v.getName().contains(destinationAddress)).findFirst().orElse(null);
 
@@ -163,22 +164,10 @@ public class Navigator {
             throw new InvalidChoiceException();
         }
 
-        carRoutePrinter.printFastestRoute(start, end);
-
+        routePrinterService.printRoute(start, end, transportationMode, fastest);
     }
 
-    public void getShortestRoute(String startingAddress, String destinationAddress) throws InvalidChoiceException {
-        Vertex start = roadNetworkGraph.getVertexList().stream().filter(v -> v.getName().contains(startingAddress)).findFirst().orElse(null);
-        Vertex end = roadNetworkGraph.getVertexList().stream().filter(v -> v.getName().contains(destinationAddress)).findFirst().orElse(null);
-
-        if (start == null || end == null) {
-            throw new InvalidChoiceException();
-        }
-        carRoutePrinter.printShortestRoute(start, end);
-
-    }
-
-    public String transportationMode() {
+    public TransportationMethod transportationMode() {
         Output.printTransportationModeScreen();
         input = Input.getString();
 
@@ -188,8 +177,8 @@ public class Navigator {
 
         try {
             return switch (input) {
-                case CAR -> "Car";
-                case PUBLIC_TRANSPORTATION -> "Public Transportation";
+                case CAR -> TransportationMethod.CAR;
+                case PUBLIC_TRANSPORTATION -> TransportationMethod.PUBLIC_TRANSPORTATION;
                 case BACK -> null;
                 default -> throw new InvalidChoiceException();
             };
@@ -201,11 +190,13 @@ public class Navigator {
     }
 
     public String enterStartingAddress() {
+        Output.printAddresses(roadNetworkGraph);
         Output.printStartingPointScreen();
         return Input.getString();
     }
 
     public String enterDestinationAddress() {
+        Output.printAddresses(roadNetworkGraph);
         Output.printDestinationScreen();
         return Input.getString();
     }
@@ -259,21 +250,26 @@ public class Navigator {
     }
 
     class AddressPair<T, U> {
-        private T first;
-        private U second;
+        private T startingAddress;
+        private U destinationAddress;
 
-        public AddressPair(T first, U second) {
-            this.first = first;
-            this.second = second;
+        private TransportationMethod transportationMode;
+
+        public AddressPair(T startingAddress, U destinationAddress, TransportationMethod transportationMode) {
+            this.startingAddress = startingAddress;
+            this.destinationAddress = destinationAddress;
+            this.transportationMode = transportationMode;
         }
 
-        public T getFirst() {
-            return first;
+        public T getStartingAddress() {
+            return startingAddress;
         }
 
-        public U getSecond() {
-            return second;
+        public U getDestinationAddress() {
+            return destinationAddress;
         }
+
+        public TransportationMethod getTransportationMode() { return transportationMode; }
     }
 
 

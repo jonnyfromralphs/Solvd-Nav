@@ -8,7 +8,8 @@ public interface RoadMapper {
 
     Road getRoadById(long id);
 
-    List<Road> getAllRoads();
+    List<Road> getAllRoadsForAddresses();
+    List<Road> getAllRoadsForBusStops();
 
     boolean createRoad(Road road);
 

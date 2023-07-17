@@ -86,8 +86,9 @@ public class App {
         CarRoutePrinter carRoutePrinter = new CarRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
         PublicTransportationRoutePrinter publicTransportationRoutePrinter = new PublicTransportationRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
         RoutePrinterService routePrinter = new RoutePrinterService(carRoutePrinter, publicTransportationRoutePrinter);
-        routePrinter.printRoute(autoExpress,samsClub, TransportationMethod.CAR);
-        routePrinter.printRoute(chaseBank,walmart, TransportationMethod.PUBLIC_TRANSPORTATION);
+
+        routePrinter.printRoute(autoExpress,samsClub, TransportationMethod.CAR, true);
+        routePrinter.printRoute(chaseBank,walmart, TransportationMethod.PUBLIC_TRANSPORTATION, false);
 
 
 
@@ -111,8 +112,9 @@ public class App {
         CarRoutePrinter carRoutePrinter1 = new CarRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm1);
         PublicTransportationRoutePrinter publicTransportationRoutePrinter1 = new PublicTransportationRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm1);
         RoutePrinterService routePrinter1 = new RoutePrinterService(carRoutePrinter1, publicTransportationRoutePrinter1);
-        routePrinter1.printRoute(park,walmart, TransportationMethod.CAR);
-        routePrinter1.printRoute(park,chaseBank, TransportationMethod.PUBLIC_TRANSPORTATION);
+        routePrinter1.printRoute(park,walmart, TransportationMethod.CAR, false);
+        routePrinter1.printRoute(park,chaseBank, TransportationMethod.PUBLIC_TRANSPORTATION, true);
+
 
 
 
