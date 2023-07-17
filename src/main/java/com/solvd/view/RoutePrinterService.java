@@ -1,5 +1,6 @@
 package com.solvd.view;
 
+import com.solvd.exception.GraphDataMissingException;
 import com.solvd.model.TransportationMethod;
 import com.solvd.model.graph.Vertex;
 import com.solvd.view.routeprinter.CarRoutePrinter;
@@ -14,7 +15,7 @@ public class RoutePrinterService {
         this.publicTransportationRoutePrinter = publicTransportationRoutePrinter;
     }
 
-    public void printRoute(Vertex source, Vertex destination, TransportationMethod transportationMethod, boolean fastest) {
+    public void printRoute(Vertex source, Vertex destination, TransportationMethod transportationMethod, boolean fastest) throws GraphDataMissingException {
         if (transportationMethod == TransportationMethod.CAR && fastest) {
             carRoutePrinter.printFastestRoute(source, destination);
         } else if (transportationMethod == TransportationMethod.CAR) {

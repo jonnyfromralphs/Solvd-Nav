@@ -7,6 +7,7 @@ import com.solvd.db.mysql.mapperImpl.AddressMapperImpl;
 import com.solvd.db.mysql.mapperImpl.BusStopMapperImpl;
 import com.solvd.db.mysql.mapperImpl.RoadMapperImpl;
 import com.solvd.db.utils.MyBatisUtil;
+import com.solvd.exception.GraphCreationException;
 import com.solvd.model.graph.Edge;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.*;
@@ -28,7 +29,7 @@ public class GraphServiceImpl implements GraphService {
     public GraphServiceImpl() { }
 
     @Override
-    public RoadNetworkGraph loadGraphFromDatabase() {
+    public RoadNetworkGraph loadGraphFromDatabase() throws GraphCreationException {
         List<Address> addresses = addressService.getAll();
         List<BusStop> busStops = busStopService.getAll();
         graph = new RoadNetworkGraph(addresses.size() + busStops.size());
@@ -40,7 +41,7 @@ public class GraphServiceImpl implements GraphService {
 
     // This method could be used for loading a list of vertices
     @Override
-    public void loadVerticesFromDatabase(List<Address> addresses) {
+    public void loadVerticesFromDatabase(List<Address> addresses) throws GraphCreationException {
         // The below line should be like this List<Address> vertexDataList = new ArrayList<>(); Since i dont have an aaddress. its giving me error.
         //  Retrieve edge data using myBatis. please use an appropriate data structure
         // i just used arrayList just for a demo.
@@ -53,7 +54,7 @@ public class GraphServiceImpl implements GraphService {
 
     // This method could be used for loading the list of edges of our graph
     @Override
-    public void loadEdgesFromDatabase() {
+    public void loadEdgesFromDatabase() throws GraphCreationException {
         // List<Road> edgedataList = new ArrayList<>();
         List<Road> addressRoads = roadService.getAllRoadsForAddresses();
         List<Road> busRoads = roadService.getAllRoadsForBusStops(); // Retrieve edge data using myBatis .
@@ -77,7 +78,7 @@ public class GraphServiceImpl implements GraphService {
     }
 
     @Override
-    public void loadBusStopsFromDatabase(List<BusStop> busStops) {
+    public void loadBusStopsFromDatabase(List<BusStop> busStops) throws GraphCreationException {
         // List<Address> busStopList = new ArrayList<>();
         // Retrieve edge data using myBatis .
         for (BusStop busStop : busStops) {

@@ -1,6 +1,9 @@
 package com.solvd;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
+import com.solvd.exception.GraphCreationException;
+import com.solvd.exception.GraphDataMissingException;
+import com.solvd.exception.InvalidGraphException;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Edge;
 import com.solvd.model.TransportationMethod;
@@ -50,46 +53,70 @@ public class App {
 
 
         RoadNetworkGraph roadNetworkGraph = new RoadNetworkGraph(Vertex.getVertexCount());
-        roadNetworkGraph.addVertex(chaseBank);
-        roadNetworkGraph.addVertex(autoExpress);
-        roadNetworkGraph.addVertex(school);
-        roadNetworkGraph.addVertex(samsClub);
-        roadNetworkGraph.addVertex(walmart);
+        try {
+            roadNetworkGraph.addVertex(chaseBank);
+            roadNetworkGraph.addVertex(autoExpress);
+            roadNetworkGraph.addVertex(school);
+            roadNetworkGraph.addVertex(samsClub);
+            roadNetworkGraph.addVertex(walmart);
+
+        } catch (GraphCreationException e) {
+            e.getMessage();
+        }
+
+        try {
+            roadNetworkGraph.addBusStop(busStop1);
+            roadNetworkGraph.addBusStop(busStop2);
+            roadNetworkGraph.addBusStop(busStop3);
+            roadNetworkGraph.addBusStop(busStop4);
+            roadNetworkGraph.addBusStop(busStop5);
+        } catch (GraphCreationException e) {
+            e.getMessage();
+        }
+
+        try {
+            roadNetworkGraph.addEdge(edge1);
+            roadNetworkGraph.addEdge(edge2);
+            roadNetworkGraph.addEdge(edge3);
+            roadNetworkGraph.addEdge(edge4);
+            roadNetworkGraph.addEdge(edge5);
+            roadNetworkGraph.addEdge(edge6);
+            roadNetworkGraph.addEdge(edge7);
+            roadNetworkGraph.addEdge(edge8);
+            roadNetworkGraph.addEdge(edge9);
+            roadNetworkGraph.addEdge(edge10);
+            roadNetworkGraph.addEdge(edge11);
+            roadNetworkGraph.addEdge(edge12);
+        } catch (GraphCreationException e) {
+            e.getMessage();
+        }
 
 
-        roadNetworkGraph.addBusStop(busStop1);
-        roadNetworkGraph.addBusStop(busStop2);
-        roadNetworkGraph.addBusStop(busStop3);
-        roadNetworkGraph.addBusStop(busStop4);
-        roadNetworkGraph.addBusStop(busStop5);
-
-
-        roadNetworkGraph.addEdge(edge1);
-        roadNetworkGraph.addEdge(edge2);
-        roadNetworkGraph.addEdge(edge3);
-        roadNetworkGraph.addEdge(edge4);
-        roadNetworkGraph.addEdge(edge5);
-        roadNetworkGraph.addEdge(edge6);
-        roadNetworkGraph.addEdge(edge7);
-        roadNetworkGraph.addEdge(edge8);
-        roadNetworkGraph.addEdge(edge9);
-        roadNetworkGraph.addEdge(edge10);
-        roadNetworkGraph.addEdge(edge11);
-        roadNetworkGraph.addEdge(edge12);
-
-
-
-        FloydWarshallAlgorithm floydWarshallAlgorithm = new FloydWarshallAlgorithm(roadNetworkGraph) ;
+        FloydWarshallAlgorithm floydWarshallAlgorithm = null;
+        try {
+            floydWarshallAlgorithm = new FloydWarshallAlgorithm(roadNetworkGraph);
+        } catch (InvalidGraphException e) {
+            e.getMessage();
+        }
         floydWarshallAlgorithm.calculateShortestAndFastestRoutes();
 
 
-        CarRoutePrinter carRoutePrinter = new CarRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
-        PublicTransportationRoutePrinter publicTransportationRoutePrinter = new PublicTransportationRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
-        RoutePrinterService routePrinter = new RoutePrinterService(carRoutePrinter, publicTransportationRoutePrinter);
-
-        routePrinter.printRoute(autoExpress,samsClub, TransportationMethod.CAR, true);
-        routePrinter.printRoute(chaseBank,walmart, TransportationMethod.PUBLIC_TRANSPORTATION, false);
-
+        CarRoutePrinter carRoutePrinter = null;
+        try {
+            carRoutePrinter = new CarRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
+        } catch (InvalidGraphException e) {
+            e.getMessage();
+        }
+        try {
+            PublicTransportationRoutePrinter publicTransportationRoutePrinter = new PublicTransportationRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm);
+            RoutePrinterService routePrinter = new RoutePrinterService(carRoutePrinter, publicTransportationRoutePrinter);
+            routePrinter.printRoute(autoExpress, samsClub, TransportationMethod.CAR, true);
+            routePrinter.printRoute(chaseBank, walmart, TransportationMethod.PUBLIC_TRANSPORTATION, false);
+        } catch (InvalidGraphException e) {
+            e.getMessage();
+        } catch (GraphDataMissingException e) {
+            throw new RuntimeException(e);
+        }
 
 
 
@@ -105,17 +132,38 @@ public class App {
         List<Edge> edges = new ArrayList<>();
         edges.add(edgeToPark1);
         edges.add(edgeToPark2);
-        roadNetworkGraph.addNewVertexAndUpdateRoutes(park, edges);
-        FloydWarshallAlgorithm floydWarshallAlgorithm1 = new FloydWarshallAlgorithm(roadNetworkGraph);
+        try {
+            roadNetworkGraph.addNewVertexAndUpdateRoutes(park, edges);
+        } catch (GraphCreationException e) {
+            throw new RuntimeException(e);
+        }
+        FloydWarshallAlgorithm floydWarshallAlgorithm1 = null;
+        try {
+            floydWarshallAlgorithm1 = new FloydWarshallAlgorithm(roadNetworkGraph);
+        } catch (InvalidGraphException e) {
+            e.getMessage();
+        }
         floydWarshallAlgorithm1.calculateShortestAndFastestRoutes();
 
-        CarRoutePrinter carRoutePrinter1 = new CarRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm1);
-        PublicTransportationRoutePrinter publicTransportationRoutePrinter1 = new PublicTransportationRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm1);
+        CarRoutePrinter carRoutePrinter1 = null;
+        try {
+            carRoutePrinter1 = new CarRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm1);
+        } catch (InvalidGraphException e) {
+            e.getMessage();
+        }
+        PublicTransportationRoutePrinter publicTransportationRoutePrinter1 = null;
+        try {
+            publicTransportationRoutePrinter1 = new PublicTransportationRoutePrinter(roadNetworkGraph, floydWarshallAlgorithm1);
+        } catch (InvalidGraphException e) {
+            e.getMessage();
+        }
         RoutePrinterService routePrinter1 = new RoutePrinterService(carRoutePrinter1, publicTransportationRoutePrinter1);
-        routePrinter1.printRoute(park,walmart, TransportationMethod.CAR, false);
-        routePrinter1.printRoute(park,chaseBank, TransportationMethod.PUBLIC_TRANSPORTATION, true);
-
-
+        try {
+            routePrinter1.printRoute(park, walmart, TransportationMethod.CAR, false);
+            routePrinter1.printRoute(park, chaseBank, TransportationMethod.PUBLIC_TRANSPORTATION, true);
+        } catch (GraphDataMissingException e) {
+            e.getMessage();
+        }
 
 
     }

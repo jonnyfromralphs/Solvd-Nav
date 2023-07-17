@@ -1,6 +1,8 @@
 package com.solvd.view.routeprinter;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
+import com.solvd.exception.GraphDataMissingException;
+import com.solvd.exception.InvalidGraphException;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
 import com.solvd.view.RoutePrinting;
@@ -11,12 +13,12 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class PublicTransportationRoutePrinter extends RoutePrinting implements RoutePrinterInterface {
-    public PublicTransportationRoutePrinter(RoadNetworkGraph graph, FloydWarshallAlgorithm floydWarshall) {
+    public PublicTransportationRoutePrinter(RoadNetworkGraph graph, FloydWarshallAlgorithm floydWarshall) throws InvalidGraphException {
         super(graph, floydWarshall);
     }
 
     @Override
-    public void printShortestRoute(Vertex source, Vertex destination) {
+    public void printShortestRoute(Vertex source, Vertex destination) throws GraphDataMissingException {
         Vertex nearestBusStopSource = graph.findNearestBusStop(source);
         Vertex nearestBusStopDestination = graph.findNearestBusStop(destination);
         System.out.println("Source: " + source + " (Nearest Bus Stop: " + nearestBusStopSource + ")");
@@ -58,7 +60,7 @@ public class PublicTransportationRoutePrinter extends RoutePrinting implements R
         }
     }
 
-    private int calculateWaitTime(Vertex source, Vertex destination) {
+    private int calculateWaitTime(Vertex source, Vertex destination) throws GraphDataMissingException {
         ZoneId pacificTimeZone = ZoneId.of("America/Los_Angeles");
         LocalTime currentTime = LocalTime.now(pacificTimeZone);
         LocalTime firstBusTime = LocalTime.of(7, 0);
@@ -71,7 +73,7 @@ public class PublicTransportationRoutePrinter extends RoutePrinting implements R
     }
 
     @Override
-    public void printFastestRoute(Vertex source, Vertex destination) {
+    public void printFastestRoute(Vertex source, Vertex destination) throws GraphDataMissingException {
         Vertex nearestBusStopSource = graph.findNearestBusStop(source);
         Vertex nearestBusStopDestination = graph.findNearestBusStop(destination);
 

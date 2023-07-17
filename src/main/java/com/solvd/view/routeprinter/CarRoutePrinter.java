@@ -2,6 +2,7 @@ package com.solvd.view.routeprinter;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
 import com.solvd.controller.RouteCalculator;
+import com.solvd.exception.InvalidGraphException;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
 import com.solvd.view.RoutePrinting;
@@ -12,7 +13,7 @@ public class CarRoutePrinter extends RoutePrinting implements RoutePrinterInterf
     private RouteCalculator routeCalculator;
 
 
-    public CarRoutePrinter(RoadNetworkGraph graph, FloydWarshallAlgorithm floydWarshall) {
+    public CarRoutePrinter(RoadNetworkGraph graph, FloydWarshallAlgorithm floydWarshall) throws InvalidGraphException {
         super(graph, floydWarshall);
         this.routeCalculator = new RouteCalculator(graph);
     }
