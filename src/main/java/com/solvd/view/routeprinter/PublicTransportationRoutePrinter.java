@@ -46,7 +46,7 @@ public class PublicTransportationRoutePrinter extends RoutePrinting implements R
             }
 
             if (!path.isEmpty()) {
-                System.out.println("Shortest Route with Bus Stops: " + formatPath(path));
+                System.out.println("Shortest Route with Bus Stops: " + formatPath(path) + "\n");
                 System.out.println(formatPathWithDirectionsBus(path, source, destination, waitTimeMinutes));
             } else {
                 System.out.println("No route found.");
@@ -99,7 +99,7 @@ public class PublicTransportationRoutePrinter extends RoutePrinting implements R
                 path.addAll(busStopToDestinationPath);
             }
 
-            System.out.println("Fastest Route using Bus: " + formatPath(path));
+            System.out.println("Fastest Route using Bus: " + formatPath(path) + "\n");
             System.out.println(formatPathWithDirectionsBus(path, source, destination, waitTimeMinutes));
             System.out.println();
         } else {

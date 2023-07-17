@@ -1,4 +1,4 @@
-package com.solvd.application;
+package com.solvd.controller.application;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
 import com.solvd.exception.InvalidChoiceException;

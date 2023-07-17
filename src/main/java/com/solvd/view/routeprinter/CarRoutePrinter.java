@@ -31,7 +31,7 @@ public class CarRoutePrinter extends RoutePrinting implements RoutePrinterInterf
         if (!path.isEmpty()) {
             System.out.println("Source: " + source);
             System.out.println("Destination: " + destination);
-            System.out.println("Shortest route using Car: " + formatPath(path));
+            System.out.println("Shortest route using Car: " + formatPath(path) + "\n");
             System.out.println(formatPathWithDirections(path));
             System.out.println();
         } else {
@@ -59,7 +59,7 @@ public class CarRoutePrinter extends RoutePrinting implements RoutePrinterInterf
         if (source != destination) {
             System.out.println("Source: " + source);
             System.out.println("Destination: " + destination);
-            System.out.println("Fastest Route using Car: " + formatPath(path));
+            System.out.println("Fastest Route using Car: " + formatPath(path) + "\n");
             System.out.println(formatPathWithDirections(path));
             System.out.println();
         } else {

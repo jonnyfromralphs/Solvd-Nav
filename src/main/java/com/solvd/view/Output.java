@@ -20,6 +20,7 @@ public class Output {
                 "                        |  \\__| $$                                        |  \\__| $$                                       \n" +
                 "                         \\$$    $$                                         \\$$    $$                                       \n" +
                 "                          \\$$$$$$                                           \\$$$$$$                                        \n\n" +
+                "A simple command line interface to find the shortest and fastest routes around Los Angeles.\n\n" +
                 "Would you like to start the program? (Y/N): ");
     }
 

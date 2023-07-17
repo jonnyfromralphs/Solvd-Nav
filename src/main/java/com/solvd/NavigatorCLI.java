@@ -1,6 +1,6 @@
 package com.solvd;
 
-import com.solvd.application.Navigator;
+import com.solvd.controller.application.Navigator;
 
 public class NavigatorCLI {
     public static void main(String[] args) {
