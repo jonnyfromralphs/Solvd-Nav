@@ -5,6 +5,8 @@ import com.solvd.db.mysql.mapperImpl.*;
 import com.solvd.db.utils.MyBatisUtil;
 import com.solvd.exception.InvalidChoiceException;
 import com.solvd.model.*;
+import com.solvd.exception.*;
+import com.solvd.model.TransportationMethod;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
 import com.solvd.service.*;
@@ -39,7 +41,7 @@ public class Navigator {
     CityService cityService = new CityService(new CityMapperImpl(sqlSessionFactory));
     private GeocoderService geocoderService = new GeocoderService();
 
-    public void run() {
+    public void run() throws InvalidGraphException, GraphCreationException{
         setupGraph();
         welcomeScreen();
         while (isProgramRunning) {
@@ -154,7 +156,7 @@ public class Navigator {
 
     }
 
-    public void getRoute(String startingAddress, String destinationAddress, TransportationMethod transportationMode, boolean fastest) throws InvalidChoiceException {
+    public void getRoute(String startingAddress, String destinationAddress, TransportationMethod transportationMode, boolean fastest) throws InvalidChoiceException, GraphDataMissingException, CarRoutePrinterException, NoRouteFoundException {
         Vertex start = roadNetworkGraph.getVertexList().stream().filter(v -> v.getName().contains(startingAddress)).findFirst().orElse(null);
         Vertex end = roadNetworkGraph.getVertexList().stream().filter(v -> v.getName().contains(destinationAddress)).findFirst().orElse(null);
 
@@ -204,7 +206,7 @@ public class Navigator {
         return Input.getString();
     }
 
-    public void addAddress() throws IOException, InterruptedException {
+    public void addAddress() throws IOException, InterruptedException, InvalidGraphException, GraphCreationException {
         Output.enterHouseNumberScreen();
         String houseNumber = Input.getString();
 
@@ -291,7 +293,7 @@ public class Navigator {
         }
     }
 
-    public void setupGraph() {
+    public void setupGraph() throws GraphCreationException, InvalidGraphException {
         roadNetworkGraph = new GraphServiceImpl().loadGraphFromDatabase();
         floydWarshallAlgorithm = new FloydWarshallAlgorithm(roadNetworkGraph);
         floydWarshallAlgorithm.calculateShortestAndFastestRoutes();

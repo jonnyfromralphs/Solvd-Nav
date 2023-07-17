@@ -2,6 +2,10 @@ package com.solvd.view;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
 import com.solvd.controller.RouteCalculator;
+import com.solvd.exception.CarRoutePrinterException;
+import com.solvd.exception.GraphDataMissingException;
+import com.solvd.exception.InvalidGraphException;
+import com.solvd.exception.NoRouteFoundException;
 import com.solvd.model.graph.Edge;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
@@ -19,7 +23,7 @@ public class RoutePrinting {
     protected static final double WALKING_SPEED = 3.0;
 
 
-    public RoutePrinting(RoadNetworkGraph graph, FloydWarshallAlgorithm floydWarshall) {
+    public RoutePrinting(RoadNetworkGraph graph, FloydWarshallAlgorithm floydWarshall) throws InvalidGraphException {
         this.graph = graph;
         this.floydWarshall = floydWarshall;
         this.edgeList = graph.getEdgeList();
@@ -83,7 +87,7 @@ public class RoutePrinting {
 
 
 
-    protected String formatPathWithDirectionsBus(List<Vertex> path, Vertex source, Vertex destination, int waitTime) {
+    protected String formatPathWithDirectionsBus(List<Vertex> path, Vertex source, Vertex destination, int waitTime) throws GraphDataMissingException {
 
         StringBuilder sb = new StringBuilder();
         DecimalFormat df = new DecimalFormat("#0.00");
@@ -169,7 +173,7 @@ public class RoutePrinting {
         return null;
     }
 
-    public void printFastestRoute(Vertex source, Vertex destination) {
+    public void printFastestRoute(Vertex source, Vertex destination) throws GraphDataMissingException, CarRoutePrinterException, NoRouteFoundException {
         double fastestTime = calculateTotalTime(routeCalculator.calculateFastestPath(source, destination));
         List<Vertex> fastestPath = routeCalculator.calculateFastestPath(source, destination);
         System.out.println("Fastest Route:");
