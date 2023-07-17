@@ -1,10 +1,7 @@
 package com.solvd.controller.application;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
-import com.solvd.exception.GraphCreationException;
-import com.solvd.exception.GraphDataMissingException;
-import com.solvd.exception.InvalidChoiceException;
-import com.solvd.exception.InvalidGraphException;
+import com.solvd.exception.*;
 import com.solvd.model.TransportationMethod;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
@@ -159,7 +156,7 @@ public class Navigator {
 
     }
 
-    public void getRoute(String startingAddress, String destinationAddress, TransportationMethod transportationMode, boolean fastest) throws InvalidChoiceException, GraphDataMissingException {
+    public void getRoute(String startingAddress, String destinationAddress, TransportationMethod transportationMode, boolean fastest) throws InvalidChoiceException, GraphDataMissingException, CarRoutePrinterException {
         Vertex start = roadNetworkGraph.getVertexList().stream().filter(v -> v.getName().contains(startingAddress)).findFirst().orElse(null);
         Vertex end = roadNetworkGraph.getVertexList().stream().filter(v -> v.getName().contains(destinationAddress)).findFirst().orElse(null);
 

@@ -2,16 +2,15 @@ package com.solvd.view.routeprinter;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
 import com.solvd.controller.RouteCalculator;
+import com.solvd.exception.CarRoutePrinterException;
 import com.solvd.exception.InvalidGraphException;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
 import com.solvd.view.RoutePrinting;
-
 import java.util.List;
 
 public class CarRoutePrinter extends RoutePrinting implements RoutePrinterInterface  {
     private RouteCalculator routeCalculator;
-
 
     public CarRoutePrinter(RoadNetworkGraph graph, FloydWarshallAlgorithm floydWarshall) throws InvalidGraphException {
         super(graph, floydWarshall);
@@ -19,12 +18,11 @@ public class CarRoutePrinter extends RoutePrinting implements RoutePrinterInterf
     }
 
     @Override
-    public void printShortestRoute(Vertex source, Vertex destination) {
+    public void printShortestRoute(Vertex source, Vertex destination) throws CarRoutePrinterException {
         int sourceIndex = graph.getVertexList().indexOf(source);
         int destinationIndex = graph.getVertexList().indexOf(destination);
         if (sourceIndex == -1 || destinationIndex == -1) {
-            System.out.println("Source or destination address not found in the graph.");
-            return;
+            throw new CarRoutePrinterException("Source / destination address not found in the graph.");
         }
         List<Vertex> path = routeCalculator.calculateShortestPath(source, destination);
 

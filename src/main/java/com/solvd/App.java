@@ -1,6 +1,7 @@
 package com.solvd;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
+import com.solvd.exception.CarRoutePrinterException;
 import com.solvd.exception.GraphCreationException;
 import com.solvd.exception.GraphDataMissingException;
 import com.solvd.exception.InvalidGraphException;
@@ -115,11 +116,10 @@ public class App {
         } catch (InvalidGraphException e) {
             e.getMessage();
         } catch (GraphDataMissingException e) {
-            throw new RuntimeException(e);
+            e.getMessage();
+        } catch (CarRoutePrinterException e) {
+            e.getMessage();
         }
-
-
-
 
 
         Vertex park = new Vertex("Park", 32.850456, -96.751234);
@@ -162,6 +162,8 @@ public class App {
             routePrinter1.printRoute(park, walmart, TransportationMethod.CAR, false);
             routePrinter1.printRoute(park, chaseBank, TransportationMethod.PUBLIC_TRANSPORTATION, true);
         } catch (GraphDataMissingException e) {
+            e.getMessage();
+        } catch (CarRoutePrinterException e) {
             e.getMessage();
         }
 
