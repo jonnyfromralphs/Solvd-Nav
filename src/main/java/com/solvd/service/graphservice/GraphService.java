@@ -4,7 +4,6 @@ import com.solvd.exception.GraphCreationException;
 import com.solvd.model.Address;
 import com.solvd.model.BusStop;
 import com.solvd.model.graph.RoadNetworkGraph;
-
 import java.util.List;
 
 public interface GraphService {

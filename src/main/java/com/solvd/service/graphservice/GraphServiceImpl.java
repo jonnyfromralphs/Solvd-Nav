@@ -79,8 +79,6 @@ public class GraphServiceImpl implements GraphService {
 
     @Override
     public void loadBusStopsFromDatabase(List<BusStop> busStops) throws GraphCreationException {
-        // List<Address> busStopList = new ArrayList<>();
-        // Retrieve edge data using myBatis .
         for (BusStop busStop : busStops) {
             double latitude = busStop.getLatitude();
             double longitude = busStop.getLongitude();
