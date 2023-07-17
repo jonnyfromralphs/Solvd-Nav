@@ -15,7 +15,6 @@ import com.solvd.view.routeprinter.PublicTransportationRoutePrinter;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
 public class Navigator {
     private String input;
     private boolean isProgramRunning = true;
@@ -56,7 +55,6 @@ public class Navigator {
                 Output.printErrorMessage(e);
             }
         }
-
     }
 
     public void mainMenu() {
@@ -67,13 +65,10 @@ public class Navigator {
         final String ADD_ROAD = "3";
         final String ADD_ADDRESS = "4";
         final String EXIT = "5";
-
         input = Input.getString();
-
         String startingAddress;
         String destinationAddress;
         TransportationMethod transportationMode;
-
         boolean isAddingStop = false;
 
         try {
@@ -82,14 +77,13 @@ public class Navigator {
                     startingAddress = enterStartingAddress();
                     destinationAddress = enterDestinationAddress();
                     transportationMode = transportationMode();
-
                     if (transportationMode == null) {
                         break;
                     }
 
                     directionsQueue.offer(new AddressPair<>(startingAddress, destinationAddress, transportationMode));
-
                     isAddingStop = addAnotherStop();
+
                     while (isAddingStop) {
                         startingAddress = destinationAddress;
                         destinationAddress = enterDestinationAddress();
@@ -102,14 +96,12 @@ public class Navigator {
                         AddressPair<String, String> addressPair = directionsQueue.poll();
                         getRoute((String) addressPair.getStartingAddress(), (String) addressPair.getDestinationAddress(), addressPair.transportationMode, true);
                     }
-
                     break;
 
                 case SHORTEST_ROUTE:
                     startingAddress = enterStartingAddress();
                     destinationAddress = enterDestinationAddress();
                     transportationMode = transportationMode();
-
                     if (transportationMode == null) {
                         break;
                     }
@@ -153,7 +145,6 @@ public class Navigator {
             Output.printErrorMessage(e);
             mainMenu();
         }
-
     }
 
     public void getRoute(String startingAddress, String destinationAddress, TransportationMethod transportationMode, boolean fastest) throws InvalidChoiceException {
@@ -163,7 +154,6 @@ public class Navigator {
         if (start == null || end == null) {
             throw new InvalidChoiceException();
         }
-
         routePrinterService.printRoute(start, end, transportationMode, fastest);
     }
 
@@ -271,6 +261,4 @@ public class Navigator {
 
         public TransportationMethod getTransportationMode() { return transportationMode; }
     }
-
-
 }

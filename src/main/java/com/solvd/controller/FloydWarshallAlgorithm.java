@@ -2,7 +2,6 @@ package com.solvd.controller;
 
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
-
 import java.util.List;
 
 public class FloydWarshallAlgorithm {
@@ -47,7 +46,6 @@ public class FloydWarshallAlgorithm {
         }
     }
 
-
     public double getShortestRouteDistance(int sourceIndex, int destinationIndex) {
         return shortestRouteMatrix[sourceIndex][destinationIndex];
     }
@@ -72,5 +70,3 @@ public class FloydWarshallAlgorithm {
         this.fastestRouteMatrix = fastestRouteMatrix;
     }
 }
-
-

@@ -27,7 +27,6 @@ public class RoadMapperImpl implements RoadMapper {
             return mapper.getAllRoadsForAddresses();
         }
     }
-
     @Override
     public List<Road> getAllRoadsForBusStops() {
         try (SqlSession session = sqlSessionFactory.openSession()) {

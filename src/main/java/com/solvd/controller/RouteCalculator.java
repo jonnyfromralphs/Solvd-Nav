@@ -2,7 +2,6 @@ package com.solvd.controller;
 
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +49,6 @@ public class RouteCalculator {
     }
 
     private int findIntermediateVertex(int sourceIndex, int destinationIndex, double[][] routeMatrix) {
-
         double shortestDistance = routeMatrix[sourceIndex][destinationIndex];
 
         if (shortestDistance == Double.POSITIVE_INFINITY) {
@@ -67,9 +65,6 @@ public class RouteCalculator {
                 }
             }
         }
-
         return destinationIndex;
     }
-
-
 }
