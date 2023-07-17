@@ -2,8 +2,10 @@ package com.solvd.view;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
 import com.solvd.controller.RouteCalculator;
+import com.solvd.exception.CarRoutePrinterException;
 import com.solvd.exception.GraphDataMissingException;
 import com.solvd.exception.InvalidGraphException;
+import com.solvd.exception.NoRouteFoundException;
 import com.solvd.model.graph.Edge;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
@@ -171,7 +173,7 @@ public class RoutePrinting {
         return null;
     }
 
-    public void printFastestRoute(Vertex source, Vertex destination) throws GraphDataMissingException {
+    public void printFastestRoute(Vertex source, Vertex destination) throws GraphDataMissingException, CarRoutePrinterException, NoRouteFoundException {
         double fastestTime = calculateTotalTime(routeCalculator.calculateFastestPath(source, destination));
         List<Vertex> fastestPath = routeCalculator.calculateFastestPath(source, destination);
         System.out.println("Fastest Route:");

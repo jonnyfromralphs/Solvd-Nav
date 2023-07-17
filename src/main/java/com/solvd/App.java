@@ -1,10 +1,7 @@
 package com.solvd;
 
 import com.solvd.controller.FloydWarshallAlgorithm;
-import com.solvd.exception.CarRoutePrinterException;
-import com.solvd.exception.GraphCreationException;
-import com.solvd.exception.GraphDataMissingException;
-import com.solvd.exception.InvalidGraphException;
+import com.solvd.exception.*;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Edge;
 import com.solvd.model.TransportationMethod;
@@ -119,6 +116,8 @@ public class App {
             e.getMessage();
         } catch (CarRoutePrinterException e) {
             e.getMessage();
+        } catch (NoRouteFoundException e) {
+            e.getMessage();
         }
 
 
@@ -164,6 +163,8 @@ public class App {
         } catch (GraphDataMissingException e) {
             e.getMessage();
         } catch (CarRoutePrinterException e) {
+            e.getMessage();
+        } catch (NoRouteFoundException e) {
             e.getMessage();
         }
 
