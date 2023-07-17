@@ -379,3 +379,11 @@ and then From Target: 620 Virgil Ave Los Angeles, CA 90005 take Virgil Ave and d
 and then From McDonald's: 695 Western Ave Los Angeles, CA 90005 take Avalon Blvd and drive for 12.53 miles (0.36 hours), to reach Jerry's Body Shop: 9014 Avalon Blvd Los Angeles, CA 90003.
 Total Distance: 18.22 miles
 Total Time: 0.61 hours
+[INFO ] 2023-07-17 16:02:40.704 [main] CarRoutePrinter - 
+Source: Chase Bank: 101 Larchmont Blvd Los Angeles, CA 90004
+[INFO ] 2023-07-17 16:02:40.705 [main] CarRoutePrinter - Destination: Target: 620 Virgil Ave Los Angeles, CA 90005
+[INFO ] 2023-07-17 16:02:40.706 [main] CarRoutePrinter - Fastest Route using Car: Chase Bank -> Target
+
+[INFO ] 2023-07-17 16:02:40.706 [main] CarRoutePrinter - From Chase Bank: 101 Larchmont Blvd Los Angeles, CA 90004 take Larchmont Blvd and drive for 3.54 miles (0.18 hours), to reach Target: 620 Virgil Ave Los Angeles, CA 90005.
+Total Distance: 3.54 miles
+Total Time: 0.18 hours
