@@ -1,0 +1,240 @@
+[INFO ] 2023-07-17 14:41:34.888 [main] FloydWarshallAlgorithm - Source: Chase Bank (Nearest Bus Stop: UTD Bus Station)
+[INFO ] 2023-07-17 14:41:34.891 [main] FloydWarshallAlgorithm - Destination: Walmart (Nearest Bus Stop: Buckner at Blossom - S - NS)
+[INFO ] 2023-07-17 14:41:34.911 [main] FloydWarshallAlgorithm - Wait Time at Bus Stop: 4 minutes
+[INFO ] 2023-07-17 14:41:34.913 [main] FloydWarshallAlgorithm - Shortest Route with Bus Stops: Chase Bank -> UTD Bus Station -> Chase Bank -> Sam's Club -> Walmart -> Buckner at Blossom - S - NS -> Walmart
+
+[INFO ] 2023-07-17 14:41:34.916 [main] FloydWarshallAlgorithm - From Chase Bank, walk to the nearest bus stop and board the next bus(0.09 miles, 0.03 hours).
+From UTD Bus Station, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+From Chase Bank, take  fire way and drive for 18.25 miles (0.73 hours).
+From Sam's Club, take bobby way and drive for 12.45 miles (0.28 hours).
+From Walmart, take Connection road Bucker and drive for 0.16 miles (0.01 hours).
+Finally, walk from the bus stop Buckner at Blossom - S - NS to Walmart (0.16 miles, 0.05 hours).
+Total Distance (Including walking distance): 31.19 miles
+Total Time (Including walking time & waiting time at Bus stop): 1.17 hours
+[INFO ] 2023-07-17 14:41:34.922 [main] FloydWarshallAlgorithm - 
+[INFO ] 2023-07-17 14:41:34.923 [main] FloydWarshallAlgorithm - Source: Park (Nearest Bus Stop to Park: MEDICAL DISTRICT @ MAPLE - N - MB)
+[INFO ] 2023-07-17 14:41:34.925 [main] FloydWarshallAlgorithm - Destination: Chase Bank (Nearest Bus Stop to Chase Bank: UTD Bus Station)
+[INFO ] 2023-07-17 14:41:34.926 [main] FloydWarshallAlgorithm - Wait Time at Bus Stop: 19 minutes
+[INFO ] 2023-07-17 14:41:34.927 [main] FloydWarshallAlgorithm - Fastest Route using Bus: Park -> Auto Express -> MEDICAL DISTRICT @ MAPLE - N - MB -> Chase Bank -> UTD Bus Station -> Chase Bank
+
+[INFO ] 2023-07-17 14:41:34.928 [main] FloydWarshallAlgorithm - From Park, walk to the nearest bus stop and board the next bus(6.39 miles, 2.13 hours).
+From Chase Bank, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+Finally, walk from the bus stop UTD Bus Station to Chase Bank (0.09 miles, 0.03 hours).
+Total Distance (Including walking distance): 6.56 miles
+Total Time (Including walking time & waiting time at Bus stop): 2.48 hours
+[INFO ] 2023-07-17 14:41:34.928 [main] FloydWarshallAlgorithm - 
+[INFO ] 2023-07-17 14:42:04.479 [main] PublicTransportationRoutePrinter - Source: Chase Bank (Nearest Bus Stop: UTD Bus Station)
+[INFO ] 2023-07-17 14:42:04.482 [main] PublicTransportationRoutePrinter - Destination: Walmart (Nearest Bus Stop: Buckner at Blossom - S - NS)
+[INFO ] 2023-07-17 14:42:04.492 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 3 minutes
+[INFO ] 2023-07-17 14:42:04.493 [main] PublicTransportationRoutePrinter - Shortest Route with Bus Stops: Chase Bank -> UTD Bus Station -> Chase Bank -> Sam's Club -> Walmart -> Buckner at Blossom - S - NS -> Walmart
+
+[INFO ] 2023-07-17 14:42:04.494 [main] PublicTransportationRoutePrinter - From Chase Bank, walk to the nearest bus stop and board the next bus(0.09 miles, 0.03 hours).
+From UTD Bus Station, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+From Chase Bank, take  fire way and drive for 18.25 miles (0.73 hours).
+From Sam's Club, take bobby way and drive for 12.45 miles (0.28 hours).
+From Walmart, take Connection road Bucker and drive for 0.16 miles (0.01 hours).
+Finally, walk from the bus stop Buckner at Blossom - S - NS to Walmart (0.16 miles, 0.05 hours).
+Total Distance (Including walking distance): 31.19 miles
+Total Time (Including walking time & waiting time at Bus stop): 1.15 hours
+[INFO ] 2023-07-17 14:42:04.496 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 14:42:04.497 [main] PublicTransportationRoutePrinter - Source: Park (Nearest Bus Stop to Park: MEDICAL DISTRICT @ MAPLE - N - MB)
+[INFO ] 2023-07-17 14:42:04.498 [main] PublicTransportationRoutePrinter - Destination: Chase Bank (Nearest Bus Stop to Chase Bank: UTD Bus Station)
+[INFO ] 2023-07-17 14:42:04.499 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 18 minutes
+[INFO ] 2023-07-17 14:42:04.500 [main] PublicTransportationRoutePrinter - Fastest Route using Bus: Park -> Auto Express -> MEDICAL DISTRICT @ MAPLE - N - MB -> Chase Bank -> UTD Bus Station -> Chase Bank
+
+[INFO ] 2023-07-17 14:42:04.501 [main] PublicTransportationRoutePrinter - From Park, walk to the nearest bus stop and board the next bus(6.39 miles, 2.13 hours).
+From Chase Bank, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+Finally, walk from the bus stop UTD Bus Station to Chase Bank (0.09 miles, 0.03 hours).
+Total Distance (Including walking distance): 6.56 miles
+Total Time (Including walking time & waiting time at Bus stop): 2.46 hours
+[INFO ] 2023-07-17 14:42:04.501 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 14:43:12.509 [main] PublicTransportationRoutePrinter - Source: Chase Bank (Nearest Bus Stop: UTD Bus Station)
+[INFO ] 2023-07-17 14:43:12.513 [main] PublicTransportationRoutePrinter - Destination: Walmart (Nearest Bus Stop: Buckner at Blossom - S - NS)
+[INFO ] 2023-07-17 14:43:12.523 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 2 minutes
+[INFO ] 2023-07-17 14:43:12.524 [main] PublicTransportationRoutePrinter - Shortest Route with Bus Stops: Chase Bank -> UTD Bus Station -> Chase Bank -> Sam's Club -> Walmart -> Buckner at Blossom - S - NS -> Walmart
+
+[INFO ] 2023-07-17 14:43:12.526 [main] PublicTransportationRoutePrinter - From Chase Bank, walk to the nearest bus stop and board the next bus(0.09 miles, 0.03 hours).
+From UTD Bus Station, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+From Chase Bank, take  fire way and drive for 18.25 miles (0.73 hours).
+From Sam's Club, take bobby way and drive for 12.45 miles (0.28 hours).
+From Walmart, take Connection road Bucker and drive for 0.16 miles (0.01 hours).
+Finally, walk from the bus stop Buckner at Blossom - S - NS to Walmart (0.16 miles, 0.05 hours).
+Total Distance (Including walking distance): 31.19 miles
+Total Time (Including walking time & waiting time at Bus stop): 1.14 hours
+[INFO ] 2023-07-17 14:43:12.529 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 14:43:12.529 [main] PublicTransportationRoutePrinter - Source: Park (Nearest Bus Stop to Park: MEDICAL DISTRICT @ MAPLE - N - MB)
+[INFO ] 2023-07-17 14:43:12.530 [main] PublicTransportationRoutePrinter - Destination: Chase Bank (Nearest Bus Stop to Chase Bank: UTD Bus Station)
+[INFO ] 2023-07-17 14:43:12.531 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 17 minutes
+[INFO ] 2023-07-17 14:43:12.532 [main] PublicTransportationRoutePrinter - Fastest Route using Bus: Park -> Auto Express -> MEDICAL DISTRICT @ MAPLE - N - MB -> Chase Bank -> UTD Bus Station -> Chase Bank
+
+[INFO ] 2023-07-17 14:43:12.534 [main] PublicTransportationRoutePrinter - From Park, walk to the nearest bus stop and board the next bus(6.39 miles, 2.13 hours).
+From Chase Bank, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+Finally, walk from the bus stop UTD Bus Station to Chase Bank (0.09 miles, 0.03 hours).
+Total Distance (Including walking distance): 6.56 miles
+Total Time (Including walking time & waiting time at Bus stop): 2.45 hours
+[INFO ] 2023-07-17 14:43:12.534 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 14:44:33.448 [main] CarRoutePrinter - Source: Auto Express
+[INFO ] 2023-07-17 14:44:33.452 [main] CarRoutePrinter - Destination: Sam's Club
+[INFO ] 2023-07-17 14:44:33.453 [main] CarRoutePrinter - Fastest Route using Car: Auto Express -> Walmart -> Sam's Club
+
+[INFO ] 2023-07-17 14:44:33.456 [main] CarRoutePrinter - From Auto Express take I30 Highway and drive for 33.93 miles (0.40 hours), to pass by Walmart,
+and then From Walmart take bobby way and drive for 12.45 miles (0.28 hours), to reach Sam's Club.
+Total Distance: 46.38 miles
+Total Time: 0.68 hours
+[INFO ] 2023-07-17 14:44:33.457 [main] PublicTransportationRoutePrinter - Source: Chase Bank (Nearest Bus Stop: UTD Bus Station)
+[INFO ] 2023-07-17 14:44:33.458 [main] PublicTransportationRoutePrinter - Destination: Walmart (Nearest Bus Stop: Buckner at Blossom - S - NS)
+[INFO ] 2023-07-17 14:44:33.468 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 1 minutes
+[INFO ] 2023-07-17 14:44:33.469 [main] PublicTransportationRoutePrinter - Shortest Route with Bus Stops: Chase Bank -> UTD Bus Station -> Chase Bank -> Sam's Club -> Walmart -> Buckner at Blossom - S - NS -> Walmart
+
+[INFO ] 2023-07-17 14:44:33.471 [main] PublicTransportationRoutePrinter - From Chase Bank, walk to the nearest bus stop and board the next bus(0.09 miles, 0.03 hours).
+From UTD Bus Station, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+From Chase Bank, take  fire way and drive for 18.25 miles (0.73 hours).
+From Sam's Club, take bobby way and drive for 12.45 miles (0.28 hours).
+From Walmart, take Connection road Bucker and drive for 0.16 miles (0.01 hours).
+Finally, walk from the bus stop Buckner at Blossom - S - NS to Walmart (0.16 miles, 0.05 hours).
+Total Distance (Including walking distance): 31.19 miles
+Total Time (Including walking time & waiting time at Bus stop): 1.12 hours
+[INFO ] 2023-07-17 14:44:33.472 [main] CarRoutePrinter - Source: Park
+[INFO ] 2023-07-17 14:44:33.472 [main] CarRoutePrinter - Destination: Walmart
+[INFO ] 2023-07-17 14:44:33.473 [main] CarRoutePrinter - Shortest route using Car: Park -> Sam's Club -> Walmart
+
+[INFO ] 2023-07-17 14:44:33.475 [main] CarRoutePrinter - From Park take Park Street 2 and drive for 15.84 miles (1.58 hours), to pass by Sam's Club,
+and then From Sam's Club take bobby way and drive for 12.45 miles (0.28 hours), to reach Walmart.
+Total Distance: 28.30 miles
+Total Time: 1.86 hours
+[INFO ] 2023-07-17 14:44:33.475 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 14:44:33.476 [main] PublicTransportationRoutePrinter - Source: Park (Nearest Bus Stop to Park: MEDICAL DISTRICT @ MAPLE - N - MB)
+[INFO ] 2023-07-17 14:44:33.478 [main] PublicTransportationRoutePrinter - Destination: Chase Bank (Nearest Bus Stop to Chase Bank: UTD Bus Station)
+[INFO ] 2023-07-17 14:44:33.480 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 16 minutes
+[INFO ] 2023-07-17 14:44:33.481 [main] PublicTransportationRoutePrinter - Fastest Route using Bus: Park -> Auto Express -> MEDICAL DISTRICT @ MAPLE - N - MB -> Chase Bank -> UTD Bus Station -> Chase Bank
+
+[INFO ] 2023-07-17 14:44:33.482 [main] PublicTransportationRoutePrinter - From Park, walk to the nearest bus stop and board the next bus(6.39 miles, 2.13 hours).
+From Chase Bank, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+Finally, walk from the bus stop UTD Bus Station to Chase Bank (0.09 miles, 0.03 hours).
+Total Distance (Including walking distance): 6.56 miles
+Total Time (Including walking time & waiting time at Bus stop): 2.43 hours
+[INFO ] 2023-07-17 14:44:33.483 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 14:46:44.325 [main] CarRoutePrinter - Source: Auto Express
+[INFO ] 2023-07-17 14:46:44.328 [main] CarRoutePrinter - Destination: Sam's Club
+[INFO ] 2023-07-17 14:46:44.329 [main] CarRoutePrinter - Fastest Route using Car: Auto Express -> Walmart -> Sam's Club
+
+[INFO ] 2023-07-17 14:46:44.332 [main] CarRoutePrinter - From Auto Express take I30 Highway and drive for 33.93 miles (0.40 hours), to pass by Walmart,
+and then From Walmart take bobby way and drive for 12.45 miles (0.28 hours), to reach Sam's Club.
+Total Distance: 46.38 miles
+Total Time: 0.68 hours
+[INFO ] 2023-07-17 14:46:44.333 [main] PublicTransportationRoutePrinter - 
+Source: Chase Bank (Nearest Bus Stop: UTD Bus Station)
+[INFO ] 2023-07-17 14:46:44.334 [main] PublicTransportationRoutePrinter - Destination: Walmart (Nearest Bus Stop: Buckner at Blossom - S - NS)
+[INFO ] 2023-07-17 14:46:44.344 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 14 minutes
+[INFO ] 2023-07-17 14:46:44.346 [main] PublicTransportationRoutePrinter - Shortest Route with Bus Stops: Chase Bank -> UTD Bus Station -> Chase Bank -> Sam's Club -> Walmart -> Buckner at Blossom - S - NS -> Walmart
+[INFO ] 2023-07-17 14:46:44.347 [main] PublicTransportationRoutePrinter - From Chase Bank, walk to the nearest bus stop and board the next bus(0.09 miles, 0.03 hours).
+From UTD Bus Station, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+From Chase Bank, take  fire way and drive for 18.25 miles (0.73 hours).
+From Sam's Club, take bobby way and drive for 12.45 miles (0.28 hours).
+From Walmart, take Connection road Bucker and drive for 0.16 miles (0.01 hours).
+Finally, walk from the bus stop Buckner at Blossom - S - NS to Walmart (0.16 miles, 0.05 hours).
+Total Distance (Including walking distance): 31.19 miles
+Total Time (Including walking time & waiting time at Bus stop): 1.34 hours
+[INFO ] 2023-07-17 14:46:44.349 [main] CarRoutePrinter - Source: Park
+[INFO ] 2023-07-17 14:46:44.349 [main] CarRoutePrinter - Destination: Walmart
+[INFO ] 2023-07-17 14:46:44.350 [main] CarRoutePrinter - Shortest route using Car: Park -> Sam's Club -> Walmart
+
+[INFO ] 2023-07-17 14:46:44.351 [main] CarRoutePrinter - From Park take Park Street 2 and drive for 15.84 miles (1.58 hours), to pass by Sam's Club,
+and then From Sam's Club take bobby way and drive for 12.45 miles (0.28 hours), to reach Walmart.
+Total Distance: 28.30 miles
+Total Time: 1.86 hours
+[INFO ] 2023-07-17 14:46:44.353 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 14:46:44.354 [main] PublicTransportationRoutePrinter - Source: Park (Nearest Bus Stop to Park: MEDICAL DISTRICT @ MAPLE - N - MB)
+[INFO ] 2023-07-17 14:46:44.354 [main] PublicTransportationRoutePrinter - Destination: Chase Bank (Nearest Bus Stop to Chase Bank: UTD Bus Station)
+[INFO ] 2023-07-17 14:46:44.356 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 14 minutes
+[INFO ] 2023-07-17 14:46:44.357 [main] PublicTransportationRoutePrinter - Fastest Route using Bus: Park -> Auto Express -> MEDICAL DISTRICT @ MAPLE - N - MB -> Chase Bank -> UTD Bus Station -> Chase Bank
+[INFO ] 2023-07-17 14:46:44.358 [main] PublicTransportationRoutePrinter - From Park, walk to the nearest bus stop and board the next bus(6.39 miles, 2.13 hours).
+From Chase Bank, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+Finally, walk from the bus stop UTD Bus Station to Chase Bank (0.09 miles, 0.03 hours).
+Total Distance (Including walking distance): 6.56 miles
+Total Time (Including walking time & waiting time at Bus stop): 2.40 hours
+[INFO ] 2023-07-17 14:46:44.358 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 14:48:47.805 [main] CarRoutePrinter - 
+Source: Auto Express
+[INFO ] 2023-07-17 14:48:47.809 [main] CarRoutePrinter - Destination: Sam's Club
+[INFO ] 2023-07-17 14:48:47.810 [main] CarRoutePrinter - Fastest Route using Car: Auto Express -> Walmart -> Sam's Club
+
+[INFO ] 2023-07-17 14:48:47.814 [main] CarRoutePrinter - From Auto Express take I30 Highway and drive for 33.93 miles (0.40 hours), to pass by Walmart,
+and then From Walmart take bobby way and drive for 12.45 miles (0.28 hours), to reach Sam's Club.
+Total Distance: 46.38 miles
+Total Time: 0.68 hours
+[INFO ] 2023-07-17 14:48:47.817 [main] PublicTransportationRoutePrinter - 
+Source: Chase Bank (Nearest Bus Stop: UTD Bus Station)
+[INFO ] 2023-07-17 14:48:47.817 [main] PublicTransportationRoutePrinter - Destination: Walmart (Nearest Bus Stop: Buckner at Blossom - S - NS)
+[INFO ] 2023-07-17 14:48:47.834 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 12 minutes
+[INFO ] 2023-07-17 14:48:47.836 [main] PublicTransportationRoutePrinter - Shortest Route with Bus Stops: Chase Bank -> UTD Bus Station -> Chase Bank -> Sam's Club -> Walmart -> Buckner at Blossom - S - NS -> Walmart
+[INFO ] 2023-07-17 14:48:47.842 [main] PublicTransportationRoutePrinter - From Chase Bank, walk to the nearest bus stop and board the next bus(0.09 miles, 0.03 hours).
+From UTD Bus Station, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+From Chase Bank, take  fire way and drive for 18.25 miles (0.73 hours).
+From Sam's Club, take bobby way and drive for 12.45 miles (0.28 hours).
+From Walmart, take Connection road Bucker and drive for 0.16 miles (0.01 hours).
+Finally, walk from the bus stop Buckner at Blossom - S - NS to Walmart (0.16 miles, 0.05 hours).
+Total Distance (Including walking distance): 31.19 miles
+Total Time (Including walking time & waiting time at Bus stop): 1.30 hours
+[INFO ] 2023-07-17 14:48:47.848 [main] CarRoutePrinter - 
+Source: Park
+[INFO ] 2023-07-17 14:48:47.848 [main] CarRoutePrinter - Destination: Walmart
+[INFO ] 2023-07-17 14:48:47.849 [main] CarRoutePrinter - Shortest route using Car: Park -> Sam's Club -> Walmart
+
+[INFO ] 2023-07-17 14:48:47.851 [main] CarRoutePrinter - From Park take Park Street 2 and drive for 15.84 miles (1.58 hours), to pass by Sam's Club,
+and then From Sam's Club take bobby way and drive for 12.45 miles (0.28 hours), to reach Walmart.
+Total Distance: 28.30 miles
+Total Time: 1.86 hours
+[INFO ] 2023-07-17 14:48:47.852 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 14:48:47.856 [main] PublicTransportationRoutePrinter - Source: Park (Nearest Bus Stop to Park: MEDICAL DISTRICT @ MAPLE - N - MB)
+[INFO ] 2023-07-17 14:48:47.857 [main] PublicTransportationRoutePrinter - Destination: Chase Bank (Nearest Bus Stop to Chase Bank: UTD Bus Station)
+[INFO ] 2023-07-17 14:48:47.858 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 12 minutes
+[INFO ] 2023-07-17 14:48:47.859 [main] PublicTransportationRoutePrinter - Fastest Route using Bus: Park -> Auto Express -> MEDICAL DISTRICT @ MAPLE - N - MB -> Chase Bank -> UTD Bus Station -> Chase Bank
+[INFO ] 2023-07-17 14:48:47.861 [main] PublicTransportationRoutePrinter - From Park, walk to the nearest bus stop and board the next bus(6.39 miles, 2.13 hours).
+From Chase Bank, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+Finally, walk from the bus stop UTD Bus Station to Chase Bank (0.09 miles, 0.03 hours).
+Total Distance (Including walking distance): 6.56 miles
+Total Time (Including walking time & waiting time at Bus stop): 2.36 hours
+[INFO ] 2023-07-17 14:48:47.861 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 14:50:48.728 [main] CarRoutePrinter - 
+Source: Auto Express
+[INFO ] 2023-07-17 14:50:48.731 [main] CarRoutePrinter - Destination: Sam's Club
+[INFO ] 2023-07-17 14:50:48.732 [main] CarRoutePrinter - Fastest Route using Car: Auto Express -> Walmart -> Sam's Club
+
+[INFO ] 2023-07-17 14:50:48.735 [main] CarRoutePrinter - From Auto Express take I30 Highway and drive for 33.93 miles (0.40 hours), to pass by Walmart,
+and then From Walmart take bobby way and drive for 12.45 miles (0.28 hours), to reach Sam's Club.
+Total Distance: 46.38 miles
+Total Time: 0.68 hours
+[INFO ] 2023-07-17 14:50:48.737 [main] PublicTransportationRoutePrinter - 
+Source: Chase Bank (Nearest Bus Stop: UTD Bus Station)
+[INFO ] 2023-07-17 14:50:48.737 [main] PublicTransportationRoutePrinter - Destination: Walmart (Nearest Bus Stop: Buckner at Blossom - S - NS)
+[INFO ] 2023-07-17 14:50:48.747 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 10 minutes
+[INFO ] 2023-07-17 14:50:48.748 [main] PublicTransportationRoutePrinter - Shortest Route with Bus Stops: Chase Bank -> UTD Bus Station -> Chase Bank -> Sam's Club -> Walmart -> Buckner at Blossom - S - NS -> Walmart
+[INFO ] 2023-07-17 14:50:48.750 [main] PublicTransportationRoutePrinter - From Chase Bank, walk to the nearest bus stop and board the next bus(0.09 miles, 0.03 hours).
+From UTD Bus Station, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+From Chase Bank, take  fire way and drive for 18.25 miles (0.73 hours).
+From Sam's Club, take bobby way and drive for 12.45 miles (0.28 hours).
+From Walmart, take Connection road Bucker and drive for 0.16 miles (0.01 hours).
+Finally, walk from the bus stop Buckner at Blossom - S - NS to Walmart (0.16 miles, 0.05 hours).
+Total Distance (Including walking distance): 31.19 miles
+Total Time (Including walking time & waiting time at Bus stop): 1.27 hours
+[INFO ] 2023-07-17 14:50:48.751 [main] CarRoutePrinter - 
+Source: Park
+[INFO ] 2023-07-17 14:50:48.752 [main] CarRoutePrinter - Destination: Walmart
+[INFO ] 2023-07-17 14:50:48.752 [main] CarRoutePrinter - Shortest route using Car: Park -> Sam's Club -> Walmart
+
+[INFO ] 2023-07-17 14:50:48.753 [main] CarRoutePrinter - From Park take Park Street 2 and drive for 15.84 miles (1.58 hours), to pass by Sam's Club,
+and then From Sam's Club take bobby way and drive for 12.45 miles (0.28 hours), to reach Walmart.
+Total Distance: 28.30 miles
+Total Time: 1.86 hours
+[INFO ] 2023-07-17 14:50:48.753 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 14:50:48.754 [main] PublicTransportationRoutePrinter - Source: Park (Nearest Bus Stop to Park: MEDICAL DISTRICT @ MAPLE - N - MB)
+[INFO ] 2023-07-17 14:50:48.755 [main] PublicTransportationRoutePrinter - Destination: Chase Bank (Nearest Bus Stop to Chase Bank: UTD Bus Station)
+[INFO ] 2023-07-17 14:50:48.756 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 10 minutes
+[INFO ] 2023-07-17 14:50:48.757 [main] PublicTransportationRoutePrinter - Fastest Route using Bus: Park -> Auto Express -> MEDICAL DISTRICT @ MAPLE - N - MB -> Chase Bank -> UTD Bus Station -> Chase Bank
+[INFO ] 2023-07-17 14:50:48.758 [main] PublicTransportationRoutePrinter - From Park, walk to the nearest bus stop and board the next bus(6.39 miles, 2.13 hours).
+From Chase Bank, take Connection road UTD and drive for 0.09 miles (0.01 hours).
+Finally, walk from the bus stop UTD Bus Station to Chase Bank (0.09 miles, 0.03 hours).
+Total Distance (Including walking distance): 6.56 miles
+Total Time (Including walking time & waiting time at Bus stop): 2.33 hours
+[INFO ] 2023-07-17 14:50:48.759 [main] PublicTransportationRoutePrinter - 

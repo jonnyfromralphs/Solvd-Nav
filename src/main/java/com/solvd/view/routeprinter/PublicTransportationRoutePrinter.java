@@ -7,33 +7,31 @@ import com.solvd.exception.NoRouteFoundException;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
 import com.solvd.view.RoutePrinting;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.ArrayList;
 
 public class PublicTransportationRoutePrinter extends RoutePrinting implements RoutePrinterInterface {
+    private static final Logger LOGGER = LogManager.getLogger(PublicTransportationRoutePrinter.class);
     private Vertex nearestBusStopSource;
     private Vertex nearestBusStopDestination;
     public PublicTransportationRoutePrinter(RoadNetworkGraph graph, FloydWarshallAlgorithm floydWarshall) throws InvalidGraphException {
         super(graph, floydWarshall);
     }
 
-    private void printerHelper(Vertex source, Vertex destination) throws GraphDataMissingException {
-        this.nearestBusStopSource = graph.findNearestBusStop(source);
-        this.nearestBusStopDestination = graph.findNearestBusStop(destination);
-        System.out.println("Source: " + source + " (Nearest Bus Stop: " + nearestBusStopSource + ")");
-        System.out.println("Destination: " + destination + " (Nearest Bus Stop: " + nearestBusStopDestination + ")");
-    }
-
     @Override
     public void printShortestRoute(Vertex source, Vertex destination) throws GraphDataMissingException, NoRouteFoundException {
-        printerHelper(source, destination);
+        Vertex nearestBusStopSource = graph.findNearestBusStop(source);
+        Vertex nearestBusStopDestination = graph.findNearestBusStop(destination);
+        LOGGER.info("\nSource: " + source + " (Nearest Bus Stop: " + nearestBusStopSource + ")");
+        LOGGER.info("Destination: " + destination + " (Nearest Bus Stop: " + nearestBusStopDestination + ")");
         List<Vertex> path = new ArrayList<>();
         if (source != destination && nearestBusStopSource != nearestBusStopDestination) {
             int waitTimeMinutes = calculateWaitTime(source);
-            System.out.println("Wait Time at Bus Stop: " + waitTimeMinutes + " minutes");
+            LOGGER.info("Wait Time at Bus Stop: " + waitTimeMinutes + " minutes");
             List<Vertex> sourceToBusStopPath = routeCalculator.calculateShortestPath(source, nearestBusStopSource);
             path.addAll(sourceToBusStopPath);
             List<Vertex> busStopToBusStopPath = routeCalculator.calculateShortestPath(nearestBusStopSource, nearestBusStopDestination);
@@ -49,15 +47,15 @@ public class PublicTransportationRoutePrinter extends RoutePrinting implements R
                 path.addAll(busStopToDestinationPath);
             }
             if (!path.isEmpty()) {
-                System.out.println("Shortest Route with Bus Stops: " + formatPath(path) + "\n");
-                System.out.println(formatPathWithDirectionsBus(path, source, destination, waitTimeMinutes));
+                LOGGER.info("Shortest Route with Bus Stops: " + formatPath(path));
+                LOGGER.info(formatPathWithDirectionsBus(path, source, destination, waitTimeMinutes));
             } else {
                 throw new NoRouteFoundException(source, destination, "");
             }
         } else {
-            System.out.println("Source: " + source);
-            System.out.println("Destination: " + destination);
-            System.out.println("Shortest Route with Bus Stops: No route found since the source and destination are the same");
+            LOGGER.info("Source: " + source);
+            LOGGER.info("Destination: " + destination);
+            LOGGER.info("Shortest Route with Bus Stops: No route found since the source and destination are the same");
         }
     }
 
@@ -77,15 +75,14 @@ public class PublicTransportationRoutePrinter extends RoutePrinting implements R
     public void printFastestRoute(Vertex source, Vertex destination) throws GraphDataMissingException, NoRouteFoundException {
         Vertex nearestBusStopSource = graph.findNearestBusStop(source);
         Vertex nearestBusStopDestination = graph.findNearestBusStop(destination);
-
-        System.out.println();
-        System.out.println("Source: " + source + " (Nearest Bus Stop to " + source + ": " + nearestBusStopSource + ")");
-        System.out.println("Destination: " + destination + " (Nearest Bus Stop to " + destination + ": " + nearestBusStopDestination + ")");
+        LOGGER.info("");
+        LOGGER.info("Source: " + source + " (Nearest Bus Stop to " + source + ": " + nearestBusStopSource + ")");
+        LOGGER.info("Destination: " + destination + " (Nearest Bus Stop to " + destination + ": " + nearestBusStopDestination + ")");
         List<Vertex> path = new ArrayList<>();
 
         if (source != destination && nearestBusStopSource != nearestBusStopDestination) {
             int waitTimeMinutes = calculateWaitTime(source);
-            System.out.println("Wait Time at Bus Stop: " + waitTimeMinutes + " minutes");
+            LOGGER.info("Wait Time at Bus Stop: " + waitTimeMinutes + " minutes");
 
             List<Vertex> sourceToBusStopPath = routeCalculator.calculateFastestPath(source, nearestBusStopSource);
             path.addAll(sourceToBusStopPath);
@@ -102,19 +99,14 @@ public class PublicTransportationRoutePrinter extends RoutePrinting implements R
                 path.addAll(busStopToDestinationPath);
             }
 
-            System.out.println("Fastest Route using Bus: " + formatPath(path) + "\n");
-            System.out.println(formatPathWithDirectionsBus(path, source, destination, waitTimeMinutes));
-            System.out.println();
+            LOGGER.info("Fastest Route using Bus: " + formatPath(path));
+            LOGGER.info(formatPathWithDirectionsBus(path, source, destination, waitTimeMinutes));
+            LOGGER.info("");
         } else {
-            System.out.println("Source: " + source);
-            System.out.println("Destination: " + destination);
-            System.out.print("Fastest Route using Bus: ");
+            LOGGER.info("Source: " + source);
+            LOGGER.info("Destination: " + destination);
+            LOGGER.info("Fastest Route using Bus: ");
             throw new NoRouteFoundException(source, destination, "The source and destination bus stops are the same");
         }
     }
-
-
-
-
-
 }

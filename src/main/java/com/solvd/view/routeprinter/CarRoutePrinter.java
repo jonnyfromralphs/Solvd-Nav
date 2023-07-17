@@ -8,9 +8,12 @@ import com.solvd.exception.NoRouteFoundException;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
 import com.solvd.view.RoutePrinting;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class CarRoutePrinter extends RoutePrinting implements RoutePrinterInterface  {
+    private static final Logger LOGGER = LogManager.getLogger(CarRoutePrinter.class);
     private RouteCalculator routeCalculator;
 
     public CarRoutePrinter(RoadNetworkGraph graph, FloydWarshallAlgorithm floydWarshall) throws InvalidGraphException {
@@ -26,23 +29,18 @@ public class CarRoutePrinter extends RoutePrinting implements RoutePrinterInterf
             throw new CarRoutePrinterException(source, destination, "not found in the graph.");
         }
         List<Vertex> path = routeCalculator.calculateShortestPath(source, destination);
-
-
         if (!path.isEmpty()) {
-            System.out.println("Source: " + source);
-            System.out.println("Destination: " + destination);
-            System.out.println("Shortest route using Car: " + formatPath(path) + "\n");
-            System.out.println(formatPathWithDirections(path));
-            System.out.println();
+            LOGGER.info("\nSource: " + source);
+            LOGGER.info("Destination: " + destination);
+            LOGGER.info("Shortest route using Car: " + formatPath(path) + "\n");
+            LOGGER.info(formatPathWithDirections(path));
         } else {
-            System.out.println("Source: " + source);
-            System.out.println("Destination: " + destination);
-            System.out.print("Shortest Route using Car: ");
+            LOGGER.info("Source: " + source);
+            LOGGER.info("Destination: " + destination);
+            LOGGER.info("Shortest Route using Car: ");
             throw new CarRoutePrinterException(source, destination, "No route found");
         }
     }
-
-
 
     @Override
     public void printFastestRoute(Vertex source, Vertex destination) throws CarRoutePrinterException, NoRouteFoundException {
@@ -51,16 +49,14 @@ public class CarRoutePrinter extends RoutePrinting implements RoutePrinterInterf
         if (sourceIndex == -1 || destinationIndex == -1) {
             throw new CarRoutePrinterException(source, destination, "not found in the graph.");
         }
-
         List<Vertex> path = routeCalculator.getPath(sourceIndex, destinationIndex, floydWarshall.getFastestRouteMatrix());
-        System.out.println("Source: " + source);
-        System.out.println("Destination: " + destination);
+        LOGGER.info("\nSource: " + source);
+        LOGGER.info("Destination: " + destination);
         if (source != destination) {
-            System.out.println("Fastest Route using Car: " + formatPath(path) + "\n");
-            System.out.println(formatPathWithDirections(path));
-            System.out.println();
+            LOGGER.info("Fastest Route using Car: " + formatPath(path) + "\n");
+            LOGGER.info(formatPathWithDirections(path));
         } else {
-            System.out.print("Fastest Route using Car: ");
+            LOGGER.info("Fastest Route using Car: ");
             throw new NoRouteFoundException(source, destination, "");
         }
     }
