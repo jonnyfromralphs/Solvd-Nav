@@ -32,17 +32,4 @@
         values (#{name}, #{latitude}, #{longitude}, #{frequency}, "CA", 1)
     </insert>
 
-    <update id="updateBusStop" parameterType="com.solvd.model.BusStop">
-        update addresses set
-        name = #{name},
-        latitude = #{latitude},
-        longitude = #{longitude},
-        frequency = #{frequency}
-        where id = #{id}
-    </update>
-
-    <delete id="deleteBusStop" parameterType="long">
-        delete from addresses where id = #{id}
-    </delete>
-
 </mapper>

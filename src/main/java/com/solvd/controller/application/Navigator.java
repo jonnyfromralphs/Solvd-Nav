@@ -17,7 +17,6 @@ import com.solvd.view.RoutePrinterService;
 import com.solvd.view.routeprinter.CarRoutePrinter;
 import com.solvd.view.routeprinter.PublicTransportationRoutePrinter;
 import org.apache.ibatis.session.SqlSessionFactory;
-
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -312,7 +311,5 @@ public class Navigator {
         public U getDestinationAddress() {
             return destinationAddress;
         }
-
-        public TransportationMethod getTransportationMode() { return transportationMode; }
     }
 }

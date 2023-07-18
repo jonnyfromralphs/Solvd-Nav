@@ -408,3 +408,25 @@ Finally, walk from the bus stop Fairfax Ave Bus Stop to The Grove (0.38 miles, 0
 Total Distance (Including walking distance): 3.35 miles
 Total Time (Including walking time & waiting time at Bus stop): 26.42 minutes
 [INFO ] 2023-07-17 17:25:38.467 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 19:52:56.356 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 19:52:56.358 [main] PublicTransportationRoutePrinter - Source: Starbucks: 3461 3rd St Los Angeles, CA 90020 (Nearest Bus Stop to Starbucks: 3461 3rd St Los Angeles, CA 90020: Vermont Ave Bus Stop)
+[INFO ] 2023-07-17 19:52:56.358 [main] PublicTransportationRoutePrinter - Destination: McDonald's: 695 Western Ave Los Angeles, CA 90005 (Nearest Bus Stop to McDonald's: 695 Western Ave Los Angeles, CA 90005: Western Ave Bus Stop)
+[INFO ] 2023-07-17 19:52:56.364 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 8 minutes
+[INFO ] 2023-07-17 19:52:56.369 [main] PublicTransportationRoutePrinter - Fastest Route using Bus: Starbucks -> Vermont Ave Bus Stop -> Starbucks -> McDonald's -> Western Ave Bus Stop -> McDonald's
+[INFO ] 2023-07-17 19:52:56.370 [main] PublicTransportationRoutePrinter - From Starbucks, walk to the nearest bus stop and board the next bus(0.12 miles, 0.04 hours).
+From Vermont Ave Bus Stop, take Vermont Ave and drive for 0.12 miles (0.00 hours).
+From Starbucks, take 3rd St and drive for 2.03 miles (0.08 hours).
+From McDonald's, take Western Ave and drive for 0.27 miles (0.01 hours).
+Finally, walk from the bus stop Western Ave Bus Stop to McDonald's (0.27 miles, 0.09 hours).
+Total Distance (Including walking distance): 2.81 miles
+Total Time (Including walking time & waiting time at Bus stop): 21.41 minutes
+[INFO ] 2023-07-17 19:52:56.370 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 19:53:43.451 [main] CarRoutePrinter - 
+Source: Los Angeles County Museum of Art: 5905 Wilshire Blvd Los Angeles, CA 90036
+[INFO ] 2023-07-17 19:53:43.452 [main] CarRoutePrinter - Destination: Chase Bank: 101 Larchmont Blvd Los Angeles, CA 90004
+[INFO ] 2023-07-17 19:53:43.452 [main] CarRoutePrinter - Shortest route using Car: Los Angeles County Museum of Art -> Target -> Chase Bank
+
+[INFO ] 2023-07-17 19:53:43.453 [main] CarRoutePrinter - From Los Angeles County Museum of Art: 5905 Wilshire Blvd Los Angeles, CA 90036 take Unnamed Road, to pass by Target: 620 Virgil Ave Los Angeles, CA 90005,
+and then From Target: 620 Virgil Ave Los Angeles, CA 90005 take Larchmont Blvd and drive for 3.54 miles (0.18 hours), to reach Chase Bank: 101 Larchmont Blvd Los Angeles, CA 90004.
+Total Distance: 3.54 miles
+Total Time: 0.18 hours

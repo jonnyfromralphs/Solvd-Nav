@@ -2,7 +2,6 @@ package com.solvd.service;
 
 import com.solvd.db.mysql.mapper.StreetMapper;
 import com.solvd.model.Street;
-import java.util.List;
 
 public class StreetService {
     private StreetMapper streetMapper;
@@ -15,20 +14,5 @@ public class StreetService {
         return streetMapper.createStreet(street);
     }
 
-    public Street getById(long id) {
-        return streetMapper.getStreetById(id);
-    }
     public Street getByName(String name) { return streetMapper.getStreetByName(name); }
-
-    public List<Street> getAll() {
-        return streetMapper.getAllStreets();
-    }
-
-    public boolean update(Street street) {
-        return streetMapper.updateStreet(street);
-    }
-
-    public boolean delete(long id) {
-        return streetMapper.deleteStreet(id);
-    }
 }

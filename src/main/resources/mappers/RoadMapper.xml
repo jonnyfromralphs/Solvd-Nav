@@ -49,14 +49,4 @@
         values (#{name}, #{startAddress.id}, #{endAddress.id}, #{speedLimit})
     </insert>
 
-    <update id="updateRoad" parameterType="com.solvd.model.Road">
-        update roads
-        set name = #{name}, start_address_id = #{startAddress.id}, end_address_id = #{endAddress.id}, speed_limit = #{speedLimit}
-        where id = #{id}
-    </update>
-
-    <delete id="deleteRoad" parameterType="long">
-        delete from roads where id = #{id}
-    </delete>
-
 </mapper>

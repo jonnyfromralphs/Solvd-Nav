@@ -13,8 +13,4 @@ public interface StreetMapper {
     List<Street> getAllStreets();
 
     boolean createStreet(Street street);
-
-    boolean updateStreet(Street street);
-
-    boolean deleteStreet(long id);
 }

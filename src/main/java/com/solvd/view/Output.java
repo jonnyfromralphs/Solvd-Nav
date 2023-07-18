@@ -1,9 +1,7 @@
 package com.solvd.view;
 
-import com.solvd.model.Address;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
-
 import java.util.List;
 
 public class Output {
@@ -47,14 +45,6 @@ public class Output {
         System.out.println("2. Public Transportation");
         System.out.println("3. Go back");
         System.out.print("\nPlease pick an option:");
-    }
-
-    public static void enterLongitudeScreen() {
-        System.out.println("Please enter the longitude value for the address: ");
-    }
-
-    public static void enterLatitudeScreen() {
-        System.out.println("Please enter the latitude value for the address: ");
     }
 
     public static void enterRoadName() {

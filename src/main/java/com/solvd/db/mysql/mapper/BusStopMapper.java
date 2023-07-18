@@ -7,13 +7,10 @@ import java.util.List;
 public interface BusStopMapper {
 
     BusStop getBusStopById(long id);
+
     BusStop getBusStopByName(String name);
 
     List<BusStop> getAllBusStops();
 
     boolean createBusStop(BusStop busStop);
-
-    boolean updateBusStop(BusStop busStop);
-
-    boolean deleteBusStop(long id);
 }

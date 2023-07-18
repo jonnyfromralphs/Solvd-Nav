@@ -9,11 +9,8 @@ public interface RoadMapper {
     Road getRoadById(long id);
 
     List<Road> getAllRoadsForAddresses();
+
     List<Road> getAllRoadsForBusStops();
 
     boolean createRoad(Road road);
-
-    boolean updateRoad(Road road);
-
-    boolean deleteRoad(long id);
 }

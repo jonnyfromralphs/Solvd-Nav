@@ -29,18 +29,4 @@
         values (#{name})
     </insert>
 
-    <update id="updateCity" parameterType="com.solvd.model.City">
-        update cities set
-        name = #{name}
-        where id = #{id}
-    </update>
-
-    <delete id="deleteCity" parameterType="long">
-        delete from cities where id = #{id}
-    </delete>
-
-    <select id="getZipCodesForCity" resultType="com.solvd.model.ZipCode">
-        select * from zip_codes where city_id = #{cityId}
-    </select>
-
 </mapper>

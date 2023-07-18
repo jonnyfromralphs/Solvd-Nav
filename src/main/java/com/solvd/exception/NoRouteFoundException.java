@@ -17,5 +17,4 @@ public class NoRouteFoundException extends Exception {
     public String getMessage() {
         return "No route found between "+source+" and "+destination+". "+ message;
     }
-
 }

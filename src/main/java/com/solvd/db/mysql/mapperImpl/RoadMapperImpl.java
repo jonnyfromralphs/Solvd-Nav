@@ -41,18 +41,4 @@ public class RoadMapperImpl implements RoadMapper {
             return mapper.createRoad(road);
         }
     }
-    @Override
-    public boolean updateRoad(Road road) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            RoadMapper mapper = session.getMapper(RoadMapper.class);
-            return mapper.updateRoad(road);
-        }
-    }
-    @Override
-    public boolean deleteRoad(long id) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            RoadMapper mapper = session.getMapper(RoadMapper.class);
-            return mapper.deleteRoad(id);
-        }
-    }
 }

@@ -29,14 +29,4 @@
         values (#{name})
     </insert>
 
-    <update id="updateStreet" parameterType="com.solvd.model.Street">
-        update streets set
-        name = #{name}
-        where id = #{id}
-    </update>
-
-    <delete id="deleteStreet" parameterType="long">
-        delete from streets where id = #{id}
-    </delete>
-
 </mapper>

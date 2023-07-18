@@ -8,15 +8,12 @@ import java.util.List;
 public interface AddressMapper {
 
    Address getAddressById(long id);
+
    Address getAddressByName(String landmarkName);
 
    List<Address> getAllAddresses();
 
    boolean createAddress(Address address);
-
-   boolean updateAddress(Address address);
-
-   boolean deleteAddress(long id);
 
    List<Road> getRoadsForAddress(long roadId);
 }

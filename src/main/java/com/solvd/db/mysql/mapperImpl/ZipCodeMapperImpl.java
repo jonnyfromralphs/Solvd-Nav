@@ -43,18 +43,4 @@ public class ZipCodeMapperImpl implements ZipCodeMapper {
             return mapper.createZipCode(zipCode);
         }
     }
-    @Override
-    public boolean updateZipCode(ZipCode zipCode) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            ZipCodeMapper mapper = session.getMapper(ZipCodeMapper.class);
-            return mapper.updateZipCode(zipCode);
-        }
-    }
-    @Override
-    public boolean deleteZipCode(long id) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            ZipCodeMapper mapper = session.getMapper(ZipCodeMapper.class);
-            return mapper.deleteZipCode(id);
-        }
-    }
 }

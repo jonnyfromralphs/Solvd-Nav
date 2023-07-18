@@ -13,8 +13,4 @@ public interface ZipCodeMapper {
     List<ZipCode> getAllZipCodes();
 
     boolean createZipCode(ZipCode zipCode);
-
-    boolean updateZipCode(ZipCode zipCode);
-
-    boolean deleteZipCode(long id);
 }
