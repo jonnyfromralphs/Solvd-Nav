@@ -1,11 +1,8 @@
 package com.solvd.model.graph;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Vertex {
-    private static final AtomicInteger ID_GENERATOR = new AtomicInteger(0);
     private static int vertexCount = 0;
     private int id;
     private String name;
@@ -15,17 +12,13 @@ public class Vertex {
 
 
     public Vertex(String name, double latitude, double longitude) {
-        this.id = ID_GENERATOR.incrementAndGet();
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
         vertexCount++;
     }
 
-
-
     public Vertex(String name, double latitude, double longitude, int frequency) {
-        this.id = ID_GENERATOR.incrementAndGet();
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -45,16 +38,8 @@ public class Vertex {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
     public double getLongitude() {
         return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
     }
 
     @Override
@@ -83,20 +68,7 @@ public class Vertex {
         this.name = name;
     }
 
-    public static int getVertexCount() {
-        return vertexCount;
-    }
-
-    public static void setVertexCount(int vertexCount) {
-        Vertex.vertexCount = vertexCount;
-    }
-
     public int getFrequency() {
         return frequency;
     }
-
-    public void setFrequency(int frequency) {
-        this.frequency = frequency;
-    }
-
 }

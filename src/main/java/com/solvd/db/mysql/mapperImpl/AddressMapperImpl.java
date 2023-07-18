@@ -44,20 +44,7 @@ public class AddressMapperImpl implements AddressMapper {
             return mapper.createAddress(address);
         }
     }
-    @Override
-    public boolean updateAddress(Address address) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            AddressMapper mapper = session.getMapper(AddressMapper.class);
-            return mapper.updateAddress(address);
-        }
-    }
-    @Override
-    public boolean deleteAddress(long id) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            AddressMapper mapper = session.getMapper(AddressMapper.class);
-            return mapper.deleteAddress(id);
-        }
-    }
+
     @Override
     public List<Road> getRoadsForAddress(long roadId) {
         try (SqlSession session = sqlSessionFactory.openSession()) {

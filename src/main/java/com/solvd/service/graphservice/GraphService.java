@@ -8,7 +8,10 @@ import java.util.List;
 
 public interface GraphService {
     RoadNetworkGraph loadGraphFromDatabase() throws GraphCreationException;
+
     void loadVerticesFromDatabase(List<Address> addresses) throws GraphCreationException;
+
     void loadEdgesFromDatabase() throws GraphCreationException;
+
     void loadBusStopsFromDatabase(List<BusStop> busStops) throws GraphCreationException;
 }

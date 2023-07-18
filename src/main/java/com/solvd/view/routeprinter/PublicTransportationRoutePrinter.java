@@ -16,8 +16,7 @@ import java.util.ArrayList;
 
 public class PublicTransportationRoutePrinter extends RoutePrinting implements RoutePrinterInterface {
     private static final Logger LOGGER = LogManager.getLogger(PublicTransportationRoutePrinter.class);
-    private Vertex nearestBusStopSource;
-    private Vertex nearestBusStopDestination;
+
     public PublicTransportationRoutePrinter(RoadNetworkGraph graph, FloydWarshallAlgorithm floydWarshall) throws InvalidGraphException {
         super(graph, floydWarshall);
     }

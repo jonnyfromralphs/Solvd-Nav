@@ -23,7 +23,7 @@ public class MyBatisUtil {
             }
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis-config.xml"), properties);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Failed to initialize MyBatisUtil.", e);
         }
     }
 

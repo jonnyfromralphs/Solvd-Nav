@@ -30,15 +30,4 @@
         values (#{code}, #{cityId})
     </insert>
 
-    <update id="updateZipCode" parameterType="com.solvd.model.ZipCode">
-        update zip_codes set
-        code = #{code},
-        city_id = #{cityId}
-        where id = #{id}
-    </update>
-
-    <delete id="deleteZipCode" parameterType="long">
-        delete from zip_codes where id = #{id}
-    </delete>
-
 </mapper>

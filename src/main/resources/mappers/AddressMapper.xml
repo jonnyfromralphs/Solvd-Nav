@@ -44,15 +44,4 @@
         where a.frequency is null
     </select>
 
-    <update id="updateAddress" parameterType="com.solvd.model.Address">
-        update addresses set house_number = #{houseNumber}, street_id = #{street.id}, city_id = #{city.id},
-        state = #{stateName}, zip_code_id = #{zipCode.id}, longitude = #{longitude},
-        latitude = #{latitude}, landmark_name = #{landmarkName}
-        where id = #{id}
-    </update>
-
-    <delete id="deleteAddress" parameterType="long">
-        delete from addresses where id = #{id}
-    </delete>
-
 </mapper>

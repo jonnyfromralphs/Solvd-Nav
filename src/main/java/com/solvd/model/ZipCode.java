@@ -5,8 +5,6 @@ public class ZipCode {
     private int code;
     private long cityId;
 
-    public ZipCode(){}
-
     public ZipCode(long id, int code, long cityId) {
         this.id = id;
         this.code = code;
@@ -23,14 +21,6 @@ public class ZipCode {
 
     public int getCode() {
         return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public long getCityId() {
-        return cityId;
     }
 
     public void setCity(long cityId) {

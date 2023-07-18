@@ -7,5 +7,6 @@ import com.solvd.model.graph.Vertex;
 
 public interface RoutePrinterInterface {
     void printShortestRoute(Vertex source, Vertex destination) throws GraphDataMissingException, CarRoutePrinterException, NoRouteFoundException;
+
     void printFastestRoute(Vertex source, Vertex destination) throws GraphDataMissingException, CarRoutePrinterException, NoRouteFoundException;
 }

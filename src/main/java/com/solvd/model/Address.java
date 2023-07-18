@@ -38,22 +38,6 @@ public class Address {
         this.id = id;
     }
 
-    public String getHouseNumber() {
-        return houseNumber;
-    }
-
-    public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
-    public Street getStreet() {
-        return street;
-    }
-
-    public void setStreet(Street street) {
-        this.street = street;
-    }
-
     public City getCity() {
         return city;
     }
@@ -62,44 +46,16 @@ public class Address {
         this.city = city;
     }
 
-    public String getState() {
-        return stateName;
-    }
-
-    public void setState(String state) {
-        this.stateName = stateName;
-    }
-
-    public ZipCode getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(ZipCode zipCode) {
-        this.zipCode = zipCode;
-    }
-
     public double getLongitude() {
         return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
     }
 
     public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
     public String getLandmarkName() {
         return landmarkName;
-    }
-
-    public void setLandmarkName(String landmarkName) {
-        this.landmarkName = landmarkName;
     }
 
     @Override

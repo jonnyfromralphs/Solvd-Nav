@@ -30,10 +30,6 @@ public class Road {
         return busStopStartAddress;
     }
 
-    public void setBusStopStartAddress(BusStop busStopStartAddress) {
-        this.busStopStartAddress = busStopStartAddress;
-    }
-
     public long getId() {
         return id;
     }
@@ -54,24 +50,12 @@ public class Road {
         return startAddress;
     }
 
-    public void setStartAddress(Address startAddress) {
-        this.startAddress = startAddress;
-    }
-
     public Address getEndAddress() {
         return endAddress;
     }
 
-    public void setEndAddress(Address endAddress) {
-        this.endAddress = endAddress;
-    }
-
     public int getSpeedLimit() {
         return speedLimit;
-    }
-
-    public void setSpeedLimit(int speedLimit) {
-        this.speedLimit = speedLimit;
     }
 
     @Override

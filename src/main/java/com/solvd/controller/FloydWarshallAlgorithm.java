@@ -25,6 +25,7 @@ public class FloydWarshallAlgorithm {
         this.shortestRouteMatrix = graph.getShortestRouteMatrix();
         this.fastestRouteMatrix = graph.getFastestRouteMatrix();
     }
+
     public void calculateShortestAndFastestRoutes() {
         int vertexCount = graph.getVertexCount();
         double[][] shortestRouteMatrix = graph.getShortestRouteMatrix();
@@ -73,27 +74,11 @@ public class FloydWarshallAlgorithm {
         return true;
     }
 
-    public double getShortestRouteDistance(int sourceIndex, int destinationIndex) {
-        return shortestRouteMatrix[sourceIndex][destinationIndex];
-    }
-
-    public double getFastestRouteTime(int sourceIndex, int destinationIndex) {
-        return fastestRouteMatrix[sourceIndex][destinationIndex];
-    }
-
     public double[][] getShortestRouteMatrix() {
         return shortestRouteMatrix;
     }
 
-    public void setShortestRouteMatrix(double[][] shortestRouteMatrix) {
-        this.shortestRouteMatrix = shortestRouteMatrix;
-    }
-
     public double[][] getFastestRouteMatrix() {
         return fastestRouteMatrix;
-    }
-
-    public void setFastestRouteMatrix(double[][] fastestRouteMatrix) {
-        this.fastestRouteMatrix = fastestRouteMatrix;
     }
 }

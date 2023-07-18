@@ -13,15 +13,12 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class RoutePrinting {
-
     protected static final DecimalFormat df = new DecimalFormat("0.00");
     protected RoadNetworkGraph graph;
     protected FloydWarshallAlgorithm floydWarshall;
     protected List<Edge> edgeList;
     protected RouteCalculator routeCalculator;
-
     protected static final double WALKING_SPEED = 3.0;
-
 
     public RoutePrinting(RoadNetworkGraph graph, FloydWarshallAlgorithm floydWarshall) throws InvalidGraphException {
         this.graph = graph;
@@ -40,7 +37,6 @@ public class RoutePrinting {
         }
         return sb.toString();
     }
-
 
   protected String formatPathWithDirections(List<Vertex> path) {
       StringBuilder sb = new StringBuilder();
@@ -85,10 +81,7 @@ public class RoutePrinting {
       return sb.toString();
   }
 
-
-
     protected String formatPathWithDirectionsBus(List<Vertex> path, Vertex source, Vertex destination, int waitTime) throws GraphDataMissingException {
-
         StringBuilder sb = new StringBuilder();
         DecimalFormat df = new DecimalFormat("#0.00");
 
@@ -159,7 +152,6 @@ public class RoutePrinting {
         } else {
             sb.append(df.format(totalTime )).append(" hours");
         }
-
         return sb.toString();
     }
 
@@ -181,17 +173,6 @@ public class RoutePrinting {
         System.out.println("Total Time: " + fastestTime);
     }
 
-    protected double calculateTotalDistance(List<Vertex> path) {
-        double totalDistance = 0;
-        for (int i = 0; i < path.size() - 1; i++) {
-            Vertex currentVertex = path.get(i);
-            Vertex nextVertex = path.get(i + 1);
-            double distance = getDistanceBetweenVertices(currentVertex, nextVertex);
-            totalDistance += distance;
-        }
-        return totalDistance;
-    }
-
     protected double calculateTotalTime(List<Vertex> path) {
         double totalTime = 0;
         for (int i = 0; i < path.size() - 1; i++) {
@@ -201,18 +182,6 @@ public class RoutePrinting {
             totalTime += time;
         }
         return totalTime;
-    }
-
-
-    private double getDistanceBetweenVertices(Vertex source, Vertex destination) {
-        List<Edge> edgeList = graph.getEdgeList();
-        for (Edge edge : edgeList) {
-            if ((edge.getStart().equals(source) && edge.getEnd().equals(destination))
-                    || (edge.getStart().equals(destination) && edge.getEnd().equals(source))) {
-                return graph.getDistanceUsingHaversine(edge.getStart(),edge.getEnd());
-            }
-        }
-        return Double.POSITIVE_INFINITY;
     }
 
     private double getTimeBetweenVertices(Vertex source, Vertex destination) {
@@ -233,5 +202,4 @@ public class RoutePrinting {
         int index = fullAddress.indexOf(":");
         return index > -1 ? fullAddress.substring(0, index) : fullAddress;
     }
-
 }

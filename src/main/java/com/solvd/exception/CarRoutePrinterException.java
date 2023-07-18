@@ -6,6 +6,7 @@ public class CarRoutePrinterException extends Exception {
     private Vertex source;
     private Vertex destination;
     private String message;
+
     public CarRoutePrinterException(Vertex source, Vertex destination, String message) {
         this.message = message;
         this.source = source;

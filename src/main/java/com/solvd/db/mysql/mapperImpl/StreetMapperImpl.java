@@ -43,18 +43,4 @@ public class StreetMapperImpl implements StreetMapper {
             return mapper.createStreet(street);
         }
     }
-    @Override
-    public boolean updateStreet(Street street) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            StreetMapper mapper = session.getMapper(StreetMapper.class);
-            return mapper.updateStreet(street);
-        }
-    }
-    @Override
-    public boolean deleteStreet(long id) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            StreetMapper mapper = session.getMapper(StreetMapper.class);
-            return mapper.deleteStreet(id);
-        }
-    }
 }

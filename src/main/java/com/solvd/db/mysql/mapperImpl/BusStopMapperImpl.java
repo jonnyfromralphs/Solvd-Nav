@@ -43,18 +43,4 @@ public class BusStopMapperImpl implements BusStopMapper {
             return mapper.createBusStop(busStop);
         }
     }
-    @Override
-    public boolean updateBusStop(BusStop busStop) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            BusStopMapper mapper = session.getMapper(BusStopMapper.class);
-            return mapper.updateBusStop(busStop);
-        }
-    }
-    @Override
-    public boolean deleteBusStop(long id) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            BusStopMapper mapper = session.getMapper(BusStopMapper.class);
-            return mapper.deleteBusStop(id);
-        }
-    }
 }

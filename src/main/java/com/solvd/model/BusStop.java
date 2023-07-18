@@ -7,7 +7,6 @@ public class BusStop {
     private double longitude;
     private int frequency;
 
-
     public BusStop(){}
 
     public BusStop(long id, String name, double latitude, double longitude, int frequency){
@@ -38,24 +37,12 @@ public class BusStop {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
     public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
     public int getFrequency() {
         return frequency;
-    }
-
-    public void setFrequency(int frequency) {
-        this.frequency = frequency;
     }
 
     @Override
@@ -68,5 +55,4 @@ public class BusStop {
                 ", frequency=" + frequency +
                 '}';
     }
-
 }

@@ -15,23 +15,11 @@ public class BusStopService {
         return busStopMapper.createBusStop(busStop);
     }
 
-    public BusStop getById(long id) {
-        return busStopMapper.getBusStopById(id);
-    }
-
     public BusStop getByName(String name) {
         return busStopMapper.getBusStopByName(name);
     }
 
     public List<BusStop> getAll() {
         return busStopMapper.getAllBusStops();
-    }
-
-    public boolean update(BusStop busStop) {
-        return busStopMapper.updateBusStop(busStop);
-    }
-
-    public boolean delete(long id) {
-        return busStopMapper.deleteBusStop(id);
     }
 }

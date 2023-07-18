@@ -31,8 +31,4 @@ public class ConnectionPool {
             logger.error("Error loading the property file");
         }
     }
-
-    public static BasicDataSource getDataSource() {
-        return dataSource;
-    }
 }

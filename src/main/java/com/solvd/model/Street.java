@@ -6,14 +6,12 @@ import java.util.List;
 public class Street {
     private long id;
     private String name;
-    private List<Address> addresses;
 
     public Street() {}
 
     public Street(long id, String name) {
         this.id = id;
         this.name = name;
-        addresses = new ArrayList<>();
     }
 
     public long getId() {
@@ -30,14 +28,6 @@ public class Street {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
     }
 
     @Override
