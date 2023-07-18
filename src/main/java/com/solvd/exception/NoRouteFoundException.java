@@ -10,11 +10,12 @@ public class NoRouteFoundException extends Exception {
     public NoRouteFoundException(Vertex source, Vertex destination, String message) {
         this.source = source;
         this.destination = destination;
+        this.message = message;
     }
 
     @Override
     public String getMessage() {
-        return "No route found between "+source+" and "+destination+". "+message;
+        return "No route found between "+source+" and "+destination+". "+ message;
     }
 
 }

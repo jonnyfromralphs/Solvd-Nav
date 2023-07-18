@@ -387,3 +387,24 @@ Source: Chase Bank: 101 Larchmont Blvd Los Angeles, CA 90004
 [INFO ] 2023-07-17 16:02:40.706 [main] CarRoutePrinter - From Chase Bank: 101 Larchmont Blvd Los Angeles, CA 90004 take Larchmont Blvd and drive for 3.54 miles (0.18 hours), to reach Target: 620 Virgil Ave Los Angeles, CA 90005.
 Total Distance: 3.54 miles
 Total Time: 0.18 hours
+[INFO ] 2023-07-17 17:25:38.454 [main] CarRoutePrinter - 
+Source: Walk Of Fame: 6901 Hollywood Blvd Los Angeles, CA 90028
+[INFO ] 2023-07-17 17:25:38.456 [main] CarRoutePrinter - Destination: Chase Bank: 101 Larchmont Blvd Los Angeles, CA 90004
+[INFO ] 2023-07-17 17:25:38.456 [main] CarRoutePrinter - Fastest Route using Car: Walk Of Fame -> Target -> Chase Bank
+
+[INFO ] 2023-07-17 17:25:38.457 [main] CarRoutePrinter - From Walk Of Fame: 6901 Hollywood Blvd Los Angeles, CA 90028 take Vermont Ave and drive for 6.44 miles (0.32 hours), to pass by Target: 620 Virgil Ave Los Angeles, CA 90005,
+and then From Target: 620 Virgil Ave Los Angeles, CA 90005 take Larchmont Blvd and drive for 3.54 miles (0.18 hours), to reach Chase Bank: 101 Larchmont Blvd Los Angeles, CA 90004.
+Total Distance: 9.97 miles
+Total Time: 0.50 hours
+[INFO ] 2023-07-17 17:25:38.457 [main] PublicTransportationRoutePrinter - 
+[INFO ] 2023-07-17 17:25:38.457 [main] PublicTransportationRoutePrinter - Source: Chase Bank: 101 Larchmont Blvd Los Angeles, CA 90004 (Nearest Bus Stop to Chase Bank: 101 Larchmont Blvd Los Angeles, CA 90004: Larchmont Blvd Bus Stop)
+[INFO ] 2023-07-17 17:25:38.457 [main] PublicTransportationRoutePrinter - Destination: The Grove: 189 The Grove Dr Los Angeles, CA 90036 (Nearest Bus Stop to The Grove: 189 The Grove Dr Los Angeles, CA 90036: Fairfax Ave Bus Stop)
+[INFO ] 2023-07-17 17:25:38.461 [main] PublicTransportationRoutePrinter - Wait Time at Bus Stop: 5 minutes
+[INFO ] 2023-07-17 17:25:38.466 [main] PublicTransportationRoutePrinter - Fastest Route using Bus: Chase Bank -> Larchmont Blvd Bus Stop -> Target -> McDonald's -> The Grove -> Fairfax Ave Bus Stop -> The Grove
+[INFO ] 2023-07-17 17:25:38.467 [main] PublicTransportationRoutePrinter - From Chase Bank, walk to the nearest bus stop and board the next bus(0.43 miles, 0.14 hours).
+From Target, take Virgil Ave and drive for 2.15 miles (0.07 hours).
+From The Grove, take Fairfax Ave and drive for 0.38 miles (0.01 hours).
+Finally, walk from the bus stop Fairfax Ave Bus Stop to The Grove (0.38 miles, 0.13 hours).
+Total Distance (Including walking distance): 3.35 miles
+Total Time (Including walking time & waiting time at Bus stop): 26.42 minutes
+[INFO ] 2023-07-17 17:25:38.467 [main] PublicTransportationRoutePrinter - 
