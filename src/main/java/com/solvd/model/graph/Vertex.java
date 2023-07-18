@@ -10,7 +10,6 @@ public class Vertex {
     private double longitude;
     private int frequency;
 
-
     public Vertex(String name, double latitude, double longitude) {
         this.name = name;
         this.latitude = latitude;
