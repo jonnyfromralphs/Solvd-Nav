@@ -18,9 +18,6 @@ public class FloydWarshallAlgorithm {
         if (!isValidGraph(graph)) {
             throw new InvalidGraphException("Not a valid graph");
         }
-        if (graph == null) {
-            throw new InvalidGraphException("Graph cannot be null");
-        }
         this.graph = graph;
         this.shortestRouteMatrix = graph.getShortestRouteMatrix();
         this.fastestRouteMatrix = graph.getFastestRouteMatrix();

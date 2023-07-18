@@ -14,6 +14,6 @@ public class CarRoutePrinterException extends Exception {
 
     @Override
     public String getMessage() {
-        return "Source: "+source.getName()+" and Destination: "+destination+" - "+message;
+        return "Source: "+source.getName()+" and Destination: "+destination.getName()+" - "+message;
     }
 }
