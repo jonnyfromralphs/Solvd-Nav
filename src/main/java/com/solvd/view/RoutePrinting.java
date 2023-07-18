@@ -76,7 +76,7 @@ public class RoutePrinting {
       }
 
       sb.append("\nTotal Distance: ").append(df.format(totalDistance)).append(" miles");
-      sb.append("\nTotal Time: ").append(df.format(totalTime)).append(" hours");
+      sb.append("\nTotal Time: ").append(df.format(totalTime)).append(" hours\n");
 
       return sb.toString();
   }
@@ -148,7 +148,7 @@ public class RoutePrinting {
 
         if (totalTime < 1) {
             double totalMinutes = totalTime * 60;
-            sb.append(df.format(totalMinutes)).append(" minutes");
+            sb.append(df.format(totalMinutes)).append(" minutes\n");
         } else {
             sb.append(df.format(totalTime )).append(" hours");
         }

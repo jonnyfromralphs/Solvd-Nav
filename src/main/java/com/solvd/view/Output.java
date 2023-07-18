@@ -92,7 +92,7 @@ public class Output {
     public static void printAddresses(RoadNetworkGraph roadNetworkGraph) {
         List<Vertex> addresses = roadNetworkGraph.getVertexList().stream().filter(vertex -> vertex.getFrequency() == 0).toList();
         addresses.forEach(address -> LOGGER.info(address.getName()));
-        LOGGER.info("\n");
+        LOGGER.info("");
     }
 
     public static void printErrorMessage(Exception e) {

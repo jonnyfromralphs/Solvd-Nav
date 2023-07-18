@@ -103,7 +103,7 @@ public class Navigator {
 
                     while (!directionsQueue.isEmpty()) {
                         AddressPair<String, String> addressPair = directionsQueue.poll();
-                        getRoute((String) addressPair.getStartingAddress(), (String) addressPair.getDestinationAddress(), addressPair.transportationMode, true);
+                        getRoute(addressPair.getStartingAddress(), addressPair.getDestinationAddress(), addressPair.transportationMode, true);
                     }
                     break;
 
@@ -128,7 +128,7 @@ public class Navigator {
 
                     while (!directionsQueue.isEmpty()) {
                         AddressPair<String, String> addressPair = directionsQueue.poll();
-                        getRoute((String) addressPair.getStartingAddress(), (String) addressPair.getDestinationAddress(), addressPair.transportationMode, false);
+                        getRoute(addressPair.getStartingAddress(), addressPair.getDestinationAddress(), addressPair.transportationMode, false);
                     }
 
                     break;

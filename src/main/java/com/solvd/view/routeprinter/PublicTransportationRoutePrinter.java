@@ -30,7 +30,7 @@ public class PublicTransportationRoutePrinter extends RoutePrinting implements R
         List<Vertex> path = new ArrayList<>();
         if (source != destination && nearestBusStopSource != nearestBusStopDestination) {
             int waitTimeMinutes = calculateWaitTime(source);
-            LOGGER.info("Wait Time at Bus Stop: " + waitTimeMinutes + " minutes");
+            LOGGER.info("Wait Time at Bus Stop: " + waitTimeMinutes + " minutes\n");
             List<Vertex> sourceToBusStopPath = routeCalculator.calculateShortestPath(source, nearestBusStopSource);
             path.addAll(sourceToBusStopPath);
             List<Vertex> busStopToBusStopPath = routeCalculator.calculateShortestPath(nearestBusStopSource, nearestBusStopDestination);
@@ -81,7 +81,7 @@ public class PublicTransportationRoutePrinter extends RoutePrinting implements R
 
         if (source != destination && nearestBusStopSource != nearestBusStopDestination) {
             int waitTimeMinutes = calculateWaitTime(source);
-            LOGGER.info("Wait Time at Bus Stop: " + waitTimeMinutes + " minutes");
+            LOGGER.info("Wait Time at Bus Stop: " + waitTimeMinutes + " minutes\n");
 
             List<Vertex> sourceToBusStopPath = routeCalculator.calculateFastestPath(source, nearestBusStopSource);
             path.addAll(sourceToBusStopPath);
