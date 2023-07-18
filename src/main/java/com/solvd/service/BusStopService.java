@@ -19,6 +19,10 @@ public class BusStopService {
         return busStopMapper.getBusStopById(id);
     }
 
+    public BusStop getByName(String name) {
+        return busStopMapper.getBusStopByName(name);
+    }
+
     public List<BusStop> getAll() {
         return busStopMapper.getAllBusStops();
     }

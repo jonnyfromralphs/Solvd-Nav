@@ -20,6 +20,15 @@ public class StreetMapperImpl implements StreetMapper {
             return mapper.getStreetById(id);
         }
     }
+
+    @Override
+    public Street getStreetByName(String name) {
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            StreetMapper mapper = session.getMapper(StreetMapper.class);
+            return mapper.getStreetByName(name);
+        }
+    }
+
     @Override
     public List<Street> getAllStreets() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
@@ -29,7 +38,7 @@ public class StreetMapperImpl implements StreetMapper {
     }
     @Override
     public boolean createStreet(Street street) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
+        try (SqlSession session = sqlSessionFactory.openSession(true)) {
             StreetMapper mapper = session.getMapper(StreetMapper.class);
             return mapper.createStreet(street);
         }

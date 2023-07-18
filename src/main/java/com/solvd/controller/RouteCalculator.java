@@ -1,5 +1,6 @@
 package com.solvd.controller;
 
+import com.solvd.exception.InvalidGraphException;
 import com.solvd.model.graph.RoadNetworkGraph;
 import com.solvd.model.graph.Vertex;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public class RouteCalculator {
     private RoadNetworkGraph graph;
     private FloydWarshallAlgorithm floydWarshall;
 
-    public RouteCalculator(RoadNetworkGraph graph) {
+    public RouteCalculator(RoadNetworkGraph graph) throws InvalidGraphException {
         this.graph = graph;
         this.floydWarshall = new FloydWarshallAlgorithm(graph);
     }

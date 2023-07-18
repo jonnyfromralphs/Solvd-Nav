@@ -20,6 +20,10 @@ public class AddressService {
         return addressMapper.getAddressById(id);
     }
 
+    public Address getByName(String landmarkname) {
+        return addressMapper.getAddressByName(landmarkname);
+    }
+
     public List<Address> getAll() {
         return addressMapper.getAllAddresses();
     }

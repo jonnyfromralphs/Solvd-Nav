@@ -21,6 +21,15 @@ public class CityMapperImpl implements CityMapper {
             return mapper.getCityById(id);
         }
     }
+
+    @Override
+    public City getCityByName(String name) {
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            CityMapper mapper = session.getMapper(CityMapper.class);
+            return mapper.getCityByName(name);
+        }
+    }
+
     @Override
     public List<City> getAllCities() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
@@ -30,7 +39,7 @@ public class CityMapperImpl implements CityMapper {
     }
     @Override
     public boolean createCity(City city) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
+        try (SqlSession session = sqlSessionFactory.openSession(true)) {
             CityMapper mapper = session.getMapper(CityMapper.class);
             return mapper.createCity(city);
         }

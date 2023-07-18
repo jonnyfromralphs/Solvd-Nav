@@ -8,6 +8,7 @@ import java.util.List;
 public interface CityMapper {
 
     City getCityById(long id);
+    City getCityByName(String name);
 
     List<City> getAllCities();
 

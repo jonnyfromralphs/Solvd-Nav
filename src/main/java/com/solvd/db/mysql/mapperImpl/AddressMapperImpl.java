@@ -21,6 +21,15 @@ public class AddressMapperImpl implements AddressMapper {
             return mapper.getAddressById(id);
         }
     }
+
+    @Override
+    public Address getAddressByName(String landmarkName) {
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            AddressMapper mapper = session.getMapper(AddressMapper.class);
+            return mapper.getAddressByName(landmarkName);
+        }
+    }
+
     @Override
     public List<Address> getAllAddresses() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
@@ -30,7 +39,7 @@ public class AddressMapperImpl implements AddressMapper {
     }
     @Override
     public boolean createAddress(Address address) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
+        try (SqlSession session = sqlSessionFactory.openSession(true)) {
             AddressMapper mapper = session.getMapper(AddressMapper.class);
             return mapper.createAddress(address);
         }

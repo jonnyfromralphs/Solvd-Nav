@@ -13,6 +13,10 @@
         select * from streets where id = #{id}
     </select>
 
+    <select id="getStreetByName" resultMap="streetResultMap">
+        select * from streets where name = #{name}
+    </select>
+
     <select id="getAllStreets" resultMap="streetResultMap">
         select * from streets
     </select>
